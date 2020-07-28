@@ -1,0 +1,23 @@
+.mainNav {
+    display: flex;
+    font-size: 13px;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 5px 5px 5px #88888821;
+}
+
+#mainNavCategory {
+    color: #03A9F4;
+    font-size: 400;
+}
+
+.categoryNav {
+    display: flex;
+    justify-content: flex-start;
+    list-style-type: none;
+}
+
+.categoryNav > li {
+    padding-left: 20px;
+    padding-right: 20px;
+}
