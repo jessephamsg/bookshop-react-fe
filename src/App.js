@@ -4,7 +4,7 @@ import LoadingScreen from 'react-loading-screen';
 import axios from 'axios';
 import Navigation from './components/general/navigation'
 
-const SERVER_URL = process.env.SERVER_URL || 'http://localhost:4000/'
+const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL || 'http://localhost:4000/'
 
 export class App extends Component {
   constructor (props) {
@@ -20,7 +20,7 @@ export class App extends Component {
     }
   }
   async fetchData () {
-    const data = await axios.get(SERVER_URL);
+    const data = await axios.get(REACT_APP_SERVER_URL);
     const bookData = await data.data.data;
     this.setState({
         bookData
