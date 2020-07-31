@@ -53,3 +53,18 @@ body {
 .bookCover > img {
     height: 100%;
 }
+
+
+.bookPrice {
+    display: flex;
+    justify-content: center;
+}
+
+.bookPrice > p {
+    padding: 5px;
+}
+
+.bookRating {
+    display: flex;
+    justify-content: center;
+}

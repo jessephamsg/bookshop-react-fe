@@ -23,10 +23,11 @@ export class BookCard extends Component {
                             fullIcon={<i className="fa fa-star"></i>}
                             activeColor="#ffd700"
                             />
-                        <p>{this.props.data.raw.avgRating}</p>
                     </div>
-                    <p>{this.props.data.formatted.formattedDiscountedPrice}</p>
-                    <p>{this.props.data.formatted.formattedOriginalPrice}</p>
+                    <div className='bookPrice'>
+                        <p>{this.props.data.formatted.formattedDiscountedPrice}</p>
+                        <p>{this.props.data.formatted.formattedOriginalPrice}</p>
+                    </div>
                 </div>
             </div>
         )
