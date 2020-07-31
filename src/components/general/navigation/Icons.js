@@ -21,10 +21,10 @@ const useStyles = makeStyles({
   });
 
   
-export default function Icons () {  
+  export default function Icons () {  
     const classes = useStyles();  
-        return (  
-            <React.Fragment>  
+    return (  
+        <React.Fragment>  
                 <AppBar position="static" className={classes.root} >  
                     <Toolbar>
                         <div className={styles.generalNavLeft}>
