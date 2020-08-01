@@ -2,6 +2,12 @@ import React, {Component} from 'react';
 import BookCard from '../bookCard/BookCard';
 
 export class Section extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            view: this.props.data.slice(0, 6)
+        } 
+    }
     render() {
         return (
             <div className='bookSection'>
@@ -9,7 +15,7 @@ export class Section extends Component {
                     <h3>{this.props.heading}</h3>
                 </div>
                 <div className='bookSectionBooks'>
-                    {(this.props.data).map(book => {
+                    {(this.state.view).map(book => {
                         return (
                             <BookCard data={book}/>
                         )

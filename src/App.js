@@ -27,18 +27,17 @@ export class App extends Component {
   async fetchData () {
     const rawData = await axios.get(`${REACT_APP_SERVER_URL}/home`);
     const bookData = await rawData.data.data;
-    console.log(bookData.bestSellingBooks);
     this.setState({
         bookData,
         views: {
           bookCategories: ['Children', 'Science', 'Art', 'Fiction', 'Non-Fiction'],
           newArrival: null,
-          bestSelling: bookData.bestSellingBooks.slice(0,5),
-          recommendedBooks: bookData.topRankingBooks.slice(0,5),
-          childrenBooks: bookData.childrenBooks.slice(0,5),
-          fictionBooks: bookData.fictionBooks.slice(0,5),
-          nonFictionBooks: bookData.nonFictionBooks.slice(0,5),
-          scienceBooks: bookData.scienceBooks.slice(0,5)
+          bestSelling: bookData.bestSellingBooks,
+          recommendedBooks: bookData.topRankingBooks,
+          childrenBooks: bookData.childrenBooks,
+          fictionBooks: bookData.fictionBooks,
+          nonFictionBooks: bookData.nonFictionBooks,
+          scienceBooks: bookData.scienceBooks
         }
     })
   }
