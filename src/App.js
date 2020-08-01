@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import './App.css';
 import LoadingScreen from 'react-loading-screen';
 import axios from 'axios';
-import Navigation from './components/general/navigation'
-import Register from './components/page/register/Register'
-import Login from './components/page/login/Login'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import Navigation from './components/general/navigation';
+import Register from './components/page/register/Register';
+import Login from './components/page/login/Login';
+import Section from './components/page/bookSection';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL || 'http://localhost:4000'
 
@@ -19,15 +20,29 @@ export class App extends Component {
         newArrival: null,
         bestSelling: null,
         recommendedBooks: null,
-      },
+        childrenBooks: null,
+        fictionBooks: null,
+        nonFictionBooks: null,
+        scienceBooks: null
+        },
       userName: null
     }
   }
-  async fetchData() {
-    const data = await axios.get(REACT_APP_SERVER_URL);
-    const bookData = await data.data.data;
+  async fetchData () {
+    const rawData = await axios.get(`${REACT_APP_SERVER_URL}/home`);
+    const bookData = await rawData.data.data;
     this.setState({
-      bookData
+        bookData,
+        views: {
+          bookCategories: ['Children', 'Science', 'Art', 'Fiction', 'Non-Fiction'],
+          newArrival: null,
+          bestSelling: bookData.bestSellingBooks,
+          recommendedBooks: bookData.topRankingBooks,
+          childrenBooks: bookData.childrenBooks,
+          fictionBooks: bookData.fictionBooks,
+          nonFictionBooks: bookData.nonFictionBooks,
+          scienceBooks: bookData.scienceBooks
+        }
     })
   }
 
@@ -65,6 +80,7 @@ export class App extends Component {
       )
     }
     return (
+      <div className="App">
       <Router>
         <div>
           <Switch>
@@ -74,6 +90,16 @@ export class App extends Component {
           </Switch>
         </div>
       </Router>
+        <Navigation />
+        <div className='homePageBody'>
+          <Section data={this.state.views.bestSelling} heading='Bestselling Books'/>
+          <Section data={this.state.views.recommendedBooks} heading='Recommended Books'/>
+          <Section data={this.state.views.nonFictionBooks} heading='Non-fiction Books'/>
+          <Section data={this.state.views.fictionBooks} heading='Fiction Books'/>
+          <Section data={this.state.views.childrenBooks} heading='Children Books'/>
+          <Section data={this.state.views.scienceBooks} heading='Science Books'/>
+        </div>
+      </div>
     );
   }
 }

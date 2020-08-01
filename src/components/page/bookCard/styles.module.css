@@ -1,0 +1,54 @@
+.bookCard {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    height: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.bookCover {
+    height: 60%;
+}
+
+.bookCardSummary {
+    height: 40%;
+}
+
+.bookCardSummary > h4 {
+    margin-bottom: 0px;
+    font-size: 15px;
+}
+
+.bookCardSummary > p {
+    margin-bottom: 0px;
+    font-size: 13px;
+}
+
+.bookPrice {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.bookPrice > p {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.bookRating {
+    display: flex;
+    justify-content: center;
+}
+
+.bookDiscountedPrice {
+    color: #e91e63;
+    font-size: 20px;
+}
+
+.bookOriginalPrice {
+    color: grey;
+    font-size: 13px;
+    text-decoration: line-through;
+    width: fit-content;
+}
