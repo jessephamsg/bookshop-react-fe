@@ -1,0 +1,22 @@
+.cardForm {
+    padding: 3em;
+    margin: 3em;
+}
+
+.registerHeader{
+    margin-bottom: 2em;
+}
+
+.signInButton {
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
+
+.formControl {
+    margin: 1em;
+}
+
+.formLabel {
+    margin-bottom: 1em;
+    margin-top: 1em;
+}

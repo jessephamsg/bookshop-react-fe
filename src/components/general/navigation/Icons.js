@@ -21,7 +21,7 @@ const useStyles = makeStyles({
   });
 
   
-  export default function Icons () {  
+export default function Icons (props) {  
     const classes = useStyles();  
     return (  
         <React.Fragment>  
@@ -51,7 +51,7 @@ const useStyles = makeStyles({
                             <div className={styles.vl}></div>
                             <div className={styles.iconWrapper}>   
                                 <AccountCircle />
-                                <span className={styles.iconText}>Sign In</span>
+                                <span> <a href="/login" className={styles.signInIcon}>Sign In</a> </span>
                             </div>
                         </div>
                     </Toolbar>  
