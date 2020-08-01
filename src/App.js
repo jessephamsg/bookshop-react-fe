@@ -8,7 +8,7 @@ import Login from './components/page/login/Login';
 import Section from './components/page/bookSection';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL || 'http://localhost:4000'
+const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL || 'http://localhost:4000' || 'https://bookshop-dev-be.herokuapp.com'
 
 export class App extends Component {
   constructor(props) {
