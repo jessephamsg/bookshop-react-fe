@@ -24,31 +24,31 @@ export class App extends Component {
         fictionBooks: null,
         nonFictionBooks: null,
         scienceBooks: null
-        },
+      },
       userName: null
     }
   }
-  async fetchData () {
+  async fetchData() {
     const rawData = await axios.get(`${REACT_APP_SERVER_URL}/home`);
     const bookData = await rawData.data.data;
     this.setState({
-        bookData,
-        views: {
-          bookCategories: ['Children', 'Science', 'Art', 'Fiction', 'Non-Fiction'],
-          newArrival: null,
-          bestSelling: bookData.bestSellingBooks,
-          recommendedBooks: bookData.topRankingBooks,
-          childrenBooks: bookData.childrenBooks,
-          fictionBooks: bookData.fictionBooks,
-          nonFictionBooks: bookData.nonFictionBooks,
-          scienceBooks: bookData.scienceBooks
-        }
+      bookData,
+      views: {
+        bookCategories: ['Children', 'Science', 'Art', 'Fiction', 'Non-Fiction'],
+        newArrival: null,
+        bestSelling: bookData.bestSellingBooks,
+        recommendedBooks: bookData.topRankingBooks,
+        childrenBooks: bookData.childrenBooks,
+        fictionBooks: bookData.fictionBooks,
+        nonFictionBooks: bookData.nonFictionBooks,
+        scienceBooks: bookData.scienceBooks
+      }
     })
   }
 
   async getPassportUserData() {
     const response = await axios.get(`${REACT_APP_SERVER_URL}/user`, { withCredentials: true })
-    this.setState({userName: response.data.name})
+    this.setState({ userName: response.data.name })
     console.log(response.data.name)
   }
 
@@ -56,7 +56,7 @@ export class App extends Component {
     const data = JSON.parse(sessionStorage.getItem('userData'));
     const res = await axios.get(`https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${data}`)
     console.log(res.data.name)
-    this.setState({name: res.data.name})
+    this.setState({ name: res.data.name })
   }
 
   async componentDidMount() {
@@ -73,7 +73,7 @@ export class App extends Component {
             bgColor='#f1f1f1'
             spinnerColor='#9ee5f8'
             textColor='#676767'
-            text='Here an introduction sentence (Optional)'
+            text='Please wait.. '
           >
           </LoadingScreen>
         </div>
@@ -81,23 +81,22 @@ export class App extends Component {
     }
     return (
       <div className="App">
-      <Router>
-        <div>
-          <Switch>
-            <Route exact path='/login' component={Login} />
-            <Route exact path='/register' component={Register} />
-            <Route exact path='/' component={Navigation} />
-          </Switch>
-        </div>
-      </Router>
-        <Navigation />
+        <Router>
+          <div>
+            <Switch>
+              <Route exact path='/login' component={Login} />
+              <Route exact path='/register' component={Register} />
+              <Route exact path='/' component={Navigation} />
+            </Switch>
+          </div>
+        </Router>
         <div className='homePageBody'>
-          <Section data={this.state.views.bestSelling} heading='Bestselling Books'/>
-          <Section data={this.state.views.recommendedBooks} heading='Recommended Books'/>
-          <Section data={this.state.views.nonFictionBooks} heading='Non-fiction Books'/>
-          <Section data={this.state.views.fictionBooks} heading='Fiction Books'/>
-          <Section data={this.state.views.childrenBooks} heading='Children Books'/>
-          <Section data={this.state.views.scienceBooks} heading='Science Books'/>
+          <Section data={this.state.views.bestSelling} heading='Bestselling Books' />
+          <Section data={this.state.views.recommendedBooks} heading='Recommended Books' />
+          <Section data={this.state.views.nonFictionBooks} heading='Non-fiction Books' />
+          <Section data={this.state.views.fictionBooks} heading='Fiction Books' />
+          <Section data={this.state.views.childrenBooks} heading='Children Books' />
+          <Section data={this.state.views.scienceBooks} heading='Science Books' />
         </div>
       </div>
     );
