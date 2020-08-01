@@ -54,6 +54,9 @@ body {
     height: 100%;
 }
 
+.bookCardSummary > h4 {
+    margin-bottom: 0px
+}
 
 .bookPrice {
     display: flex;

@@ -1,17 +1,25 @@
 import React, {Component} from 'react';
 import ReactStars from "react-rating-stars-component";
+import styles from './styles.module.css';
+
 
 export class BookCard extends Component {
     render () {
         return (
-            <div className='bookCard'>
-                <div className='bookCover' style={{ backgroundImage:`url(${this.props.data.raw.img})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat',width:'100%',height:'250px'}}>
-                    {/* <img src={`${this.props.data.raw.img}`}/> */}
+            <div className={styles.bookCard}>
+                <div className={styles.bookCover} 
+                    style={{ 
+                        backgroundImage:`url(${this.props.data.raw.img})`, 
+                        backgroundSize: 'cover', 
+                        backgroundPosition: 'center', 
+                        backgroundRepeat: 'no-repeat',
+                        width:'100%',
+                        height:'250px'}}>
                 </div>
-                <div className='bookCardSummary'>
+                <div className={styles.bookCardSummary}>
                     <h4>{this.props.data.formatted.formattedTitle}</h4>
                     <p>{this.props.data.formatted.formattedAuthor}</p>
-                    <div className='bookRating'>
+                    <div className={styles.bookRating}>
                         <ReactStars
                             count={5}
                             size={18}
@@ -23,9 +31,9 @@ export class BookCard extends Component {
                             activeColor="#ffd700"
                             />
                     </div>
-                    <div className='bookPrice'>
-                        <p>{this.props.data.formatted.formattedDiscountedPrice}</p>
-                        <p>{this.props.data.formatted.formattedOriginalPrice}</p>
+                    <div className={styles.bookPrice}>
+                        <p className={styles.bookDiscountedPrice}>{this.props.data.formatted.formattedDiscountedPrice}</p>
+                        <p className={styles.bookOriginalPrice}>{this.props.data.formatted.formattedOriginalPrice}</p>
                     </div>
                 </div>
             </div>
