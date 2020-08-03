@@ -21,7 +21,7 @@ function LoginLabel(props) {
         <Box display="flex" justifyContent="center" className={styles.registerHeader}>
           <h1>
             <ForwardIcon fontSize="large" />LOGIN
-                    </h1>
+          </h1>
         </Box>
         {props.loginError != null && props.loginError.map((err, i) => {
           return (
