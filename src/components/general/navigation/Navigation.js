@@ -9,18 +9,14 @@ export class Navigation extends Component {
     constructor(props) {
         super(props);
     }
-
     handleLogout = async (e) => {
         try {
-            console.log('hi')
             const response = await axios.get('http://localhost:4000/logout', { withCredentials: true })
-            console.log(response)
             this.props.history.push('/login')
         } catch (err) {
             console.log(err.response)
         }
     }
-
     render() {
         return (
             <div>
@@ -28,7 +24,7 @@ export class Navigation extends Component {
                     <Icons handleLogout={this.handleLogout} />
                 </div>
                 <div>
-                    <SearchNav />
+                    <SearchNav handleSearchSubmit={this.props.handleSearchSubmit}/>
                 </div>
                 <div className={styles.mainNav}>
                     <BookCategory categories={this.props.categories}/>

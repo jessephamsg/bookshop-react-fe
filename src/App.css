@@ -14,9 +14,3 @@ body {
   background-color: #80808029;
 }
 
-.homePageBody {
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-  justify-content: center;
-}

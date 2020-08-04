@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
+import axios from 'axios';
 import RegisterLabels from './RegisterLabel'
 import Navigation from '../../general/navigation/Navigation'
-import axios from 'axios';
 
 class RegisterContainer extends Component {
     constructor(props) {
@@ -14,17 +14,15 @@ class RegisterContainer extends Component {
             registrationError: [],
         }
     }
-
     handleChange = (e) => {
         const { value, id } = e.target
         this.setState({ [id]: value })
     }
-
     handleSubmit = async (e) => {
         try {
             e.preventDefault()
             let data = { ...this.state }
-            const response = await axios.post('http://localhost:4000/register', data, { withCredentials: true })
+            const response = await axios.post('http://localhost:4000/register', data)
             if (response.data.success) {
                 this.setState({
                     name: '',
@@ -35,18 +33,15 @@ class RegisterContainer extends Component {
                 this.props.history.push('/login')
             }
         } catch (err) {
-            console.log(err.response.data)
             const errors = err.response.data.error
             this.setState({
                 registrationError: errors
             })
         }
     }
-
     render() {
         return (
             <React.Fragment>
-                <Navigation />
                 <form onSubmit={this.handleSubmit}>
                     <RegisterLabels
                         {...this.state}
@@ -57,6 +52,5 @@ class RegisterContainer extends Component {
             </React.Fragment>
         )
     }
-
 }
 export default RegisterContainer
