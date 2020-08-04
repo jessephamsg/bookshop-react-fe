@@ -6,6 +6,7 @@ import Navigation from './components/general/navigation';
 import Register from './components/page/register/Register';
 import Login from './components/page/login/Login';
 import Section from './components/page/bookSection';
+import CategoryListing from './components/page/categoryListing/CategoryListing';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL || 'http://localhost:4000' || 'https://bookshop-dev-be.herokuapp.com'
@@ -28,14 +29,19 @@ export class App extends Component {
       userName: null
     }
   }
+  async fetchCategory(cat){
+    const catData = await axios.get(`${REACT_APP_SERVER_URL}/cat/${cat}` )
+
+  }
   async fetchData() {
     const rawData = await axios.get(`${REACT_APP_SERVER_URL}/home`);
     const bookData = await rawData.data.data;
+    console.log('bookData:',bookData);
     this.setState({
       bookData,
       views: {
-        bookCategories: ['Children', 'Science', 'Art', 'Fiction', 'Non-Fiction'],
-        newArrival: null,
+        bookCategories: bookData.uniqueCat,
+        newArrival: null, 
         bestSelling: bookData.bestSellingBooks,
         recommendedBooks: bookData.topRankingBooks,
         childrenBooks: bookData.childrenBooks,
@@ -81,12 +87,13 @@ export class App extends Component {
     }
     return (
       <div className="App">
+        <Navigation categories={this.state.views.bookCategories} />
         <Router>
           <div>
             <Switch>
+              <Route exact path='/cat' component={CategoryListing} />
               <Route exact path='/login' component={Login} />
               <Route exact path='/register' component={Register} />
-              <Route exact path='/' component={Navigation} />
             </Switch>
           </div>
         </Router>
