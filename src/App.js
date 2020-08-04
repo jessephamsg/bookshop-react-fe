@@ -65,9 +65,10 @@ export class App extends Component {
   }
   async handleSearchSubmit (searchText) {
     const response = await axios.get(`${REACT_APP_SERVER_URL}/search?query=${searchText}`);
-    this.setState({view: {
+    this.setState({views: {
       fuzzySearchResult: response.data.data
     }})
+    console.log(this.state.views.fuzzySearchResult);
   }
   async componentDidMount() {
     await this.fetchData();
