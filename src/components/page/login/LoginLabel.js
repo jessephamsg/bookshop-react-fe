@@ -53,7 +53,6 @@ function LoginLabel(props) {
             required
           />
         </FormGroup>
-
         <button>Login</button>
         <div className={styles.signInButton}>
           <GoogleLogin

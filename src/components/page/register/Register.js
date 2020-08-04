@@ -42,7 +42,6 @@ class RegisterContainer extends Component {
     render() {
         return (
             <React.Fragment>
-                <Navigation />
                 <form onSubmit={this.handleSubmit}>
                     <RegisterLabels
                         {...this.state}

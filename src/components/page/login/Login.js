@@ -52,7 +52,6 @@ class LoginContainer extends Component {
     render() {
         return (
             <React.Fragment>
-                <Navigation />
                 <form onSubmit={this.handleSubmit}>
                     <LoginLabel
                         {...this.state}

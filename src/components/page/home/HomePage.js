@@ -12,7 +12,6 @@ export class HomePage extends Component {
         console.log(this.props)
         return (
         <React.Fragment>
-            <Navigation />
             <div className={styles.homePageBody}>
             <Section data={this.props.bestSelling} heading='Bestselling Books'/>
             <Section data={this.props.recommendedBooks} heading='Recommended Books'/>

@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import LoadingScreen from 'react-loading-screen';
 import axios from 'axios';
+import LoadingScreen from 'react-loading-screen';
 import './App.css';
 import Navigation from './components/general/navigation';
 import Register from './components/page/register/Register';
 import Login from './components/page/login/Login';
 import Section from './components/general/bookSection';
 import Homepage from './components/page/home/HomePage';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL || 'http://localhost:4000' || 'https://bookshop-dev-be.herokuapp.com'
-const GOOGLE_AUTH_URL = 'https://www.googleapis.com/oauth2/v3/tokeninfo?id_token='
+const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL || 'http://localhost:4000' || 'https://bookshop-dev-be.herokuapp.com';
+const GOOGLE_AUTH_URL = 'https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=';
 
 export class App extends Component {
   constructor(props) {
@@ -25,10 +25,12 @@ export class App extends Component {
         childrenBooks: null,
         fictionBooks: null,
         nonFictionBooks: null,
-        scienceBooks: null
+        scienceBooks: null,
+        fuzzySearchResult: null,
         },
       userName: null
     }
+    this.handleSearchSubmit = this.handleSearchSubmit.bind(this)
   }
   async fetchData () {
     const rawData = await axios.get(`${REACT_APP_SERVER_URL}/home`);
@@ -48,13 +50,19 @@ export class App extends Component {
     })
   }
   async getPassportUserData() {
-    const response = await axios.get(`${REACT_APP_SERVER_URL}/user`, { withCredentials: true })
+    const response = await axios.get(`${REACT_APP_SERVER_URL}/user`)
     this.setState({userName: response.data.name})
   }
   async getGoogleUserData() {
     const data = JSON.parse(sessionStorage.getItem('userData'));
     const res = await axios.get(`${GOOGLE_AUTH_URL}${data}`)
     this.setState({name: res.data.name})
+  }
+  async handleSearchSubmit (searchText) {
+    const response = await axios.get(`${REACT_APP_SERVER_URL}/search?query=${searchText}`);
+    this.setState({view: {
+      fuzzySearchResult: response.data.data
+    }})
   }
   async componentDidMount() {
     await this.fetchData();
@@ -75,20 +83,23 @@ export class App extends Component {
           </LoadingScreen>
         </div>
       )
-    }
-    return (
-      <div className="App">
-      <Router>
-        <div>
-          <Switch>
-            <Route exact path='/login' component={Login} />
-            <Route exact path='/register' component={Register} />
-            <Route exact path='/' render={ props => <Homepage {...this.state.views}/>} />
-          </Switch>
+    } else {
+      return (
+        <div className="App">
+        <Navigation handleSearchSubmit={this.handleSearchSubmit}/>
+        <Router>
+          <div>
+            <Switch>
+              <Route exact path='/login' component={Login} />
+              <Route exact path='/register' component={Register} />
+              <Route exact path='/search' component={Login} /> */}
+              <Route exact path='/' render={ props => <Homepage {...this.state.views}/>} />
+            </Switch>
+          </div>
+        </Router>
         </div>
-      </Router>
-      </div>
-    );
+      );
+    }
   }
 }
 
