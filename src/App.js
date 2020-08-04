@@ -1,17 +1,22 @@
+//DEPENDENCIES
 import React, { Component } from 'react';
-import axios from 'axios';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import LoadingScreen from 'react-loading-screen';
+import axios from 'axios';
 import './App.css';
+
+//COMPONENTS
 import Navigation from './components/general/navigation';
 import Register from './components/page/register/Register';
 import Login from './components/page/login/Login';
 import Section from './components/general/bookSection';
 import Homepage from './components/page/home/HomePage';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
+//VARIABLES
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL || 'http://localhost:4000' || 'https://bookshop-dev-be.herokuapp.com';
 const GOOGLE_AUTH_URL = 'https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=';
 
+//MAIN
 export class App extends Component {
   constructor(props) {
     super(props)
@@ -92,7 +97,7 @@ export class App extends Component {
             <Switch>
               <Route exact path='/login' component={Login} />
               <Route exact path='/register' component={Register} />
-              <Route exact path='/search' component={Login} /> */}
+              <Route exact path='/search' component={Login} />
               <Route exact path='/' render={ props => <Homepage {...this.state.views}/>} />
             </Switch>
           </div>
