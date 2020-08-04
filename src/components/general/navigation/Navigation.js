@@ -6,8 +6,8 @@ import BookCategory from './BookCategory'
 import axios from 'axios'
 
 export class Navigation extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props);
     }
 
     handleLogout = async (e) => {
@@ -25,13 +25,13 @@ export class Navigation extends Component {
         return (
             <div>
                 <div>
-                    <Icons handleLogout={this.handleLogout}/>
+                    <Icons handleLogout={this.handleLogout} />
                 </div>
                 <div>
                     <SearchNav />
                 </div>
                 <div className={styles.mainNav}>
-                    <BookCategory />
+                    <BookCategory categories={this.props.categories}/>
                 </div>
             </div>
         )
