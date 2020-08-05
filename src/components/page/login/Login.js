@@ -1,7 +1,13 @@
-import React, { Component } from 'react'
-import axios from 'axios'
-import LoginLabel from './LoginLabel'
-import Navigation from '../../general/navigation/Navigation'
+//DEPENDENCIES
+import React, { Component } from 'react';
+import axios from 'axios';
+
+//COMPONENTS
+import LoginLabel from './LoginLabel';
+import Endpoints from '../../../config/endpoints';
+
+//VARIABLES
+const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;
 
 
 class LoginContainer extends Component {
@@ -18,7 +24,7 @@ class LoginContainer extends Component {
         try {
             e.preventDefault()
             let data = { ...this.state }
-            const response = await axios.post("http://localhost:4000/login", data)
+            const response = await axios.post(`${REACT_APP_SERVER_URL}/login`, data)
             if (response.data.success) {
                 this.props.history.push('/')
             }
@@ -37,7 +43,7 @@ class LoginContainer extends Component {
         try {
             const data = response.profileObj
             const token = response.tokenId
-            const res = await axios.post("http://localhost:4000/login/google", data)
+            const res = await axios.post(`${REACT_APP_SERVER_URL}/login/google`, data)
             if (res.data.success) {
                 sessionStorage.setItem("userData", JSON.stringify(token))
                 this.props.history.push('/')

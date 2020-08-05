@@ -7,16 +7,14 @@ import './App.css';
 
 //COMPONENTS
 import Navigation from './components/general/navigation';
-import Register from './components/page/register/Register';
-import Login from './components/page/login/Login';
-import Section from './components/general/bookSection';
-import Homepage from './components/page/home/HomePage';
-import CategoryListing from './components/page/categoryListing/CategoryListing';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Register from './components/page/register';
+import Login from './components/page/login';
+import Homepage from './components/page/home';
+import Endpoints from './config/endpoints';
 
 //VARIABLES
-const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL || 'http://localhost:4000' || 'https://bookshop-dev-be.herokuapp.com';
-const GOOGLE_AUTH_URL = 'https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=';
+const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;
+const GOOGLE_AUTH_URL = Endpoints.GOOGLE_AUTH_URL;
 
 //MAIN
 export class App extends Component {
@@ -26,38 +24,19 @@ export class App extends Component {
       bookData: null,
       views: {
         bookCategories: null,
-        newArrival: null,
-        bestSelling: null,
-        recommendedBooks: null,
-        childrenBooks: null,
-        fictionBooks: null,
-        nonFictionBooks: null,
-        scienceBooks: null,
-        fuzzySearchResult: null,
+        fuzzySearchResult: null
         },
       userName: null
     }
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this)
   }
-  async fetchCategory(cat){
-    const catData = await axios.get(`${REACT_APP_SERVER_URL}/cat/${cat}` )
-
-  }
   async fetchData() {
     const rawData = await axios.get(`${REACT_APP_SERVER_URL}/home`);
     const bookData = await rawData.data.data;
-    console.log('bookData:',bookData);
     this.setState({
       bookData,
       views: {
-        bookCategories: bookData.uniqueCat,
-        newArrival: null, 
-        bestSelling: bookData.bestSellingBooks,
-        recommendedBooks: bookData.topRankingBooks,
-        childrenBooks: bookData.childrenBooks,
-        fictionBooks: bookData.fictionBooks,
-        nonFictionBooks: bookData.nonFictionBooks,
-        scienceBooks: bookData.scienceBooks
+        bookCategories: bookData,
       }
     })
   }
@@ -75,7 +54,6 @@ export class App extends Component {
     this.setState({views: {
       fuzzySearchResult: response.data.data
     }})
-    console.log(this.state.views.fuzzySearchResult);
   }
   async componentDidMount() {
     await this.fetchData();
@@ -106,7 +84,7 @@ export class App extends Component {
               <Route exact path='/login' component={Login} />
               <Route exact path='/register' component={Register} />
               <Route exact path='/search' component={Login} />
-              <Route exact path='/' render={ props => <Homepage {...this.state.views}/>} />
+              <Route exact path='/' component={Homepage}/>} />
             </Switch>
           </div>
         </Router>

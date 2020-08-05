@@ -6,7 +6,7 @@ import ForwardIcon from '@material-ui/icons/Forward'
 import styles from './styles.module.css'
 import Message from '../../general/errorMessage/ErrorMessage'
 
-const CutomButton = withStyles({
+const CustomButton = withStyles({
     root: {
       backgroundColor: "rgb(61,49,65)",
       color: "white",
