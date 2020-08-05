@@ -49,12 +49,6 @@ export class HomePage extends Component {
         return (
             <React.Fragment>
                 <div className={styles.homePageBody}>
-                {/* <Section category='bestSelling' limit='6' heading='Bestselling Books'/>
-                <Section category='topRanking' limit='6' heading='Recommended Books'/>
-                <Section category='Non-Fiction' limit='6' heading='Non-fiction Books'/>
-                <Section category='Fiction' limit='6' heading='Fiction Books'/>
-                <Section category='Children' limit='6' heading='Children Books'/>
-                <Section category='Science' limit='6' heading='Science Books'/> */}
                 {this.state.categories.map(category => {
                     return (
                         <Section category={`${category.name}`} heading={`${category.heading}`} limit={this.state.limit}/>

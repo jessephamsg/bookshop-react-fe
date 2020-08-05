@@ -1,9 +1,12 @@
+//DEPENDENCIES
 import React, {Component} from 'react';
-import BookCard from '../bookCard/BookCard';
 import styles from './styles.module.css';
-import Endpoints from '../../../config/endpoints';
 import LoadingScreen from 'react-loading-screen';
 import axios from 'axios';
+
+//COMPONENTS
+import BookCard from '../bookCard/BookCard';
+import Endpoints from '../../../config/endpoints';
 
 //VARIABLES
 const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;

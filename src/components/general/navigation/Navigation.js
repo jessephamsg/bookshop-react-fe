@@ -1,9 +1,17 @@
+//DEPENDENCIES
 import React, { Component } from 'react';
 import styles from './styles.module.css';
+import axios from 'axios';
+
+//COMPONENTS
 import Icons from './Icons';
 import SearchNav from './SearchNav';
-import BookCategory from './BookCategory'
-import axios from 'axios'
+import BookCategory from './BookCategory';
+import Endpoints from '../../../config/endpoints';
+
+//VARIABLES
+const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;
+
 
 export class Navigation extends Component {
     constructor(props) {
@@ -11,7 +19,7 @@ export class Navigation extends Component {
     }
     handleLogout = async (e) => {
         try {
-            const response = await axios.get('http://localhost:4000/logout', { withCredentials: true })
+            const response = await axios.get(`${REACT_APP_SERVER_URL}/logout`, { withCredentials: true })
             this.props.history.push('/login')
         } catch (err) {
             console.log(err.response)
