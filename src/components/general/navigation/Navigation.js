@@ -39,7 +39,10 @@ export class Navigation extends Component {
                     <SearchNav handleSearchSubmit={this.handleSearchSubmit}/>
                 </form>
                 <div className={styles.mainNav}>
-                    <BookCategory categories={this.props.categories}/>
+                    <BookCategory 
+                        categories={this.props.categories}
+                        handleSelectCat = {this.props.handleSelectCat}
+                    />
                 </div>
             </div>
         )

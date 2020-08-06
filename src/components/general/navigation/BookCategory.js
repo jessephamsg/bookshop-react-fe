@@ -1,4 +1,3 @@
-//DEPENDENCIES
 import React, { Component } from 'react';
 import styles from './styles.module.css';
 import axios from 'axios';
@@ -46,4 +45,4 @@ export class BookCategory extends Component {
 }
 }
 
-export default BookCategory
+export default BookCategory;
