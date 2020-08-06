@@ -11,10 +11,10 @@ import ChangePassword from './components/page/changePassword/ChangePassword';
 import Login from './components/page/login';
 import SearchPage from './components/page/search';
 import UserProfile from './components/page/userProfile/UserProfile';
+import CategoryListing from './components/page/categoryListing';
 
 //VARIABLES
 import Endpoints from './config/endpoints';
-import CategoryListing from './components/page/categoryListing';
 const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;
 const GOOGLE_AUTH_URL = Endpoints.GOOGLE_AUTH_URL;
 
