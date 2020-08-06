@@ -1,14 +1,14 @@
 //DEPENDENCIES
 import React, { Component } from 'react';
 import styles from './styles.module.css';
-import LoadingScreen from 'react-loading-screen';
 import axios from 'axios';
 
 //COMPONENTS
 import Section from '../../general/bookSection';
-import Endpoints from '../../../config/endpoints';
+import Navigation from '../../general/navigation';
 
 //VARIABLES
+import Endpoints from '../../../config/endpoints';
 const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;
 
 
@@ -48,6 +48,7 @@ export class HomePage extends Component {
     render () {
         return (
             <React.Fragment>
+                <Navigation history= {this.props.history}/>
                 <div className={styles.homePageBody}>
                 {this.state.categories.map(category => {
                     return (

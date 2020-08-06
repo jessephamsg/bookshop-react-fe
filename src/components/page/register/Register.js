@@ -4,9 +4,10 @@ import axios from 'axios';
 
 //COMPONENTS
 import RegisterLabels from './RegisterLabel';
-import Endpoints from '../../../config/endpoints';
+import Navigation from '../../general/navigation';
 
 //VARIABLES
+import Endpoints from '../../../config/endpoints';
 const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;
 
 
@@ -29,7 +30,7 @@ class RegisterContainer extends Component {
         try {
             e.preventDefault();
             let data = { ...this.state }
-            const response = await axios.post(`${REACT_APP_SERVER_URL}/register`, data)
+            const response = await axios.post(`${REACT_APP_SERVER_URL}/register`, data);
             if (response.data.success) {
                 this.setState({
                     name: '',
@@ -49,6 +50,7 @@ class RegisterContainer extends Component {
     render() {
         return (
             <React.Fragment>
+                <Navigation history= {this.props.history}/>
                 <form onSubmit={this.handleSubmit}>
                     <RegisterLabels
                         {...this.state}

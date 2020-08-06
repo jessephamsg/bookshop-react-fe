@@ -1,3 +1,4 @@
+//DEPENDENCIES
 import React, {Component} from 'react';
 import styles from './styles.module.css';
 
@@ -6,7 +7,7 @@ export class SearchBox extends Component {
     constructor (props) {
         super (props)
         this.state = {
-            searchText: ''
+            searchText: '',
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
@@ -16,10 +17,10 @@ export class SearchBox extends Component {
             searchText: e.target.value
         })
     }
-    handleSearchSubmit (e) {
+    async handleSearchSubmit (e) {
         e.preventDefault();
         const searchValue = this.state.searchText;
-        this.props.handleSearchSubmit(searchValue);
+        this.props.handleSearchSubmit(searchValue)
     }
     render () {
         return (
@@ -28,7 +29,7 @@ export class SearchBox extends Component {
                     <input id={styles.searchBox} value={this.state.searchText} onChange={this.handleChange}></input>
                 </div>
                 <div id={styles.searchButton}>
-                    <button onClick={this.handleSearchSubmit} >Search</button>
+                    <button onClick={this.handleSearchSubmit}>Search</button>
                 </div>
             </React.Fragment>
         )

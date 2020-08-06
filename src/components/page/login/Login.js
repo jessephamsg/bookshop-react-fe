@@ -4,9 +4,10 @@ import axios from 'axios';
 
 //COMPONENTS
 import LoginLabel from './LoginLabel';
-import Endpoints from '../../../config/endpoints';
+import Navigation from '../../general/navigation';
 
 //VARIABLES
+import Endpoints from '../../../config/endpoints';
 const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;
 
 
@@ -58,6 +59,7 @@ class LoginContainer extends Component {
     render() {
         return (
             <React.Fragment>
+                <Navigation history= {this.props.history}/>
                 <form onSubmit={this.handleSubmit}>
                     <LoginLabel
                         {...this.state}

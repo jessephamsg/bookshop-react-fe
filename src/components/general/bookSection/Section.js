@@ -1,10 +1,10 @@
 //DEPENDENCIES
 import React, {Component} from 'react';
 import styles from './styles.module.css';
-import LoadingScreen from 'react-loading-screen';
 import axios from 'axios';
 
 //COMPONENTS
+import LoadingPage from '../loadingPage';
 import BookCard from '../bookCard/BookCard';
 import Endpoints from '../../../config/endpoints';
 
@@ -31,16 +31,7 @@ export class Section extends Component {
     render() {
         if (this.state.view === null) {
             return (
-              <div>
-                <LoadingScreen
-                  loading={true}
-                  bgColor='#f1f1f1'
-                  spinnerColor='#9ee5f8'
-                  textColor='#676767'
-                  text='Please wait.. '
-                >
-                </LoadingScreen>
-              </div>
+                <LoadingPage/>
             )
           } else {
         return (
