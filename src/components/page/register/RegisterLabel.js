@@ -77,8 +77,8 @@ function RegisterForm(props) {
                             required
                         />
                 </FormGroup>
-                <button>Register</button>
-                <p className="lead mt-4"> Already Have An Account? <a href="/login">Login</a>  </p>
+                <button className={styles.formButton}>Register</button>
+                <p className={styles.quickLink}> Already Have An Account? <a href="/login">Login</a>  </p>
             </Card>
         </Container>
     )

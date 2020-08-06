@@ -1,6 +1,7 @@
 //DEPENDENCIES
 import React, { Component } from 'react';
 import axios from 'axios';
+import { withRouter } from "react-router-dom";
 
 //COMPONENTS
 import RegisterLabels from './RegisterLabel';
@@ -62,4 +63,4 @@ class RegisterContainer extends Component {
         )
     }
 }
-export default RegisterContainer
+export default withRouter(RegisterContainer)

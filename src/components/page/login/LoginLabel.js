@@ -1,18 +1,9 @@
 import React from 'react'
 import GoogleLogin from 'react-google-login'
-import { Card, Container, FormGroup, FormLabel, TextField, Box, Button } from '@material-ui/core'
-import { withStyles } from "@material-ui/core/styles"
+import { Card, Container, FormGroup, FormLabel, TextField, Box } from '@material-ui/core'
 import ForwardIcon from '@material-ui/icons/Forward'
 import styles from './styles.module.css'
 import Message from '../../general/errorMessage/ErrorMessage'
-
-const CustomButton = withStyles({
-    root: {
-      backgroundColor: "rgb(61,49,65)",
-      color: "white",
-      marginTop: '2rem'
-    }
-  })(Button);
 
 function LoginLabel(props) {
   return (
@@ -53,7 +44,8 @@ function LoginLabel(props) {
             required
           />
         </FormGroup>
-        <button>Login</button>
+
+        <button className={styles.formButton}>Login</button>
         <div className={styles.signInButton}>
           <GoogleLogin
             clientId='825484293224-ridcbmjkgra0tiubl10q2fcpaqre5bj5.apps.googleusercontent.com'

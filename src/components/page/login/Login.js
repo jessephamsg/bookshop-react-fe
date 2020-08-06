@@ -1,5 +1,6 @@
 //DEPENDENCIES
 import React, { Component } from 'react';
+import { withRouter } from "react-router-dom";
 import axios from 'axios';
 
 //COMPONENTS
@@ -73,4 +74,4 @@ class LoginContainer extends Component {
     }
 }
 
-export default LoginContainer
+export default withRouter(LoginContainer)

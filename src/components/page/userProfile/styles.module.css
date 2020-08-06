@@ -1,0 +1,46 @@
+.cardForm {
+    padding: 3em;
+    margin-top: 6em;
+    margin-right: 10em;
+    width: 800px;
+    height: fit-content;
+}
+
+.header {
+    padding-left: 1rem;
+}
+
+.formButton {
+    display: block;
+    width: 97%;
+    background-color: rgb(61,49,65);
+    color: white;
+    margin: auto;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    margin-top: 1rem;
+}
+
+.formButton:hover {
+    background-color: rgba(61,49,65,0.9);
+}
+
+.paper {
+    width: fit-content;
+    height: fit-content;
+    margin-top: 6em;
+    margin-right: 3rem;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.quickLink {
+    text-decoration: none;
+    color: black;
+}

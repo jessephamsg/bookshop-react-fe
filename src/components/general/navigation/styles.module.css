@@ -127,5 +127,11 @@
 
 .signOutIcon {
     color: white;
-    background: rgb(61,49,65);
+    background: transparent;
+    border-style: none;
+}
+
+.dropDownLink {
+    text-decoration: none;
+    color: black;
 }
