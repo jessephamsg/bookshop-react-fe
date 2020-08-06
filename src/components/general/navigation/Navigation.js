@@ -1,28 +1,32 @@
+//DEPENDENCIES
 import React, { Component } from 'react';
 import styles from './styles.module.css';
+import axios from 'axios';
+import { withRouter } from "react-router-dom";
+
+//COMPONENTS
 import Icons from './Icons';
 import SearchNav from './SearchNav';
 import BookCategory from './BookCategory'
-import axios from 'axios'
-import { withRouter } from "react-router-dom";
 
-const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL || 'http://localhost:4000' || 'https://bookshop-dev-be.herokuapp.com'
-
+//VARIABLES
+import Endpoints from '../../../config/endpoints';
+const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;
 
 export class Navigation extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             userName: null,
             email: ''
         }
+        this.handleSearchSubmit = this.handleSearchSubmit.bind(this)
     }
-
 
     handleLogout = async (e) => {
         try {
             console.log('hi')
-            const response = await axios.get('http://localhost:4000/logout', { withCredentials: true })
+            const response = await axios.get(`${REACT_APP_SERVER_URL}/logout`, { withCredentials: true })
             console.log(response)
             sessionStorage.removeItem('userData');
             this.props.history.push('/login')
@@ -48,17 +52,24 @@ export class Navigation extends Component {
             this.setState({userName: null})
         }
     }
+
+    async handleSearchSubmit (searchValue) {
+        this.props.history.push(`/search?query=${searchValue}`);
+    }
     render() {
         return (
             <div>
                 <div>
                     <Icons handleLogout={this.handleLogout} userName={this.state.userName} />
                 </div>
-                <div>
-                    <SearchNav />
-                </div>
+                <form>
+                    <SearchNav handleSearchSubmit={this.handleSearchSubmit}/>
+                </form>
                 <div className={styles.mainNav}>
-                    <BookCategory />
+                    <BookCategory 
+                        categories={this.props.categories}
+                        handleSelectCat = {this.props.handleSelectCat}
+                    />
                 </div>
             </div>
         )

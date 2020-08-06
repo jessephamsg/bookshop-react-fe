@@ -2,6 +2,9 @@
   "name": "project-3-frontend",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "13.10.1"
+  },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
@@ -10,16 +13,17 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-google-login": "^5.1.21",
     "react-loading-screen": "0.0.17",
     "react-material-ui-form": "^1.1.7",
     "react-rating-stars-component": "^2.2.0",
+    "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.1",
     "serve": "^11.3.2",
-    "start": "^5.1.0",
     "webpack": "^4.44.1"
   },
   "scripts": {

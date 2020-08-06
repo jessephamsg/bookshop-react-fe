@@ -1,10 +1,9 @@
-import React, { Component } from 'react'
-import Home from '@material-ui/icons/Home';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import { Notifications } from '@material-ui/icons';
+import React from 'react';  
+import Home from '@material-ui/icons/Home';  
+import AppBar from '@material-ui/core/AppBar';  
+import Toolbar from '@material-ui/core/Toolbar';  
+import { Notifications } from '@material-ui/icons';  
 import { makeStyles } from '@material-ui/core/styles';
-import ContactsIcon from '@material-ui/icons/Contacts';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import AirplanemodeActiveIcon from '@material-ui/icons/AirplanemodeActive';
