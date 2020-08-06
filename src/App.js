@@ -12,7 +12,6 @@ import Login from './components/page/login/Login';
 import Section from './components/general/bookSection';
 import Homepage from './components/page/home/HomePage';
 import CategoryListing from './components/page/categoryListing/CategoryListing';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 //VARIABLES
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL || 'http://localhost:4000' || 'https://bookshop-dev-be.herokuapp.com';
@@ -37,11 +36,13 @@ export class App extends Component {
         },
       userName: null
     }
-    this.handleSearchSubmit = this.handleSearchSubmit.bind(this)
+    this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
+    this.handleSelectCat = this.handleSelectCat.bind(this);
   }
-  async fetchCategory(cat){
+  async handleSelectCat(cat){
     const catData = await axios.get(`${REACT_APP_SERVER_URL}/cat/${cat}` )
-
+    console.log(catData);
+    return catData
   }
   async fetchData() {
     const rawData = await axios.get(`${REACT_APP_SERVER_URL}/home`);
@@ -99,7 +100,11 @@ export class App extends Component {
     } else {
       return (
         <div className="App">
-        <Navigation handleSearchSubmit={this.handleSearchSubmit} categories={this.state.views.bookCategories}/>
+        <Navigation 
+          handleSearchSubmit={this.handleSearchSubmit} 
+          categories={this.state.views.bookCategories}
+          handleSelectCat = {this.handleSelectCat}
+          />
         <Router>
           <div>
             <Switch>
