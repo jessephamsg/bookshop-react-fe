@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import RegisterLabels from './RegisterLabel'
 import Navigation from '../../general/navigation/Navigation'
 import axios from 'axios';
+import { withRouter } from "react-router-dom";
 
 class RegisterContainer extends Component {
     constructor(props) {
@@ -59,4 +60,4 @@ class RegisterContainer extends Component {
     }
 
 }
-export default RegisterContainer
+export default withRouter(RegisterContainer)

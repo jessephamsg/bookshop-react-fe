@@ -54,7 +54,7 @@ function LoginLabel(props) {
           />
         </FormGroup>
 
-        <button>Login</button>
+        <button className={styles.formButton}>Login</button>
         <div className={styles.signInButton}>
           <GoogleLogin
             clientId='825484293224-ridcbmjkgra0tiubl10q2fcpaqre5bj5.apps.googleusercontent.com'

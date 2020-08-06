@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import LoginLabel from './LoginLabel'
-import Navigation from '../../general/navigation/Navigation'
-import axios from 'axios'
-
+import React, { Component } from 'react';
+import LoginLabel from './LoginLabel';
+import Navigation from '../../general/navigation/Navigation';
+import axios from 'axios';
+import { withRouter } from "react-router-dom";
 
 class LoginContainer extends Component {
     constructor() {
@@ -77,4 +77,4 @@ class LoginContainer extends Component {
     }
 }
 
-export default LoginContainer
+export default withRouter(LoginContainer)
