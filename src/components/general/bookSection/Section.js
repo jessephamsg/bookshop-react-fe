@@ -6,9 +6,9 @@ import axios from 'axios';
 //COMPONENTS
 import LoadingPage from '../loadingPage';
 import BookCard from '../bookCard/BookCard';
-import Endpoints from '../../../config/endpoints';
 
 //VARIABLES
+import Endpoints from '../../../config/endpoints';
 const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;
 
 export class Section extends Component {

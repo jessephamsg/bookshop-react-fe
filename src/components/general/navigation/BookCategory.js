@@ -1,11 +1,15 @@
+//DEPENDENCIES
 import React, { Component } from 'react';
 import styles from './styles.module.css';
-import Endpoints from '../../../config/endpoints';
 import axios from 'axios';
+
+//COMPONENTS
 import LoadingPage from '../loadingPage';
 
 //VARIABLES
+import Endpoints from '../../../config/endpoints';
 const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;
+
 
 export class BookCategory extends Component {
     constructor (props) {
