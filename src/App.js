@@ -9,7 +9,6 @@ import Register from './components/page/register';
 import Login from './components/page/login';
 import Homepage from './components/page/home';
 import SearchPage from './components/page/search';
-import CategoryListing from './components/page/categoryListing/CategoryListing';
 
 //VARIABLES
 import Endpoints from './config/endpoints';
