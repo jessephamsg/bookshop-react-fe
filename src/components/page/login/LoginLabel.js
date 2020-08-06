@@ -1,18 +1,9 @@
 import React from 'react'
 import GoogleLogin from 'react-google-login'
-import { Card, Container, FormGroup, FormLabel, TextField, Box, Button } from '@material-ui/core'
-import { withStyles } from "@material-ui/core/styles"
+import { Card, Container, FormGroup, FormLabel, TextField, Box } from '@material-ui/core'
 import ForwardIcon from '@material-ui/icons/Forward'
 import styles from './styles.module.css'
 import Message from '../../general/errorMessage/ErrorMessage'
-
-const CutomButton = withStyles({
-    root: {
-      backgroundColor: "rgb(61,49,65)",
-      color: "white",
-      marginTop: '2rem'
-    }
-  })(Button);
 
 function LoginLabel(props) {
   return (
@@ -21,7 +12,7 @@ function LoginLabel(props) {
         <Box display="flex" justifyContent="center" className={styles.registerHeader}>
           <h1>
             <ForwardIcon fontSize="large" />LOGIN
-                    </h1>
+          </h1>
         </Box>
         {props.loginError != null && props.loginError.map((err, i) => {
           return (

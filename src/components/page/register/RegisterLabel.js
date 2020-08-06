@@ -6,7 +6,7 @@ import { withStyles } from "@material-ui/core/styles"
 import styles from './styles.module.css'
 
 
-const CutomButton = withStyles({
+const CustomButton = withStyles({
     root: {
       backgroundColor: "rgb(61,49,65)",
       color: "white",
@@ -14,7 +14,7 @@ const CutomButton = withStyles({
     }
   })(Button);
 
-
+  
 function RegisterForm(props) {
     return (
         <Container>
