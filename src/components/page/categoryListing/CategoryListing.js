@@ -1,28 +1,59 @@
+//DEPENDENCIES
 import React, { Component } from 'react';
-import BookCard from '../../general/bookCard/BookCard';
+import axios from 'axios';
 import styles from './styles.module.css';
 
+//COMPONENTS
+import Navigation from '../../general/navigation';
+import LoadingPage from '../../general/loadingPage';
+import BookCard from '../../general/bookCard';
 
-export class Section extends Component {
+//VARIABLES
+import Endpoints from '../../../config/endpoints';
+const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;
+
+
+export class CategoryListing extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            view: this.props.data.slice(0, 6),
-            theme: this.props.theme
+            view: null,
+            theme: 'Children'
         }
     }
+    async fetchData(props) {
+        const theme = this.state.theme;
+        const rawData = await axios.get(`${REACT_APP_SERVER_URL}/cat/${theme}`);
+        const bookData = await rawData.data.data;
+        this.setState({
+            view: bookData,
+        })
+    }
+    async componentDidMount() {
+        await this.fetchData();
+    }
     render() {
-        return (
-            <div className={styles.bookSection}>
-                <div className={styles.bookSectionTitle}>
-                    <h3>{this.props.heading}</h3>
-                </div>
-                <div className={styles.bookSectionBooks}>
-                    <BookCard data={this.state.view} />
-                </div>
-            </div>
-        )
+        if (this.state.view === null) {
+            return (
+                <LoadingPage />
+            )
+        } else {
+            console.log(this.state.view)
+            return (
+                <React.Fragment>
+                    <Navigation history={this.props.history} />
+                    <h1 className={styles.bookSectionTitle}>{this.state.theme}</h1>
+                    <div className={styles.bookContainer}>
+                        {(this.state.view).map(book => {
+                            return (
+                                <BookCard data={book} />
+                            )
+                        })}
+                    </div>
+                </React.Fragment>
+            )
+        }
     }
 }
 
-export default Section;
+export default CategoryListing;
