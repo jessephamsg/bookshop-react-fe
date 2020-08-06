@@ -1,16 +1,39 @@
+//DEPENDENCIES
 import React, {Component} from 'react';
-import BookCard from '../bookCard/BookCard';
 import styles from './styles.module.css';
+import axios from 'axios';
 
+//COMPONENTS
+import LoadingPage from '../loadingPage';
+import BookCard from '../bookCard/BookCard';
+
+//VARIABLES
+import Endpoints from '../../../config/endpoints';
+const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;
 
 export class Section extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            view: this.props.data.slice(0, 6)
+            view: null
         } 
     }
+    async fetchData() {
+        const rawData = await axios.get(`${REACT_APP_SERVER_URL}/books?query=${this.props.category}&limit=${this.props.limit}`);
+        const bookData = await rawData.data.data;
+        this.setState({
+          view: bookData,
+        })
+    }
+    async componentDidMount() {
+        await this.fetchData();
+    }
     render() {
+        if (this.state.view === null) {
+            return (
+                <LoadingPage/>
+            )
+          } else {
         return (
             <div className={styles.bookSection}>
                 <div className={styles.bookSectionTitle}>
@@ -26,6 +49,7 @@ export class Section extends Component {
             </div>
         )
     }
+}
 }
 
 export default Section;

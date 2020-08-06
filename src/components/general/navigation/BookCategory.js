@@ -1,34 +1,48 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import styles from './styles.module.css';
+import axios from 'axios';
+
+//COMPONENTS
+import LoadingPage from '../loadingPage';
+
+//VARIABLES
+import Endpoints from '../../../config/endpoints';
+const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;
 
 
 export class BookCategory extends Component {
     constructor (props) {
         super (props)
-        this.handleSelect = this.handleSelect.bind(this);
+        this.state = {
+            categories: null
+        }
     }
-    handleSelect (e) {
-        e.preventDefault();
-        const cat = e.target.text;
-        this.props.handleSelectCat(cat);
+    async fetchData () {
+        const rawData = await axios.get(`${REACT_APP_SERVER_URL}/home`);
+        const categories = await rawData.data.data;
+        this.setState({ categories })
+    }
+    async componentDidMount () {
+        this.fetchData()
     }
     render () {
+        if (this.state.categories === null) {
+            return (
+                <LoadingPage/>
+            )
+          } else {
         return (
             <React.Fragment>
                 <div id={styles.mainNavCategory}>Shop by category</div>
                     <div className={styles.categoryNav}>
-                        {this.props.categories.map(cat => {
-                            return (
-                            <li>
-                                <a href={`/cat/${cat}`} onClick={this.handleSelect}>{cat}</a>
-                            </li>
-                            )
+                        {this.state.categories.map(cat => {
+                            return (<li><a href={`/cat/${cat}`}>{cat}</a></li>)
                         })}
                     </div>
             </React.Fragment>
         )
     }
 }
-
+}
 
 export default BookCategory;

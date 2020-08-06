@@ -1,7 +1,6 @@
-import React, { Component } from 'react';  
+import React from 'react';  
 import AppBar from '@material-ui/core/AppBar';  
 import Toolbar from '@material-ui/core/Toolbar';  
-import { Notifications } from '@material-ui/icons';  
 import { makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import SearchBox from './SearchBox';
@@ -25,7 +24,7 @@ export default function SearchNav (props) {
                 <AppBar position="static" className={classes.root} >  
                     <Toolbar>
                         <div id={styles.logo}>
-                         <img src={`${LOGO_URL}`}/>
+                         <img src={`${LOGO_URL}`} alt='logo'/>
                         </div>
                         <div id={styles.logoText}>
                          <span className={styles.iconText}>React Bookstore</span>
