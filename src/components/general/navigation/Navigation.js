@@ -22,7 +22,7 @@ export class Navigation extends Component {
     handleLogout = async (e) => {
         try {
             console.log('hi')
-            const response = await axios.get('http://localhost:4000/logout', { withCredentials: true })
+            const response = await axios.get(`${REACT_APP_SERVER_URL}/logout`, { withCredentials: true })
             console.log(response)
             sessionStorage.removeItem('userData');
             this.props.history.push('/login')
