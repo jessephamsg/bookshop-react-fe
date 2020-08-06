@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import styles from './styles.module.css';
+import { withRouter } from 'react-router-dom';
 
 //COMPONENTS
 import Navigation from '../../general/navigation';
@@ -18,19 +19,22 @@ export class CategoryListing extends Component {
         super(props)
         this.state = {
             view: null,
-            theme: 'Children'
+            theme: null
         }
     }
-    async fetchData(props) {
-        const theme = this.state.theme;
+    async fetchData() {
+        // const theme = this.state.theme;
+        const theme = this.props.match.params.catName;
         const rawData = await axios.get(`${REACT_APP_SERVER_URL}/cat/${theme}`);
         const bookData = await rawData.data.data;
         this.setState({
             view: bookData,
+            theme: theme,
         })
     }
     async componentDidMount() {
         await this.fetchData();
+        console.log(this.state.theme);
     }
     render() {
         if (this.state.view === null) {
@@ -56,4 +60,4 @@ export class CategoryListing extends Component {
     }
 }
 
-export default CategoryListing;
+export default withRouter(CategoryListing);
