@@ -6,6 +6,7 @@ import axios from 'axios';
 //COMPONENTS
 import Section from '../../general/bookSection';
 import Navigation from '../../general/navigation';
+import Footer from '../../general/footer';
 
 //VARIABLES
 import Endpoints from '../../../config/endpoints';
@@ -56,6 +57,7 @@ export class HomePage extends Component {
                     )
                 })}
                 </div>
+                <Footer />
             </React.Fragment>
         )
     }

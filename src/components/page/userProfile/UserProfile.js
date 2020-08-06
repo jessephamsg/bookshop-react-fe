@@ -1,13 +1,20 @@
+//DEPENDENCIES
 import React, { Component } from 'react';
 import axios from 'axios';
-import Navigation from '../../general/navigation/Navigation';
 import LoadingScreen from 'react-loading-screen';
 import { withRouter } from "react-router-dom";
-import UserProfileLabel from './UserProfileLabel';
-import ProfileMenu from './ProfileMenu';
 import styles from './styles.module.css';
 
-const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL || 'http://localhost:4000' || 'https://bookshop-dev-be.herokuapp.com'
+//COMPONENTS
+import Navigation from '../../general/navigation';
+import Footer from '../../general/footer';
+import UserProfileLabel from './UserProfileLabel';
+import ProfileMenu from './ProfileMenu';
+import LoadingPage from '../../general/loadingPage';
+
+//VARIABLES
+import Endpoints from '../../../config/endpoints';
+const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;
 
 
 class UserProfile extends Component {
@@ -49,6 +56,7 @@ class UserProfile extends Component {
           localUser: true,
           userData: response.data
         })
+        else this.props.history.push('/login');
     } catch (err) {
       console.log(err.response)
       console.log(err.res)
@@ -64,26 +72,20 @@ class UserProfile extends Component {
     if (this.state.userData === null) {
       return (
         <div>
-          <LoadingScreen
-            loading={true}
-            bgColor='#f1f1f1'
-            spinnerColor='#9ee5f8'
-            textColor='#676767'
-            text='Here an introduction sentence (Optional)'
-          >
-          </LoadingScreen>
+          <LoadingPage />
         </div>
       )
     }
     return (
       <React.Fragment>
-        <Navigation />
+        <Navigation history = {this.props.history}/>
         <div className={styles.wrapper}>
         <ProfileMenu localUser={this.state.localUser}/>
         <form onSubmit={this.handleSubmit}>
         <UserProfileLabel {...this.state} handleChange={this.handleChange}/>
         </form>
         </div>
+        <Footer />
       </React.Fragment>
     )
   }

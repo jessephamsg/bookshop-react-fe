@@ -7,6 +7,7 @@ import styles from './styles.module.css';
 import Navigation from '../../general/navigation';
 import LoadingPage from '../../general/loadingPage';
 import BookCard from '../../general/bookCard';
+import Footer from '../../general/footer';
 
 //VARIABLES
 import Endpoints from '../../../config/endpoints';
@@ -45,6 +46,7 @@ export class SearchPage extends Component {
                             )
                         })}
                     </div>
+                    <Footer />
                 </React.Fragment>
             )
         }

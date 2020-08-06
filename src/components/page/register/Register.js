@@ -6,6 +6,7 @@ import { withRouter } from "react-router-dom";
 //COMPONENTS
 import RegisterLabels from './RegisterLabel';
 import Navigation from '../../general/navigation';
+import Footer from '../../general/footer';
 
 //VARIABLES
 import Endpoints from '../../../config/endpoints';
@@ -59,6 +60,7 @@ class RegisterContainer extends Component {
                         handleSubmit={this.handleSubmit}
                     />
                 </form>
+                <Footer />
             </React.Fragment>
         )
     }
