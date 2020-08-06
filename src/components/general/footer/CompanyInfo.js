@@ -18,7 +18,7 @@ export class CompanyInfo extends Component {
                 <Router>
                     <div>
                         <Switch>
-                            <Route exact path ='/about' component={About} />
+                            <Route exact path ='/about' component={About}/>
                             <Route exact path='/terms' component={Terms} />
                             <Route exact path='/privacy' component={Privacy} />
                             <Route exact path='/help' component={Help} />

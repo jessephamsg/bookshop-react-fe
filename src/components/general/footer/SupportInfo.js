@@ -21,7 +21,7 @@ export class SupportInfo extends Component {
                             <Route exact path ='/payment-method' component={Payment} />
                             <Route exact path='/delivery' component={Delivery} />
                             <Route exact path='/return' component={Return} />
-                            <Route exact path='/faq' component={FAQ} />
+                            <Route exact path='/faq' component={Faq} />
                         </Switch>
                     </div>
                 </Router>
