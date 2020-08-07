@@ -1,0 +1,38 @@
+.footerContainer {
+    display: flex;
+    height: fit-content;
+    background-color: #3d3141;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 2.5%;
+    padding-bottom: 10%;
+    color: white;
+    justify-content: space-between;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.footerSection {
+    margin-right: 25px;
+    width: 20%;
+}
+
+.footerSectionRight {
+    text-align: right;
+    width: 30%;
+}
+
+.footerSectionRight>p {
+    font-size: 10px;
+}

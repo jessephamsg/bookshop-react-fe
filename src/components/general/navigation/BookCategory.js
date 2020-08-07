@@ -36,7 +36,7 @@ export class BookCategory extends Component {
                 <div id={styles.mainNavCategory}>Shop by category</div>
                     <div className={styles.categoryNav}>
                         {this.state.categories.map(cat => {
-                            return (<li><a href={`/cat/${cat}`}>{cat}</a></li>)
+                            return (<li><a className={styles.categoryTextNav} href={`/cat/${cat}`}>{cat}</a></li>)
                         })}
                     </div>
             </React.Fragment>
