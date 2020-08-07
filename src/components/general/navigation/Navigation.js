@@ -48,7 +48,7 @@ export class Navigation extends Component {
             else if (response.data) this.setState({ userName: response.data.name, email: response.data.email })
             else this.setState({userName: null})
         } catch (err) {
-            console.log(err)
+            console.log(err.response)
             this.setState({userName: null})
         }
     }

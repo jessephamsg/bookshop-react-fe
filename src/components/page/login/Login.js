@@ -26,7 +26,8 @@ class LoginContainer extends Component {
         try {
             e.preventDefault()
             let data = { ...this.state }
-            const response = await axios.post(`${REACT_APP_SERVER_URL}/login`, data)
+            const response = await axios.post(`${REACT_APP_SERVER_URL}/login`, data,  { withCredentials: true })
+            console.log(response.data)
             if (response.data.success) {
                 this.props.history.push('/')
             }
@@ -60,7 +61,7 @@ class LoginContainer extends Component {
     render() {
         return (
             <React.Fragment>
-                <Navigation history= {this.props.history}/>
+                <Navigation />
                 <form onSubmit={this.handleSubmit}>
                     <LoginLabel
                         {...this.state}
