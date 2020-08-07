@@ -3,6 +3,7 @@ import { Card, Box, FormGroup, TextField } from '@material-ui/core';
 import styles from './styles.module.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Message from '../../general/errorMessage/ErrorMessage'
+import SuccessMessage from '../../general/successMessage/SuccessMessage'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -18,11 +19,12 @@ function ChangePasswordLabel(props) {
         <Box display='flex' justifyContent="center">
         <Card className={styles.cardForm}>
             <h1 className={styles.header}>Change Password</h1>
-            {props.failureChange != null && props.failureChange.map((err,i) => {
-                    return (
-                        <Message msg={err.message} key={i}/>
-                    )
-                })}
+          {props.failureChange != null && props.failureChange.map((err, i) => {
+          return (
+            <Message msg={err.message} key={i} />
+          )
+        })}
+        {props.successChange !== null && <SuccessMessage msg={props.successChange}/>}
           <FormGroup>
             <TextField
               label='Current Password'
@@ -40,10 +42,10 @@ function ChangePasswordLabel(props) {
               label='New Password'
               type="password"
               variant="outlined"
-              id="password1"
+              id="password"
               className={classes.root}
               onChange={props.handleChange}
-              value={props.password1}
+              value={props.password}
               required
             />
           </FormGroup>

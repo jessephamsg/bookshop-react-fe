@@ -4,12 +4,12 @@ import CloseIcon from '@material-ui/icons/Close';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 
-function Message(props) {
+function SuccessMessage(props) {
     const [open, setOpen] = React.useState(true);
     return (
         <Collapse in={open}>
         <Alert
-        severity="warning"
+        severity="success"
           action={
             <IconButton
               aria-label="close"
@@ -28,4 +28,4 @@ function Message(props) {
     )
 }
 
-export default Message
+export default SuccessMessage
