@@ -22,9 +22,14 @@ export class CategoryListing extends Component {
             theme: null
         }
     }
-    async fetchData() {
-        // const theme = this.state.theme;
+    getParamCatName() {
         const theme = this.props.match.params.catName;
+        this.setState({
+            theme: theme,
+        })
+    }
+    async fetchData() {
+        const theme  = this.state.theme;
         const rawData = await axios.get(`${REACT_APP_SERVER_URL}/cat/${theme}`);
         const bookData = await rawData.data.data;
         this.setState({
@@ -33,8 +38,18 @@ export class CategoryListing extends Component {
         })
     }
     async componentDidMount() {
+        await this.getParamCatName();
         await this.fetchData();
         console.log(this.state.theme);
+    }
+    async componentDidUpdate(prevProps, prevState) {
+        // this.getParamCatName();
+        // console.log('prevState.theme: ', prevState.theme);
+        // console.log('componentDidUpdate: ', this.state.theme);
+        // if (prevState.theme !== this.state.theme) {
+            await this.fetchData();
+            console.log('run fetchData');
+        // }
     }
     render() {
         if (this.state.view === null) {
