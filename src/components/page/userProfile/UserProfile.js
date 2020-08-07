@@ -49,6 +49,7 @@ class UserProfile extends Component {
           localUser: true,
           userData: response.data
         })
+        else this.props.history.push('/login')
     } catch (err) {
       console.log(err.response)
       console.log(err.res)
