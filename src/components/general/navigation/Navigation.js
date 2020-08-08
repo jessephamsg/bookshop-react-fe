@@ -39,7 +39,7 @@ export class Navigation extends Component {
         try {
             const data = JSON.parse(sessionStorage.getItem('userData'));
             const response = await axios.get(`${REACT_APP_SERVER_URL}/user`, { withCredentials: true })
-            console.log(response)
+            console.log(response.data.name)
             if (data) {
                 const res = await axios.post(`${REACT_APP_SERVER_URL}/googleauth`, data)
                 console.log(res.data.data)
