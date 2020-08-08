@@ -23,8 +23,8 @@ export class ProductDetail extends Component {
         }
     }
     getParamCatName() {
-        const bookID = this.props.match.params.index;
-        console.log(this.props.match.params.bookID);
+        const bookID = this.props.match.params.index || this.props.match.params.bookID;
+        console.log(this.props.match.params);
         this.setState({
             bookID: bookID,
         })
