@@ -29,7 +29,7 @@ export class CategoryListing extends Component {
         })
     }
     async fetchData() {
-        const theme  = this.state.theme;
+        const theme = this.state.theme;
         const rawData = await axios.get(`${REACT_APP_SERVER_URL}/cat/${theme}`);
         const bookData = await rawData.data.data;
         this.setState({
@@ -39,25 +39,24 @@ export class CategoryListing extends Component {
     }
     async componentDidMount() {
         await this.getParamCatName();
+        console.log('state.theme at componentDidMount: ', this.state.theme);
         await this.fetchData();
-        console.log(this.state.theme);
     }
-    // async componentDidUpdate(prevProps, prevState) {
-    //     // this.getParamCatName();
-    //     // console.log('prevState.theme: ', prevState.theme);
-    //     // console.log('componentDidUpdate: ', this.state.theme);
-    //     // if (prevState.theme !== this.state.theme) {
-    //         await this.fetchData();
-    //         console.log('run fetchData');
-    //     // }
-    // }
+    async componentWillReceiveProps(props) {
+        console.log('componentWillReceiveProps: ', props.match.params.catName);
+        await this.setState({
+            theme: props.match.params.catName
+        })
+        console.log('state.theme at componentWillReceiveProps: ', this.state.theme);
+        await this.fetchData();
+    }
     render() {
         if (this.state.view === null) {
             return (
                 <LoadingPage />
             )
         } else {
-            console.log(this.state.view)
+            console.log('state.view: ', this.state.view)
             return (
                 <React.Fragment>
                     <Navigation history={this.props.history} />
