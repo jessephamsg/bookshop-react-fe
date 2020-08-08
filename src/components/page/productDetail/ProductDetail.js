@@ -44,14 +44,14 @@ export class ProductDetail extends Component {
         console.log('state.bookID at componentDidMount: ', this.state.bookID);
         await this.fetchData();
     }
-    async componentWillReceiveProps(props) {
-        console.log('componentWillReceiveProps: ', props.match.params.bookID);
-        await this.setState({
-            bookID: props.match.params.bookID
-        })
-        console.log('state.bookID at componentWillReceiveProps: ', this.state.bookID);
-        await this.fetchData();
-    }
+    // async componentWillReceiveProps(props) { //at the moment this is not used. It's can be used if we're clicking another product detail from product detail page
+    //     console.log('componentWillReceiveProps: ', props.match.params.bookID);
+    //     await this.setState({
+    //         bookID: props.match.params.bookID
+    //     })
+    //     console.log('state.bookID at componentWillReceiveProps: ', this.state.bookID);
+    //     await this.fetchData();
+    // }
     render() {
         if (this.state.view === null) {
             return (
