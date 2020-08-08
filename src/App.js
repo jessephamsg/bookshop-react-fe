@@ -10,7 +10,8 @@ import Register from './components/page/register';
 import ChangePassword from './components/page/changePassword/ChangePassword';
 import Login from './components/page/login';
 import SearchPage from './components/page/search';
-import UserProfile from './components/page/userProfile/UserProfile'
+import UserProfile from './components/page/userProfile/UserProfile';
+import CategoryListing from './components/page/categoryListing';
 
 //VARIABLES
 import Endpoints from './config/endpoints';
@@ -44,22 +45,23 @@ export class App extends Component {
   //  }
 
   render() {
-      return (
-        <div className="App">
+    return (
+      <div className="App">
         <Router>
           <div>
             <Switch>
-              <Route exact path ='/userprofile' component={UserProfile} />
+              <Route exact path='/userprofile' component={UserProfile} />
               <Route exact path='/changepassword' component={ChangePassword} />
               <Route exact path='/login' component={Login} />
               <Route exact path='/register' component={Register} />
-              <Route exact path='/' component={Homepage}/>
+              <Route exact path='/' component={Homepage} />
+              <Route path="/cat/:catName" component={CategoryListing} />
               <Route exact path='/search' component={SearchPage} />
             </Switch>
           </div>
         </Router>
-        </div>
-      );
+      </div>
+    );
   }
 }
 
