@@ -1,7 +1,15 @@
+//DEPENDENCIES
 import React, {Component} from 'react';
 import ReactStars from "react-rating-stars-component";
+import { BrowserRouter as Router, Switch, Route, NavLink } from 'react-router-dom'; //don't delete the Router, it will cause infinity Loop
 import styles from './styles.module.css';
 
+//COMPONENTS
+import ProductDetail from '../../page/productDetail';
+
+//VARIABLES
+import Endpoints from '../../../config/endpoints';
+const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;
 
 export class BookCard extends Component {
     render () {
