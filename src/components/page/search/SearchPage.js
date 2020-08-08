@@ -39,7 +39,7 @@ export class SearchPage extends Component {
           } else {
         return (
                 <React.Fragment>
-                    <Navigation history = {this.props.history} cart={this.props.cart}/>
+                    <Navigation history = {this.props.history} cart={this.props.cart} total={this.props.total}/>
                     <h1 className={styles.bookSectionTitle}>Search Results</h1>
                     <div className={styles.bookContainer}>
                         {this.state.data.map(book => {

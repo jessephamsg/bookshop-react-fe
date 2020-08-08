@@ -70,6 +70,7 @@ export class Navigation extends Component {
                         categories={this.props.categories}
                         handleSelectCat = {this.props.handleSelectCat}
                         cart = {this.props.cart}
+                        total = {this.props.total}
                     />
                 </div>
             </div>
