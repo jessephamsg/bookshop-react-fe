@@ -9,6 +9,7 @@ import styles from './styles.module.css';
 import Navigation from '../../general/navigation';
 import Footer from '../../general/footer';
 import UserProfileLabel from './UserProfileLabel';
+import Message from '../../general/errorMessage/ErrorMessage'
 import ProfileMenu from './ProfileMenu';
 import LoadingPage from '../../general/loadingPage';
 
@@ -28,7 +29,8 @@ class UserProfile extends Component {
       googleUser: false,
       localUser: false,
       successChange: null,
-      failureChange: null
+      failureChange: null,
+      userAuthenticated: null
     }
   }
 
@@ -56,7 +58,9 @@ class UserProfile extends Component {
           localUser: true,
           userData: response.data
         })
-        else this.props.history.push('/login');
+        else {
+          this.setState({ userAuthenticated: `Please Login to have access to User Profile`})
+        }
     } catch (err) {
       console.log(err.response)
       console.log(err.res)
@@ -69,23 +73,21 @@ class UserProfile extends Component {
   }
 
   render() {
-    if (this.state.userData === null) {
-      return (
-        <div>
-          <LoadingPage />
-        </div>
-      )
-    }
     return (
       <React.Fragment>
-        <Navigation history = {this.props.history}/>
+        <Navigation />
+        {this.state.userAuthenticated == null ? 
         <div className={styles.wrapper}>
         <ProfileMenu localUser={this.state.localUser}/>
         <form onSubmit={this.handleSubmit}>
         <UserProfileLabel {...this.state} handleChange={this.handleChange}/>
         </form>
         </div>
-        <Footer />
+        :
+        <div className={styles.messageWrapper}>
+        <Message msg={this.state.userAuthenticated} />
+        </div>
+      }
       </React.Fragment>
     )
   }

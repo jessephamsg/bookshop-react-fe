@@ -20,15 +20,18 @@ class LoginContainer extends Component {
             email: '',
             password: '',
             loginError: [],
-            successMsg: ''
+            successMsg: '',
         }
     }
+
     handleSubmit = async (e) => {
         try {
             e.preventDefault()
             let data = { ...this.state }
-            const response = await axios.post(`${REACT_APP_SERVER_URL}/login`, data)
+            const response = await axios.post(`${REACT_APP_SERVER_URL}/login`, data,  { withCredentials: true })
+            console.log(response.data)
             if (response.data.success) {
+                this.setState({ userLogin : true })
                 this.props.history.push('/')
             }
         } catch (err) {
@@ -49,6 +52,7 @@ class LoginContainer extends Component {
             const res = await axios.post(`${REACT_APP_SERVER_URL}/login/google`, data)
             if (res.data.success) {
                 sessionStorage.setItem("userData", JSON.stringify(token))
+                this.setState({ userLogin : true })
                 this.props.history.push('/')
             }
         } catch (err) {
@@ -61,7 +65,7 @@ class LoginContainer extends Component {
     render() {
         return (
             <React.Fragment>
-                <Navigation history= {this.props.history}/>
+                <Navigation />
                 <form onSubmit={this.handleSubmit}>
                     <LoginLabel
                         {...this.state}

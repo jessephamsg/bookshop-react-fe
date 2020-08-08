@@ -26,7 +26,7 @@ class ChangePassword extends Component {
       localUser: false,
       successChange: null,
       failureChange: null,
-      password1: '',
+      password: '',
       password2: '',
       currentPassword: ''
     }
@@ -50,9 +50,29 @@ class ChangePassword extends Component {
           id: response.data._id,
           localUser: true,
         })
+        else {
+          this.props.history.push('/')
+        }
     } catch (err) {
       console.log(err.response)
       console.log(err.res)
+    }
+  }
+
+  handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      const data = { ...this.state }
+      const response = await axios.post(`${REACT_APP_SERVER_URL}/changepassword`, data,  { withCredentials: true })
+      if (response.data.success) this.setState ({ 
+        successChange: response.data.message,
+        currentPassword: '',
+        password: '',
+        password2: '' 
+      })
+    } catch (err) {
+      console.log(err.response.data.error)
+      this.setState({ failureChange: err.response.data.error })
     }
   }
 

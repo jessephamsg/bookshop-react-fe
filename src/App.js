@@ -19,6 +19,7 @@ import Payment from './components/page/payment';
 import Delivery from './components/page/delivery';
 import Return from './components/page/return';
 import Faq from './components/page/faq';
+import CategoryListing from './components/page/categoryListing';
 
 //VARIABLES
 import Endpoints from './config/endpoints';
@@ -81,12 +82,12 @@ export class App extends Component {
     await this.authenticateUser();
   }
   render() {
-      return (
-        <div className="App">
+    return (
+      <div className="App">
         <Router>
           <div>
             <Switch>
-              <Route exact path ='/userprofile' component={UserProfile} />
+              <Route exact path='/userprofile' component={UserProfile} />
               <Route exact path='/changepassword' component={ChangePassword} />
               <Route exact path='/login' component={Login} />
               <Route exact path='/register' component={Register} />
@@ -102,11 +103,13 @@ export class App extends Component {
               <Route exact path='/delivery' component={Delivery} />
               <Route exact path='/return' component={Return} />
               <Route exact path='/faq' component={Faq} />
+              {/* <Route path="/cat/:catName" component={CategoryListing} /> */}
+              <Route path="/cat/:catName" render={ () => <CategoryListing handleAdd={this.handleAdd} cart={this.state.cart}/>} />
             </Switch>
           </div>
         </Router>
-        </div>
-      );
+      </div>
+    );
   }
 }
 
