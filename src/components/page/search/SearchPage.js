@@ -22,14 +22,16 @@ export class SearchPage extends Component {
         }
     }
     async fetchData () {
-        const searchQuery = this.props.history.location.search;
-        const response = await axios.get(`${REACT_APP_SERVER_URL}/search${searchQuery}`);
+        const currentLocation = window.location.href;
+        const searchQuery = currentLocation.slice(REACT_APP_SERVER_URL.length, currentLocation.length);
+        const response = await axios.get(`${REACT_APP_SERVER_URL}${searchQuery}`);
         this.setState({data: response.data.data});
     }
     async componentDidMount () {
         await this.fetchData();
     }
     render () {
+        console.log(this.props.cart);
         if (this.state.data === null) {
             return (
                 <LoadingPage/>
@@ -37,12 +39,12 @@ export class SearchPage extends Component {
           } else {
         return (
                 <React.Fragment>
-                    <Navigation history = {this.props.history}/>
+                    <Navigation history = {this.props.history} cart={this.props.cart}/>
                     <h1 className={styles.bookSectionTitle}>Search Results</h1>
                     <div className={styles.bookContainer}>
                         {this.state.data.map(book => {
                             return (
-                                <BookCard data={book}/>
+                                <BookCard data={book} handleAdd={this.props.handleAdd}/>
                             )
                         })}
                     </div>

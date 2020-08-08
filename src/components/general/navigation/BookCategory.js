@@ -26,6 +26,7 @@ export class BookCategory extends Component {
         this.fetchData()
     }
     render () {
+        console.log(this.props.cart);
         if (this.state.categories === null) {
             return (
                 <LoadingPage/>
@@ -38,6 +39,9 @@ export class BookCategory extends Component {
                         {this.state.categories.map(cat => {
                             return (<li><a className={styles.categoryTextNav} href={`/cat/${cat}`}>{cat}</a></li>)
                         })}
+                    </div>
+                    <div className={styles.cartButton}>
+                        <a href='/cart'>Cart: {this.props.cart.length}</a>
                     </div>
             </React.Fragment>
         )

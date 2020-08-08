@@ -69,6 +69,7 @@ export class Navigation extends Component {
                     <BookCategory 
                         categories={this.props.categories}
                         handleSelectCat = {this.props.handleSelectCat}
+                        cart = {this.props.cart}
                     />
                 </div>
             </div>

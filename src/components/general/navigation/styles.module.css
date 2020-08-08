@@ -139,3 +139,8 @@
 .categoryTextNav {
     color: #493b4d;
 }
+
+.cartButton {
+    height: 100%;
+    background-color: #E91E63
+}

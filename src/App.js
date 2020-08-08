@@ -31,11 +31,30 @@ export class App extends Component {
     super(props)
     this.state = {
       userName: null,
-      email: ''
+      email: '',
+      cart: []
+    }
+    this.handleAdd = this.handleAdd.bind(this);
+  }
+  handleAdd (item) {
+    this.setState({
+      cart: [item, ...this.state.cart]
+    });
+    if(this.state.cart.length===1) {
+      window.localStorage.setItem('cart', JSON.stringify([item]));
+    } else {
+      const currentCart = JSON.parse(window.localStorage.getItem('cart'));
+      currentCart.push(item);
+      window.localStorage.setItem('cart', JSON.stringify(currentCart)); 
     }
   }
-
-  async componentDidMount() {
+  getCurrentCart () {
+    const currentCart = JSON.parse(window.localStorage.getItem('cart'));
+    this.setState({
+      cart: currentCart
+    })
+  }
+  async authenticateUser () {
     try {
       const data = JSON.parse(sessionStorage.getItem('userData'));
       const response = await axios.get(`${REACT_APP_SERVER_URL}/user`, { withCredentials: true })
@@ -57,7 +76,10 @@ export class App extends Component {
       console.log(err)
     }
   }
-
+  async componentDidMount() {
+    this.getCurrentCart();
+    await this.authenticateUser();
+  }
   render() {
       return (
         <div className="App">
@@ -68,8 +90,10 @@ export class App extends Component {
               <Route exact path='/changepassword' component={ChangePassword} />
               <Route exact path='/login' component={Login} />
               <Route exact path='/register' component={Register} />
-              <Route exact path='/' component={Homepage}/>
-              <Route exact path='/search' component={SearchPage} />
+              <Route exact path='/' render={()=> <Homepage handleAdd={this.handleAdd} cart={this.state.cart} />}/>
+              {/* <Route exact path='/search' component={SearchPage} /> */}
+              {/* <Route exact path='/' component={Homepage} /> */}
+              <Route exact path='/search' render={()=> <SearchPage handleAdd={this.handleAdd} cart={this.state.cart}/>}/>
               <Route exact path ='/about' component={About}/>
               <Route exact path='/terms' component={Terms} />
               <Route exact path='/privacy' component={Privacy} />

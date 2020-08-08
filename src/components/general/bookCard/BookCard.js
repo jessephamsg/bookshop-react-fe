@@ -1,9 +1,24 @@
 import React, {Component} from 'react';
 import ReactStars from "react-rating-stars-component";
 import styles from './styles.module.css';
+import axios from 'axios';
+
+//VARIABLES
+import Endpoints from '../../../config/endpoints';
+const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;
 
 
 export class BookCard extends Component {
+    constructor (props) {
+        super (props)
+        this.handleAdd = this.handleAdd.bind(this)
+    }
+    async handleAdd (e) {
+        const bookId = e.target.value;
+        const bookResult = await axios.get(`${REACT_APP_SERVER_URL}/books/${bookId}`);
+        const bookObject = bookResult.data.data[0];
+        this.props.handleAdd(bookObject);
+    }
     render () {
         return (
             <div className={styles.bookCard}>
@@ -35,6 +50,7 @@ export class BookCard extends Component {
                         <p className={styles.bookDiscountedPrice}>{this.props.data.formatted.formattedDiscountedPrice}</p>
                         <p className={styles.bookOriginalPrice}>{this.props.data.formatted.formattedOriginalPrice}</p>
                     </div>
+                    <button onClick={this.handleAdd} value={this.props.data.raw.id}>Add to basket</button>
                 </div>
             </div>
         )

@@ -42,7 +42,7 @@ export class Section extends Component {
                 <div className={styles.bookSectionBooks}>
                     {(this.state.view).map(book => {
                         return (
-                            <BookCard data={book}/>
+                            <BookCard data={book} handleAdd={this.props.handleAdd}/>
                         )
                     })}
                 </div>
