@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 import axios from 'axios';
+import {BrowserHistory} from 'react-dom';
 
 //COMPONENTS
 import LoginLabel from './LoginLabel';
@@ -14,6 +15,7 @@ const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;
 
 
 class LoginContainer extends Component {
+
     constructor() {
         super()
         this.state = {
@@ -29,7 +31,6 @@ class LoginContainer extends Component {
             e.preventDefault()
             let data = { ...this.state }
             const response = await axios.post(`${REACT_APP_SERVER_URL}/login`, data,  { withCredentials: true })
-            console.log(response.data)
             if (response.data.success) {
                 this.setState({ userLogin : true })
                 this.props.history.push('/')
@@ -41,10 +42,12 @@ class LoginContainer extends Component {
             })
         }
     }
+
     handleChange = (e) => {
         const { value, id } = e.target
         this.setState({ [id]: value })
     }
+    
     responseGoogle = async (response) => {
         try {
             const data = response.profileObj
@@ -62,6 +65,7 @@ class LoginContainer extends Component {
             })
         }
     }
+    
     render() {
         return (
             <React.Fragment>

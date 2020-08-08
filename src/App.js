@@ -4,13 +4,20 @@ import './App.css';
 import axios from 'axios';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-//COMPONENTS
+//COMPONENTS - BOOKS
 import Homepage from './components/page/home';
+import SearchPage from './components/page/search';
+import CategoryListing from './components/page/categoryListing';
+import Cart from './components/page/cart';
+import Checkout from './components/page/checkout';
+import UserProfile from './components/page/userProfile/UserProfile'
+
+//COMPONENTS - AUTH
 import Register from './components/page/register';
 import ChangePassword from './components/page/changePassword/ChangePassword';
 import Login from './components/page/login';
-import SearchPage from './components/page/search';
-import UserProfile from './components/page/userProfile/UserProfile'
+
+//COMPONENTS - OTHERS
 import About from './components/page/about';
 import Terms from './components/page/terms';
 import Privacy from './components/page/privacy';
@@ -19,16 +26,15 @@ import Payment from './components/page/payment';
 import Delivery from './components/page/delivery';
 import Return from './components/page/return';
 import Faq from './components/page/faq';
-import CategoryListing from './components/page/categoryListing';
-import Cart from './components/page/cart';
 
 //VARIABLES
 import Endpoints from './config/endpoints';
 const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;
 const GOOGLE_AUTH_URL = Endpoints.GOOGLE_AUTH_URL;
 
-//MAIN
+
 export class App extends Component {
+
   constructor(props) {
     super(props)
     this.state = {
@@ -39,6 +45,7 @@ export class App extends Component {
     }
     this.handleAdd = this.handleAdd.bind(this);
   }
+
   handleAdd (item) {
     if(this.state.cart === null) {
       this.setState({
@@ -61,6 +68,7 @@ export class App extends Component {
     }
     window.localStorage.setItem('total', JSON.stringify(this.state.total));
   }
+
   getCurrentCart () {
     const currentCart = JSON.parse(window.localStorage.getItem('cart'));
     const currentTotal = JSON.parse(window.localStorage.getItem('total'))
@@ -69,14 +77,13 @@ export class App extends Component {
       total: currentTotal
     })
   }
+
   async authenticateUser () {
     try {
       const data = JSON.parse(sessionStorage.getItem('userData'));
       const response = await axios.get(`${REACT_APP_SERVER_URL}/user`, { withCredentials: true })
-      console.log(response)
       if (data) {
         const res = await axios.post(`${GOOGLE_AUTH_URL}/googleauth`, data)
-        console.log(res.data.data.email)
         this.setState({ 
           userName: res.data.data.name, 
           email: res.data.data.email 
@@ -91,24 +98,27 @@ export class App extends Component {
       console.log(err)
     }
   }
+
   async componentDidMount() {
     this.getCurrentCart();
     await this.authenticateUser();
   }
+
   render() {
     return (
       <div className="App">
         <Router>
           <div>
             <Switch>
-              <Route exact path='/userprofile' component={UserProfile} />
               <Route exact path='/changepassword' component={ChangePassword} />
               <Route exact path='/login' component={Login} />
               <Route exact path='/register' component={Register} />
+              <Route exact path='/userprofile' component={UserProfile} />
               <Route exact path='/' render={()=> <Homepage handleAdd={this.handleAdd} cart={this.state.cart} total={this.state.total}/>}/>
-              {/* <Route exact path='/search' component={SearchPage} /> */}
-              {/* <Route exact path='/' component={Homepage} /> */}
               <Route exact path='/search' render={()=> <SearchPage handleAdd={this.handleAdd} cart={this.state.cart} total={this.state.total}/>}/>
+              <Route path="/cat/:catName" render={ () => <CategoryListing handleAdd={this.handleAdd} cart={this.state.cart} total={this.state.total}/>} />
+              <Route path="/cart" render={ () => <Cart cart={this.state.cart} total={this.state.total} username={this.state.userName}/>}/>
+              <Route path="/checkout" render={ () => <Checkout cart={this.state.cart} total={this.state.total} userEmail={this.state.email}/>}/>
               <Route exact path ='/about' component={About}/>
               <Route exact path='/terms' component={Terms} />
               <Route exact path='/privacy' component={Privacy} />
@@ -117,9 +127,6 @@ export class App extends Component {
               <Route exact path='/delivery' component={Delivery} />
               <Route exact path='/return' component={Return} />
               <Route exact path='/faq' component={Faq} />
-              {/* <Route path="/cat/:catName" component={CategoryListing} /> */}
-              <Route path="/cat/:catName" render={ () => <CategoryListing handleAdd={this.handleAdd} cart={this.state.cart} total={this.state.total}/>} />
-              <Route path="/cart" render={ () => <Cart cart={this.state.cart} total={this.state.total}/>} />
             </Switch>
           </div>
         </Router>

@@ -4,6 +4,7 @@ import styles from './styles.module.css';
 
 
 export class SearchBox extends Component {
+
     constructor (props) {
         super (props)
         this.state = {
@@ -12,16 +13,19 @@ export class SearchBox extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     }
+
     handleChange (e) {
         this.setState({
             searchText: e.target.value
         })
     }
+
     async handleSearchSubmit (e) {
         e.preventDefault();
         const searchValue = this.state.searchText;
         this.props.handleSearchSubmit(searchValue)
     }
+    
     render () {
         return (
             <React.Fragment>

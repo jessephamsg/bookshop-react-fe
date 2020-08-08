@@ -6,7 +6,7 @@ import { withRouter } from "react-router-dom";
 import styles from './styles.module.css';
 
 //COMPONENTS
-import Navigation from '../../general/navigation';
+import Icons from '../../general/navigation/Icons';
 import Footer from '../../general/footer';
 import ChangePasswordLabel from './ChangePasswordLabel';
 import ProfileMenu from '../userProfile/ProfileMenu';
@@ -18,8 +18,9 @@ const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;
 
 
 class ChangePassword extends Component {
-  constructor() {
-    super()
+
+  constructor(props) {
+    super(props)
     this.state = {
       id: null,
       googleUser: false,
@@ -35,17 +36,14 @@ class ChangePassword extends Component {
   async componentDidMount() {
     try {
       const data = JSON.parse(sessionStorage.getItem('userData'));
-      const response = await axios.get(`${REACT_APP_SERVER_URL}/user`, { withCredentials: true })
-      console.log(response)
+      const response = await axios.get(`${REACT_APP_SERVER_URL}/user`, { withCredentials: true });
       if (data) {
-        const res = await axios.post(`${REACT_APP_SERVER_URL}/googleauth`, data)
-        console.log(res.data.data.email)
+        const res = await axios.post(`${REACT_APP_SERVER_URL}/googleauth`, data);
         this.setState({
           id: res.data.data.id,
           googleUser: true,
         })
-      }
-      else if (response.data)
+      } else if (response.data)
         this.setState({
           id: response.data._id,
           localUser: true,
@@ -54,8 +52,7 @@ class ChangePassword extends Component {
           this.props.history.push('/')
         }
     } catch (err) {
-      console.log(err.response)
-      console.log(err.res)
+      alert (`Change password error due to ${err}`)
     }
   }
 
@@ -71,7 +68,6 @@ class ChangePassword extends Component {
         password2: '' 
       })
     } catch (err) {
-      console.log(err.response.data.error)
       this.setState({ failureChange: err.response.data.error })
     }
   }
@@ -91,7 +87,7 @@ class ChangePassword extends Component {
     }
     return (
       <React.Fragment>
-        <Navigation history = {this.props.history}/>
+        <Icons />
         <div className={styles.wrapper}>
         <ProfileMenu localUser={this.state.localUser}/>
         <form onSubmit={this.handleSubmit}>

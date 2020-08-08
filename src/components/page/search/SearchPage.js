@@ -1,7 +1,7 @@
 //DEPENDENCIES
 import React, {Component} from 'react';
 import axios from 'axios';
-import styles from './styles.module.css';
+import styles from '../../general/mainContainer/styles.module.css';
 
 //COMPONENTS
 import Navigation from '../../general/navigation';
@@ -15,21 +15,25 @@ const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;
 
 
 export class SearchPage extends Component {
+
     constructor (props) {
         super (props)
         this.state = {
             data: null
         }
     }
+
     async fetchData () {
         const currentLocation = window.location.href;
         const searchQuery = currentLocation.slice(REACT_APP_SERVER_URL.length, currentLocation.length);
         const response = await axios.get(`${REACT_APP_SERVER_URL}${searchQuery}`);
         this.setState({data: response.data.data});
     }
+
     async componentDidMount () {
         await this.fetchData();
     }
+
     render () {
         console.log(this.props.cart);
         if (this.state.data === null) {

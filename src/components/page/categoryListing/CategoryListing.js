@@ -1,7 +1,7 @@
 //DEPENDENCIES
 import React, { Component } from 'react';
 import axios from 'axios';
-import styles from './styles.module.css';
+import styles from '../../general/mainContainer/styles.module.css';
 import { withRouter } from 'react-router-dom';
 
 //COMPONENTS
@@ -23,12 +23,14 @@ export class CategoryListing extends Component {
             theme: null
         }
     }
+
     getParamCatName() {
         const theme = this.props.match.params.catName;
         this.setState({
             theme: theme,
         })
     }
+
     async fetchData() {
         const theme = this.state.theme;
         const rawData = await axios.get(`${REACT_APP_SERVER_URL}/cat/${theme}`);
@@ -38,26 +40,25 @@ export class CategoryListing extends Component {
             theme: theme,
         })
     }
+
     async componentDidMount() {
         await this.getParamCatName();
-        console.log('state.theme at componentDidMount: ', this.state.theme);
         await this.fetchData();
     }
+
     async componentWillReceiveProps(props) {
-        console.log('componentWillReceiveProps: ', props.match.params.catName);
         await this.setState({
             theme: props.match.params.catName
         })
-        console.log('state.theme at componentWillReceiveProps: ', this.state.theme);
         await this.fetchData();
     }
+
     render() {
         if (this.state.view === null) {
             return (
                 <LoadingPage />
             )
         } else {
-            console.log('state.view: ', this.state.view)
             return (
                 <React.Fragment>
                     <Navigation history={this.props.history} cart={this.props.cart} total={this.props.total}/>
@@ -74,5 +75,6 @@ export class CategoryListing extends Component {
         }
     }
 }
+
 
 export default withRouter(CategoryListing);

@@ -7,6 +7,7 @@ import Footer from '../../general/footer';
 
 
 export class Privacy extends Component {
+    
     render () {
         return (
             <div>
