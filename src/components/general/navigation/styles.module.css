@@ -139,6 +139,7 @@
     color: white;
     background: transparent;
     border-style: none;
+    cursor: pointer;
 }
 
 .dropDownLink {
