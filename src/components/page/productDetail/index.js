@@ -1,3 +1,3 @@
-import CategoryListing from './CategoryListing';
+import ProductDetail from './ProductDetail';
 
-export default CategoryListing
+export default ProductDetail

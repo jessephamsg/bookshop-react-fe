@@ -61,11 +61,7 @@ export class ProductDetail extends Component {
                     <Navigation history={this.props.history} />
                     <h1 className={styles.bookSectionTitle}>{this.state.theme}</h1>
                     <div className={styles.bookContainer}>
-                        {(this.state.view).map(book => {
-                            return (
-                                <BookCard data={book} />
-                            )
-                        })}
+                        <div>Book Details here</div>
                     </div>
                 </React.Fragment>
             )

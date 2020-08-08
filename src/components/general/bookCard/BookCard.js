@@ -6,8 +6,6 @@ import styles from './styles.module.css';
 import axios from 'axios';
 
 //VARIABLES
-import Endpoints from '../../../config/endpoints';
-const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;
 
 //COMPONENTS
 import ProductDetail from '../../page/productDetail';
