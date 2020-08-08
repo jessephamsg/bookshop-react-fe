@@ -48,7 +48,10 @@ export class BookCategory extends Component {
                         })}
                     </div>
                     <div className={styles.cartButton}>
-                        <a href='/cart'>Cart: {this.props.cart.length}</a>
+                        {(this.props.cart !== null) ? 
+                            <a href='/cart'>Cart: {this.props.cart.length}</a> :
+                            <a href='/cart'>Cart: 0</a>
+                        }
                     </div>
                 </React.Fragment>
             )
