@@ -4,6 +4,7 @@ import Navigation from '../../general/navigation/Navigation';
 import LoadingScreen from 'react-loading-screen';
 import { withRouter } from "react-router-dom";
 import UserProfileLabel from './UserProfileLabel';
+import Message from '../../general/errorMessage/ErrorMessage'
 import ProfileMenu from './ProfileMenu';
 import styles from './styles.module.css';
 
@@ -21,7 +22,8 @@ class UserProfile extends Component {
       googleUser: false,
       localUser: false,
       successChange: null,
-      failureChange: null
+      failureChange: null,
+      userAuthenticated: null
     }
   }
 
@@ -49,6 +51,9 @@ class UserProfile extends Component {
           localUser: true,
           userData: response.data
         })
+        else {
+          this.setState({ userAuthenticated: `Please Login to have access to User Profile`})
+        }
     } catch (err) {
       console.log(err.response)
       console.log(err.res)
@@ -61,29 +66,21 @@ class UserProfile extends Component {
   }
 
   render() {
-    if (this.state.userData === null) {
-      return (
-        <div>
-          <LoadingScreen
-            loading={true}
-            bgColor='#f1f1f1'
-            spinnerColor='#9ee5f8'
-            textColor='#676767'
-            text='Here an introduction sentence (Optional)'
-          >
-          </LoadingScreen>
-        </div>
-      )
-    }
     return (
       <React.Fragment>
         <Navigation />
+        {this.state.userAuthenticated == null ? 
         <div className={styles.wrapper}>
         <ProfileMenu localUser={this.state.localUser}/>
         <form onSubmit={this.handleSubmit}>
         <UserProfileLabel {...this.state} handleChange={this.handleChange}/>
         </form>
         </div>
+        :
+        <div className={styles.messageWrapper}>
+        <Message msg={this.state.userAuthenticated} />
+        </div>
+      }
       </React.Fragment>
     )
   }

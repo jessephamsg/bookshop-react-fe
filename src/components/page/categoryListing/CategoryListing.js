@@ -42,15 +42,15 @@ export class CategoryListing extends Component {
         await this.fetchData();
         console.log(this.state.theme);
     }
-    async componentDidUpdate(prevProps, prevState) {
-        // this.getParamCatName();
-        // console.log('prevState.theme: ', prevState.theme);
-        // console.log('componentDidUpdate: ', this.state.theme);
-        // if (prevState.theme !== this.state.theme) {
-            await this.fetchData();
-            console.log('run fetchData');
-        // }
-    }
+    // async componentDidUpdate(prevProps, prevState) {
+    //     // this.getParamCatName();
+    //     // console.log('prevState.theme: ', prevState.theme);
+    //     // console.log('componentDidUpdate: ', this.state.theme);
+    //     // if (prevState.theme !== this.state.theme) {
+    //         await this.fetchData();
+    //         console.log('run fetchData');
+    //     // }
+    // }
     render() {
         if (this.state.view === null) {
             return (

@@ -22,28 +22,27 @@ const GOOGLE_AUTH_URL = Endpoints.GOOGLE_AUTH_URL;
 export class App extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      userName: null,
-      email: '',
-      uniqueCat: null
-    }
+    // this.state = {
+    //   userName: null,
+    //   email: ''
+    // }
   }
 
-  async componentDidMount() {
-    try {
-      await this.fetchData();
-      const data = JSON.parse(sessionStorage.getItem('userData'));
-      const response = await axios.get(`${REACT_APP_SERVER_URL}/user`, { withCredentials: true })
-      if (data) {
-        const res = await axios.post(`${GOOGLE_AUTH_URL}/googleauth`, data)
-        console.log(res.data.data.email)
-        this.setState({ userName: res.data.data.name, email: res.data.data.email })
-      }
-      else if (response.data) this.setState({ userName: response.data.name, email: response.data.email })
-    } catch (err) {
-      console.log(err)
-    }
-  }
+  //  async componentDidMount() {
+  //    try {
+  //      const data = JSON.parse(sessionStorage.getItem('userData'));
+  //      const response = await axios.get(`${REACT_APP_SERVER_URL}/user`, { withCredentials: true })
+  //     console.log(response)
+  //      if (data) {
+  //        const res = await axios.post(`${GOOGLE_AUTH_URL}/googleauth`, data)
+  //      console.log(res.data.data.email)
+  //        this.setState({ userName: res.data.data.name, email: res.data.data.email })
+  //      }
+  //    else if (response.data) this.setState({ userName: response.data.name, email: response.data.email })
+  //   } catch (err) {
+  //     console.log(err)
+  //    }
+  //  }
 
   render() {
     return (
