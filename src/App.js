@@ -38,15 +38,22 @@ export class App extends Component {
     this.handleAdd = this.handleAdd.bind(this);
   }
   handleAdd (item) {
-    this.setState({
-      cart: [item, ...this.state.cart]
-    });
-    if(this.state.cart.length===1) {
+    if(this.state.cart === null) {
+      this.setState({
+        cart: [item]
+      })
       window.localStorage.setItem('cart', JSON.stringify([item]));
     } else {
-      const currentCart = JSON.parse(window.localStorage.getItem('cart'));
+      this.setState({
+        cart: [item, ...this.state.cart]
+      });
+      if (this.state.cart.length===1) {
+        window.localStorage.setItem('cart', JSON.stringify([item]));
+      } else {
+        const currentCart = JSON.parse(window.localStorage.getItem('cart'));
       currentCart.push(item);
       window.localStorage.setItem('cart', JSON.stringify(currentCart)); 
+      }
     }
   }
   getCurrentCart () {
