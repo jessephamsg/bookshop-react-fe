@@ -107,8 +107,6 @@ export class App extends Component {
               <Route exact path='/login' component={Login} />
               <Route exact path='/register' component={Register} />
               <Route exact path='/' render={()=> <Homepage handleAdd={this.handleAdd} cart={this.state.cart} total={this.state.total}/>}/>
-              {/* <Route exact path='/search' component={SearchPage} /> */}
-              {/* <Route exact path='/' component={Homepage} /> */}
               <Route exact path='/search' render={()=> <SearchPage handleAdd={this.handleAdd} cart={this.state.cart} total={this.state.total}/>}/>
               <Route exact path ='/about' component={About}/>
               <Route exact path='/terms' component={Terms} />
@@ -118,7 +116,6 @@ export class App extends Component {
               <Route exact path='/delivery' component={Delivery} />
               <Route exact path='/return' component={Return} />
               <Route exact path='/faq' component={Faq} />
-              {/* <Route path="/cat/:catName" component={CategoryListing} /> */}
               <Route path="/cat/:catName" render={ () => <CategoryListing handleAdd={this.handleAdd} cart={this.state.cart} total={this.state.total}/>} />
               <Route path="/prod/:bookID" render={ () => <ProductDetail handleAdd={this.handleAdd} cart={this.state.cart} total={this.state.total}/>} />
               <Route path="/cart" render={ () => <Cart cart={this.state.cart} total={this.state.total}/>} />
