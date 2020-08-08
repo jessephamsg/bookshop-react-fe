@@ -47,6 +47,9 @@ export class BookCategory extends Component {
                             )
                         })}
                     </div>
+                    <div className={styles.cartButton}>
+                        <a href='/cart'>Cart: {this.props.cart.length}</a>
+                    </div>
                 </React.Fragment>
             )
         }

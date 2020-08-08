@@ -6,6 +6,7 @@ import axios from 'axios';
 //COMPONENTS
 import LoginLabel from './LoginLabel';
 import Navigation from '../../general/navigation';
+import Footer from '../../general/footer';
 
 //VARIABLES
 import Endpoints from '../../../config/endpoints';
@@ -72,6 +73,7 @@ class LoginContainer extends Component {
                         responseGoogle={this.responseGoogle}
                     />
                 </form>
+                <Footer />
             </React.Fragment>
 
         )

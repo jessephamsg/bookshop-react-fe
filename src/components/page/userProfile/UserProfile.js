@@ -1,14 +1,21 @@
+//DEPENDENCIES
 import React, { Component } from 'react';
 import axios from 'axios';
-import Navigation from '../../general/navigation/Navigation';
 import LoadingScreen from 'react-loading-screen';
 import { withRouter } from "react-router-dom";
+import styles from './styles.module.css';
+
+//COMPONENTS
+import Navigation from '../../general/navigation';
+import Footer from '../../general/footer';
 import UserProfileLabel from './UserProfileLabel';
 import Message from '../../general/errorMessage/ErrorMessage'
 import ProfileMenu from './ProfileMenu';
-import styles from './styles.module.css';
+import LoadingPage from '../../general/loadingPage';
 
-const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL || 'http://localhost:4000' || 'https://bookshop-dev-be.herokuapp.com'
+//VARIABLES
+import Endpoints from '../../../config/endpoints';
+const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;
 
 
 class UserProfile extends Component {
