@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import styles from './styles.module.css';
 import axios from 'axios';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'; //don't delete the Router, it will cause infinity Loop
+import { BrowserRouter as Router, Switch, Route, NavLink } from 'react-router-dom'; //don't delete the Router, it will cause infinity Loop
 
 //COMPONENTS
 import LoadingPage from '../loadingPage';
@@ -41,7 +41,7 @@ export class BookCategory extends Component {
                         {this.state.categories.map(catName => {
                             return (
                                 <Switch>
-                                    <Link to={`/cat/${catName}`}>{catName}</Link>
+                                    <NavLink to={`/cat/${catName}`} className={styles.categoryLink} activeClassName={styles.categorySelected}>{catName}</NavLink>
                                     <Route path="/cat/:catName" component={CategoryListing} />
                                 </Switch>
                             )
