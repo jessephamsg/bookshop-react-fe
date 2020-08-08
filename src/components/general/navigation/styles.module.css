@@ -126,6 +126,10 @@
     color: rgb(158, 109, 168)
 }
 
+.categorySelected {
+    color: rgb(158, 109, 168)
+}
+
 .signInIcon {
     color: white;
     text-decoration: none;
