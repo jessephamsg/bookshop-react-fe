@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 
 //COMPONENTS
 import RegisterLabels from './RegisterLabel';
-import Navigation from '../../general/navigation';
+import Icons from '../../general/navigation/Icons';
 import Footer from '../../general/footer';
 
 //VARIABLES
@@ -52,7 +52,7 @@ class RegisterContainer extends Component {
     render() {
         return (
             <React.Fragment>
-                <Navigation history= {this.props.history}/>
+                <Icons />
                 <form onSubmit={this.handleSubmit}>
                     <RegisterLabels
                         {...this.state}

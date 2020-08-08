@@ -49,7 +49,7 @@ export class HomePage extends Component {
     render () {
         return (
             <React.Fragment>
-                <Navigation history= {this.props.history} cart={this.props.cart}/>
+                <Navigation history= {this.props.history} cart={this.props.cart} total={this.props.total}/>
                 <div className={styles.homePageBody}>
                 {this.state.categories.map(category => {
                     return (

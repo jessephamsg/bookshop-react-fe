@@ -5,7 +5,7 @@ import axios from 'axios';
 
 //COMPONENTS
 import LoginLabel from './LoginLabel';
-import Navigation from '../../general/navigation';
+import Icons from '../../general/navigation/Icons';
 import Footer from '../../general/footer';
 
 //VARIABLES
@@ -65,7 +65,7 @@ class LoginContainer extends Component {
     render() {
         return (
             <React.Fragment>
-                <Navigation />
+                <Icons />
                 <form onSubmit={this.handleSubmit}>
                     <LoginLabel
                         {...this.state}
