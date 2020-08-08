@@ -1,0 +1,39 @@
+.cardForm {
+    padding: 3em;
+    margin: 3em;
+}
+
+.registerHeader{
+    margin-bottom: 2em;
+}
+
+.signInButton {
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
+
+.formControl {
+    margin: 1em;
+}
+
+.formLabel {
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+.formButton {
+    display: block;
+    width: 100%;
+    background-color: rgb(61,49,65);
+    color: white;
+    margin: auto;
+    border-radius: 8px;
+    margin-top: 2em;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+}
+
+.formButton:hover {
+    background-color: rgba(61,49,65,0.9);
+}
