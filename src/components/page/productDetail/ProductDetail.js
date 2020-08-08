@@ -8,47 +8,48 @@ import { withRouter } from 'react-router-dom';
 import Navigation from '../../general/navigation';
 import Footer from '../../general/footer';
 import LoadingPage from '../../general/loadingPage';
-import BookCard from '../../general/bookCard';
 
 //VARIABLES
 import Endpoints from '../../../config/endpoints';
 const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;
 
 
-export class CategoryListing extends Component {
+export class ProductDetail extends Component {
     constructor(props) {
         super(props)
         this.state = {
             view: null,
-            theme: null
+            bookID: null
         }
     }
     getParamCatName() {
-        const theme = this.props.match.params.catName;
+        const bookID = this.props.match.params.index;
+        console.log(this.props.match.params.bookID);
         this.setState({
-            theme: theme,
+            bookID: bookID,
         })
     }
     async fetchData() {
-        const theme = this.state.theme;
-        const rawData = await axios.get(`${REACT_APP_SERVER_URL}/cat/${theme}`);
+        const bookID = this.state.bookID;
+        const rawData = await axios.get(`${REACT_APP_SERVER_URL}/books/${bookID}`);
         const bookData = await rawData.data.data;
         this.setState({
             view: bookData,
-            theme: theme,
+            bookID: bookID,
         })
+        console.log('state.view at fetchData: ', this.state.view)
     }
     async componentDidMount() {
         await this.getParamCatName();
-        console.log('state.theme at componentDidMount: ', this.state.theme);
+        console.log('state.bookID at componentDidMount: ', this.state.bookID);
         await this.fetchData();
     }
     async componentWillReceiveProps(props) {
-        console.log('componentWillReceiveProps: ', props.match.params.catName);
+        console.log('componentWillReceiveProps: ', props.match.params.bookID);
         await this.setState({
-            theme: props.match.params.catName
+            bookID: props.match.params.bookID
         })
-        console.log('state.theme at componentWillReceiveProps: ', this.state.theme);
+        console.log('state.bookID at componentWillReceiveProps: ', this.state.bookID);
         await this.fetchData();
     }
     render() {
@@ -61,13 +62,9 @@ export class CategoryListing extends Component {
             return (
                 <React.Fragment>
                     <Navigation history={this.props.history} cart={this.props.cart} total={this.props.total}/>
-                    <h1 className={styles.bookSectionTitle}>{this.state.theme}</h1>
+                    <h1 className={styles.bookSectionTitle}>{this.state.view[0].formatted.formattedTitle}</h1>
                     <div className={styles.bookContainer}>
-                        {(this.state.view).map(book => {
-                            return (
-                                <BookCard data={book} handleAdd={this.props.handleAdd}/>
-                            )
-                        })}
+                        <div>Book details here</div>
                     </div>
                     <Footer />
                 </React.Fragment>
@@ -76,4 +73,4 @@ export class CategoryListing extends Component {
     }
 }
 
-export default withRouter(CategoryListing);
+export default withRouter(ProductDetail);
