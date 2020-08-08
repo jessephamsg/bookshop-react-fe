@@ -115,9 +115,15 @@
     list-style-type: none;
 }
 
-.categoryNav > li {
+.categoryLink {
     padding-left: 20px;
-    padding-right: 20px;
+    color: #3d3141;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.categoryLink:hover {
+    color: rgb(158, 109, 168)
 }
 
 .signInIcon {

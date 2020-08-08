@@ -41,7 +41,7 @@ export class BookCategory extends Component {
                         {this.state.categories.map(catName => {
                             return (
                                 <Switch>
-                                    <Link to={`/cat/${catName}`}>{catName}</Link>
+                                    <Link to={`/cat/${catName}`} className={styles.categoryLink}>{catName}</Link>
                                     <Route path="/cat/:catName" component={CategoryListing} />
                                 </Switch>
                             )
