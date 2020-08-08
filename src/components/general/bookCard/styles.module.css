@@ -11,6 +11,12 @@
     height: 60%;
 }
 
+.bookTitle {
+    color: black;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
 .bookCardSummary {
     height: 40%;
 }
