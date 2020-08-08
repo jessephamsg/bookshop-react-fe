@@ -20,6 +20,7 @@ import Delivery from './components/page/delivery';
 import Return from './components/page/return';
 import Faq from './components/page/faq';
 import CategoryListing from './components/page/categoryListing';
+import Cart from './components/page/cart';
 
 //VARIABLES
 import Endpoints from './config/endpoints';
@@ -33,33 +34,39 @@ export class App extends Component {
     this.state = {
       userName: null,
       email: '',
-      cart: []
+      cart: [],
+      total: 0
     }
     this.handleAdd = this.handleAdd.bind(this);
   }
   handleAdd (item) {
     if(this.state.cart === null) {
       this.setState({
-        cart: [item]
+        cart: [item],
+        total: item.raw.discountedPrice
       })
       window.localStorage.setItem('cart', JSON.stringify([item]));
     } else {
       this.setState({
-        cart: [item, ...this.state.cart]
+        cart: [item, ...this.state.cart],
+        total: this.state.total + item.raw.discountedPrice
       });
       if (this.state.cart.length===1) {
         window.localStorage.setItem('cart', JSON.stringify([item]));
       } else {
         const currentCart = JSON.parse(window.localStorage.getItem('cart'));
-      currentCart.push(item);
-      window.localStorage.setItem('cart', JSON.stringify(currentCart)); 
+        currentCart.push(item);
+        window.localStorage.setItem('cart', JSON.stringify(currentCart)); 
       }
     }
+    window.localStorage.setItem('total', JSON.stringify(this.state.total));
   }
   getCurrentCart () {
     const currentCart = JSON.parse(window.localStorage.getItem('cart'));
+    const currentTotal = JSON.parse(window.localStorage.getItem('total'))
     this.setState({
-      cart: currentCart
+      cart: currentCart,
+      total: currentTotal
     })
   }
   async authenticateUser () {
@@ -98,10 +105,10 @@ export class App extends Component {
               <Route exact path='/changepassword' component={ChangePassword} />
               <Route exact path='/login' component={Login} />
               <Route exact path='/register' component={Register} />
-              <Route exact path='/' render={()=> <Homepage handleAdd={this.handleAdd} cart={this.state.cart} />}/>
+              <Route exact path='/' render={()=> <Homepage handleAdd={this.handleAdd} cart={this.state.cart} total={this.state.total}/>}/>
               {/* <Route exact path='/search' component={SearchPage} /> */}
               {/* <Route exact path='/' component={Homepage} /> */}
-              <Route exact path='/search' render={()=> <SearchPage handleAdd={this.handleAdd} cart={this.state.cart}/>}/>
+              <Route exact path='/search' render={()=> <SearchPage handleAdd={this.handleAdd} cart={this.state.cart} total={this.state.total}/>}/>
               <Route exact path ='/about' component={About}/>
               <Route exact path='/terms' component={Terms} />
               <Route exact path='/privacy' component={Privacy} />
@@ -111,7 +118,8 @@ export class App extends Component {
               <Route exact path='/return' component={Return} />
               <Route exact path='/faq' component={Faq} />
               {/* <Route path="/cat/:catName" component={CategoryListing} /> */}
-              <Route path="/cat/:catName" render={ () => <CategoryListing handleAdd={this.handleAdd} cart={this.state.cart}/>} />
+              <Route path="/cat/:catName" render={ () => <CategoryListing handleAdd={this.handleAdd} cart={this.state.cart} total={this.state.total}/>} />
+              <Route path="/cart" render={ () => <Cart cart={this.state.cart} total={this.state.total}/>} />
             </Switch>
           </div>
         </Router>

@@ -60,7 +60,7 @@ export class CategoryListing extends Component {
             console.log('state.view: ', this.state.view)
             return (
                 <React.Fragment>
-                    <Navigation history={this.props.history} cart={this.props.cart}/>
+                    <Navigation history={this.props.history} cart={this.props.cart} total={this.props.total}/>
                     <h1 className={styles.bookSectionTitle}>{this.state.theme}</h1>
                     <div className={styles.bookContainer}>
                         {(this.state.view).map(book => {
