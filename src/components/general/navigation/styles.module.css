@@ -67,7 +67,7 @@
     width: 20%;
 }
 
-#logoText>.iconText {
+#logoText> span> a> p.iconText {
     font-size: 20px;
     font-weight: 800;
 }
@@ -144,4 +144,13 @@
 .dropDownLink {
     text-decoration: none;
     color: black;
+}
+
+.categoryTextNav {
+    color: #493b4d;
+}
+
+.cartButton {
+    height: 100%;
+    background-color: #E91E63
 }

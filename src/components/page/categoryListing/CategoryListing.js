@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 
 //COMPONENTS
 import Navigation from '../../general/navigation';
+import Footer from '../../general/footer';
 import LoadingPage from '../../general/loadingPage';
 import BookCard from '../../general/bookCard';
 
@@ -59,12 +60,12 @@ export class CategoryListing extends Component {
             console.log('state.view: ', this.state.view)
             return (
                 <React.Fragment>
-                    <Navigation history={this.props.history} />
+                    <Navigation history={this.props.history} cart={this.props.cart}/>
                     <h1 className={styles.bookSectionTitle}>{this.state.theme}</h1>
                     <div className={styles.bookContainer}>
                         {(this.state.view).map(book => {
                             return (
-                                <BookCard data={book} />
+                                <BookCard data={book} handleAdd={this.props.handleAdd}/>
                             )
                         })}
                     </div>

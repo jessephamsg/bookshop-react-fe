@@ -4,7 +4,7 @@
     width: 100%;
     margin-left: 10%;
     flex-wrap: no-wrap;
-    height: 500px;
+    height: fit-content;
     padding: 10px;
     box-shadow: 5px 5px 5px #88888821;
     background-color: white;

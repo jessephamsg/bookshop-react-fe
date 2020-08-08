@@ -1,15 +1,20 @@
+//DEPENDENCIES
 import React, { Component } from 'react';
 import axios from 'axios';
-import Navigation from '../../general/navigation/Navigation';
 import LoadingScreen from 'react-loading-screen';
 import { withRouter } from "react-router-dom";
-import ChangePasswordLabel from './ChangePasswordLabel';
-import ProfileMenu from '../userProfile/ProfileMenu';
 import styles from './styles.module.css';
 
+//COMPONENTS
+import Navigation from '../../general/navigation';
+import Footer from '../../general/footer';
+import ChangePasswordLabel from './ChangePasswordLabel';
+import ProfileMenu from '../userProfile/ProfileMenu';
+import LoadingPage from '../../general/loadingPage';
 
-
-const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL || 'http://localhost:4000' || 'https://bookshop-dev-be.herokuapp.com'
+//VARIABLES
+import Endpoints from '../../../config/endpoints';
+const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;
 
 
 class ChangePassword extends Component {
@@ -80,26 +85,20 @@ class ChangePassword extends Component {
     if (this.state.id === null) {
       return (
         <div>
-          <LoadingScreen
-            loading={true}
-            bgColor='#f1f1f1'
-            spinnerColor='#9ee5f8'
-            textColor='#676767'
-            text='Here an introduction sentence (Optional)'
-          >
-          </LoadingScreen>
+          <LoadingPage />
         </div>
       )
     }
     return (
       <React.Fragment>
-        <Navigation />
+        <Navigation history = {this.props.history}/>
         <div className={styles.wrapper}>
         <ProfileMenu localUser={this.state.localUser}/>
         <form onSubmit={this.handleSubmit}>
         <ChangePasswordLabel {...this.state} handleChange={this.handleChange}/>
         </form>
         </div>
+        <Footer/>
       </React.Fragment>
     )
   }

@@ -42,7 +42,7 @@ export default function Icons(props) {
                 <Toolbar>
                     <div className={styles.generalNavLeft}>
                         <div className={styles.iconWrapper}>
-                            <Home />
+                            <a href='/'><Home/></a>
                         </div>
                         <div className={styles.vl}></div>
                         <div className={styles.iconWrapper}>
