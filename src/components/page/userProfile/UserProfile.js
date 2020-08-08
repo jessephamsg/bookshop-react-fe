@@ -6,7 +6,7 @@ import { withRouter } from "react-router-dom";
 import styles from './styles.module.css';
 
 //COMPONENTS
-import Navigation from '../../general/navigation';
+import Icons from '../../general/navigation/Icons';
 import Footer from '../../general/footer';
 import UserProfileLabel from './UserProfileLabel';
 import Message from '../../general/errorMessage/ErrorMessage'
@@ -75,7 +75,7 @@ class UserProfile extends Component {
   render() {
     return (
       <React.Fragment>
-        <Navigation />
+        <Icons />
         {this.state.userAuthenticated == null ? 
         <div className={styles.wrapper}>
         <ProfileMenu localUser={this.state.localUser}/>

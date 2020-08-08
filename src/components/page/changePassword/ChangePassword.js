@@ -6,7 +6,7 @@ import { withRouter } from "react-router-dom";
 import styles from './styles.module.css';
 
 //COMPONENTS
-import Navigation from '../../general/navigation';
+import Icons from '../../general/navigation/Icons';
 import Footer from '../../general/footer';
 import ChangePasswordLabel from './ChangePasswordLabel';
 import ProfileMenu from '../userProfile/ProfileMenu';
@@ -91,7 +91,7 @@ class ChangePassword extends Component {
     }
     return (
       <React.Fragment>
-        <Navigation history = {this.props.history}/>
+        <Icons />
         <div className={styles.wrapper}>
         <ProfileMenu localUser={this.state.localUser}/>
         <form onSubmit={this.handleSubmit}>

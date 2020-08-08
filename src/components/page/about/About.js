@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import styles from './styles.module.css';
 
 //COMPONENTS
-import Navigation from '../../general/navigation';
+import Icons from '../../general/navigation/Icons';
 import Footer from '../../general/footer';
 
 
@@ -11,7 +11,7 @@ export class About extends Component {
     render () {
         return (
             <div>
-                <Navigation history = {this.props.history}/>
+                <Icons/>
                 <div className={styles.bookContainer}>
                 <div id={styles.aboutUs}>
                     <h3>About us</h3>
