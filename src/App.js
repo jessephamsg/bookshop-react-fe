@@ -12,7 +12,7 @@ import Cart from './components/page/cart';
 import Checkout from './components/page/checkout';
 import UserProfile from './components/page/userProfile/UserProfile'
 import ProductDetail from './components/page/productDetail';
-import BooksReview from './components/general/booksReview/BooksReview'
+import BooksReview from './components/general/booksReview/BooksReview';
 
 //COMPONENTS - AUTH
 import Register from './components/page/register';
@@ -46,6 +46,7 @@ export class App extends Component {
       total: 0
     }
     this.handleAdd = this.handleAdd.bind(this);
+    this.handleRemoveFromCart = this.handleRemoveFromCart.bind(this);
   }
 
   handleAdd (item) {
@@ -69,6 +70,20 @@ export class App extends Component {
       }
     }
     window.localStorage.setItem('total', JSON.stringify(this.state.total));
+  }
+
+  handleRemoveFromCart (itemKey) {
+    const currentCart = JSON.parse(window.localStorage.getItem('cart'));
+    let itemIndex = 0;
+    for (const [index, item] of currentCart.entries()) {
+      if (item.raw.id === itemKey) itemIndex = index;
+    }
+    const total = this.state.total - currentCart[itemIndex].raw.discountedPrice
+    this.setState({total});
+    currentCart.splice(itemIndex, 1);
+    window.localStorage.setItem('cart', JSON.stringify(currentCart)); 
+    this.setState({cart: currentCart});
+    window.localStorage.setItem('total', JSON.stringify(total)); 
   }
 
   getCurrentCart () {
@@ -119,7 +134,7 @@ export class App extends Component {
               <Route exact path='/' render={()=> <Homepage handleAdd={this.handleAdd} cart={this.state.cart} total={this.state.total}/>}/>
               <Route exact path='/search' render={()=> <SearchPage handleAdd={this.handleAdd} cart={this.state.cart} total={this.state.total}/>}/>
               <Route path="/cat/:catName" render={ () => <CategoryListing handleAdd={this.handleAdd} cart={this.state.cart} total={this.state.total}/>} />
-              <Route path="/cart" render={ () => <Cart cart={this.state.cart} total={this.state.total} username={this.state.userName}/>}/>
+              <Route path="/cart" render={ () => <Cart cart={this.state.cart} handleRemoveFromCart={this.handleRemoveFromCart} total={this.state.total} username={this.state.userName}/>}/>
               <Route path="/checkout" render={ () => <Checkout cart={this.state.cart} total={this.state.total} userEmail={this.state.email}/>}/>
               <Route path="/prod/:bookID" render={ () => <ProductDetail handleAdd={this.handleAdd} cart={this.state.cart} total={this.state.total}/>} />
               <Route exact path ='/booksreview' component={BooksReview} />
