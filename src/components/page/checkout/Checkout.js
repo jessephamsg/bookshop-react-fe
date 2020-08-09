@@ -34,6 +34,8 @@ export class Checkout extends Component {
                 alert('Your Order is Confirmed');
             }
         }
+        window.localStorage.clear();
+        window.location.replace('./');
     }
     
     render () {
