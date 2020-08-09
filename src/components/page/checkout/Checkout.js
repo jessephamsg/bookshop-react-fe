@@ -40,7 +40,6 @@ export class Checkout extends Component {
         return (
             <div>
                 <Navigation history= {this.props.history} cart={this.props.cart} total={this.props.total}/>
-                <h1 className={styles.bookSectionTitle}>Checkout</h1>
                 <div className={styles.bookContainer}>
                     <PaymentMethod handlePayment={this.handlePayment}/>
                     <OrderSummary order={this.props.cart} total={this.props.total}/>

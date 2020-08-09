@@ -7,7 +7,7 @@ export class OrderSummary extends Component {
         return (
             <React.Fragment>
             <div className={pageStyles.summaryContainer}>
-                <div className={pageStyles.summaryRow}>
+                <div className={pageStyles.summaryRow} className={pageStyles.firstRow}>
                     <div className={pageStyles.summaryLeftCell}>
                         <h3>Order Summary</h3>
                         <p>{this.props.order.length} items</p>
