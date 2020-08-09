@@ -10,6 +10,7 @@ import CategoryListing from '../../page/categoryListing';
 
 //VARIABLES
 import Endpoints from '../../../config/endpoints';
+import { nullLiteral } from '@babel/types';
 const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;
 
 

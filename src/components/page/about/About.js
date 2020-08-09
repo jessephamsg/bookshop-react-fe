@@ -1,6 +1,7 @@
 //DEPENDENCIES
 import React, { Component } from 'react';
 import styles from './styles.module.css';
+import layout from '../../general/mainContainer/styles.module.css';
 
 //COMPONENTS
 import Icons from '../../general/navigation/Icons';
@@ -13,7 +14,7 @@ export class About extends Component {
         return (
             <div>
                 <Icons />
-                <div className={styles.bookContainer}>
+                <div className={layout.bookContainer}>
                 <div id={styles.aboutUs}>
                     <h3>About us</h3>
                     <p>Goodreads is the world’s largest site for readers and book recommendations. Our mission is to help people find and share books they love. Goodreads launched in January 2007.</p>

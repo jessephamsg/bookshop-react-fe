@@ -35,7 +35,6 @@ export class SearchPage extends Component {
     }
 
     render () {
-        console.log(this.props.cart);
         if (this.state.data === null) {
             return (
                 <LoadingPage/>

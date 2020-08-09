@@ -51,11 +51,11 @@ export class HomePage extends Component {
             <React.Fragment>
                 <Navigation history= {this.props.history} cart={this.props.cart} total={this.props.total}/>
                 <div className={styles.homePageBody}>
-                {this.state.categories.map(category => {
-                    return (
-                        <Section category={`${category.name}`} heading={`${category.heading}`} limit={this.state.limit} handleAdd={this.props.handleAdd}/>
-                    )
-                })}
+                    {this.state.categories.map(category => {
+                        return (
+                            <Section category={`${category.name}`} heading={`${category.heading}`} limit={this.state.limit} handleAdd={this.props.handleAdd}/>
+                        )
+                    })}
                 </div>
                 <Footer />
             </React.Fragment>

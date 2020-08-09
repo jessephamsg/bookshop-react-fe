@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
       flexWrap: 'wrap',
-      margin: '1em'
+      margin: '1em',
     }
   }));
 
@@ -30,6 +30,7 @@ function ChangePasswordLabel(props) {
           )
         })}
         {props.successChange !== null && <SuccessMessage msg={props.successChange}/>}
+        <div>
           <FormGroup>
             <TextField
               label='Current Password'
@@ -66,6 +67,7 @@ function ChangePasswordLabel(props) {
               required
             />
           </FormGroup>
+          </div>
           <button className={styles.formButton}>Set New Password</button>
         </Card>
       </Box>

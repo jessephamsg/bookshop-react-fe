@@ -1,7 +1,7 @@
 //DEPENDENCIES
 import React, {Component} from 'react';
-import styles from '../../general/mainContainer/styles.module.css';
-import pageStyles from './styles.module.css';
+import layout from '../../general/mainContainer/verticalLayout.module.css';
+import styles from './styles.module.css';
 
 //COMPONENTS
 import BookCard from '../../general/bookCardHorizontal';
@@ -13,6 +13,7 @@ export class Cart extends Component {
     constructor (props) {
         super (props);
         this.handleCheckout = this.handleCheckout.bind(this);
+        this.handleRemoveFromCart = this.handleRemoveFromCart.bind(this);
     }
 
     handleCheckout () {
@@ -21,6 +22,10 @@ export class Cart extends Component {
         } else {
             window.location.replace('./checkout');
         }
+    }
+
+    handleRemoveFromCart (e) {
+        this.props.handleRemoveFromCart(e.target.value);
     }
 
     render () {
@@ -34,20 +39,19 @@ export class Cart extends Component {
             return (
                 <div>
                     <Navigation history= {this.props.history} cart={this.props.cart} total={this.props.total}/>
-                    <h1 className={styles.bookSectionTitle}>Your Cart</h1>
-                    <div className={pageStyles.bookContainer}>
+                    <div className={layout.bookContainer}>
                         {(this.props.cart).map(item => {
                             return (
-                                <div className={pageStyles.cartRow}>
+                                <div className={styles.cartRow}>
                                     <BookCard data={item}/>
-                                    <div className={pageStyles.rowQty}>
+                                    <div className={styles.rowQty}>
                                         <p> Quantity: 1 </p>
-                                        <button className={pageStyles.removeButton}>Remove from Cart</button>
+                                        <button className={styles.removeButton} onClick={this.handleRemoveFromCart} value={item.raw.id}>Remove from Cart</button>
                                     </div>
                                 </div>
                             )
                         })}
-                        <button className={pageStyles.checkoutButton} onClick={this.handleCheckout}>Checkout</button>
+                        <button className={styles.checkoutButton} onClick={this.handleCheckout}>Checkout</button>
                     </div>
                     <Footer />
                 </div>

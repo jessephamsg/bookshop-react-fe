@@ -89,10 +89,10 @@ class ChangePassword extends Component {
       <React.Fragment>
         <Icons />
         <div className={styles.wrapper}>
-        <ProfileMenu localUser={this.state.localUser}/>
-        <form onSubmit={this.handleSubmit}>
-        <ChangePasswordLabel {...this.state} handleChange={this.handleChange}/>
-        </form>
+          <ProfileMenu localUser={this.state.localUser}/>
+          <form onSubmit={this.handleSubmit}>
+            <ChangePasswordLabel {...this.state} handleChange={this.handleChange}/>
+          </form>
         </div>
         <Footer/>
       </React.Fragment>

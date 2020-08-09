@@ -3,11 +3,11 @@ import React from 'react';
 import { Card, Container, FormGroup, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import styles from './styles.module.css';
+import ReactStars from "react-rating-stars-component";
 
 // COMPONENT
 import SuccessMessage from '../../general/successMessage/SuccessMessage';
-import BookReviewComment from '../bookReviewComment/BookReviewComment';
-import ReactStars from "react-rating-stars-component";
+import BookReviewComment from './BookReviewComment';
 
 
 const useStyles = makeStyles((theme) => ({

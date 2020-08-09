@@ -1,7 +1,7 @@
 //DEPENDENCIES
 import React, { Component } from 'react';
 import axios from 'axios';
-import styles from '../../general/mainContainer/styles.module.css';
+import layout from '../../general/mainContainer/styles.module.css';
 import { withRouter } from 'react-router-dom';
 
 //COMPONENTS
@@ -62,8 +62,7 @@ export class CategoryListing extends Component {
             return (
                 <React.Fragment>
                     <Navigation history={this.props.history} cart={this.props.cart} total={this.props.total}/>
-                    <h1 className={styles.bookSectionTitle}>{this.state.theme}</h1>
-                    <div className={styles.bookContainer}>
+                    <div className={layout.bookContainer}>
                         {(this.state.view).map(book => {
                             return (
                                 <BookCard data={book} handleAdd={this.props.handleAdd}/>

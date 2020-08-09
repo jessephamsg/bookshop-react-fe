@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import UserAuthenticator from './components/utils/authenticateUser';
 
 //COMPONENTS - BOOKS
 import Homepage from './components/page/home';
@@ -12,6 +13,7 @@ import Cart from './components/page/cart';
 import Checkout from './components/page/checkout';
 import UserProfile from './components/page/userProfile/UserProfile'
 import ProductDetail from './components/page/productDetail';
+import OrderHistory from './components/page/orderHistory';
 
 //COMPONENTS - AUTH
 import Register from './components/page/register';
@@ -43,9 +45,11 @@ export class App extends Component {
       userName: null,
       email: '',
       cart: [],
-      total: 0
+      total: 0, 
+      orderhistory: null
     }
     this.handleAdd = this.handleAdd.bind(this);
+    this.handleRemoveFromCart = this.handleRemoveFromCart.bind(this);
   }
 
   handleAdd (item) {
@@ -71,6 +75,20 @@ export class App extends Component {
     window.localStorage.setItem('total', JSON.stringify(this.state.total));
   }
 
+  handleRemoveFromCart (itemKey) {
+    const currentCart = JSON.parse(window.localStorage.getItem('cart'));
+    let itemIndex = 0;
+    for (const [index, item] of currentCart.entries()) {
+      if (item.raw.id === itemKey) itemIndex = index;
+    }
+    const total = this.state.total - currentCart[itemIndex].raw.discountedPrice
+    this.setState({total});
+    currentCart.splice(itemIndex, 1);
+    window.localStorage.setItem('cart', JSON.stringify(currentCart)); 
+    this.setState({cart: currentCart});
+    window.localStorage.setItem('total', JSON.stringify(total)); 
+  }
+
   getCurrentCart () {
     const currentCart = JSON.parse(window.localStorage.getItem('cart'));
     const currentTotal = JSON.parse(window.localStorage.getItem('total'))
@@ -81,23 +99,12 @@ export class App extends Component {
   }
 
   async authenticateUser () {
-    try {
-      const data = JSON.parse(sessionStorage.getItem('userData'));
-      const response = await axios.get(`${REACT_APP_SERVER_URL}/user`, { withCredentials: true })
-      if (data) {
-        const res = await axios.post(`${GOOGLE_AUTH_URL}/googleauth`, data)
+    const result = await UserAuthenticator.authenticateUser();
+    if (result) {
         this.setState({ 
-          userName: res.data.data.name, 
-          email: res.data.data.email 
-        })
-      }
-      else if (response.data) 
-        this.setState({ 
-          userName: response.data.name, 
-          email: response.data.email 
-        })
-    } catch (err) {
-      console.log(err)
+              userName: result.name, 
+              email: result.email
+            })
     }
   }
 
@@ -119,9 +126,10 @@ export class App extends Component {
               <Route exact path='/' render={()=> <Homepage handleAdd={this.handleAdd} cart={this.state.cart} total={this.state.total}/>}/>
               <Route exact path='/search' render={()=> <SearchPage handleAdd={this.handleAdd} cart={this.state.cart} total={this.state.total}/>}/>
               <Route path="/cat/:catName" render={ () => <CategoryListing handleAdd={this.handleAdd} cart={this.state.cart} total={this.state.total}/>} />
-              <Route path="/cart" render={ () => <Cart cart={this.state.cart} total={this.state.total} username={this.state.userName}/>}/>
+              <Route path="/cart" render={ () => <Cart cart={this.state.cart} handleRemoveFromCart={this.handleRemoveFromCart} total={this.state.total} username={this.state.userName}/>}/>
               <Route path="/checkout" render={ () => <Checkout cart={this.state.cart} total={this.state.total} userEmail={this.state.email}/>}/>
               <Route path="/prod/:bookID" render={ () => <ProductDetail handleAdd={this.handleAdd} cart={this.state.cart} total={this.state.total}/>} />
+              <Route path="/orderhistory" render={ () => <OrderHistory userEmail={this.state.email} orderhistory={this.state.orderhistory}/>} />
               <Route exact path ='/about' component={About}/>
               <Route exact path='/terms' component={Terms} />
               <Route exact path='/privacy' component={Privacy} />
