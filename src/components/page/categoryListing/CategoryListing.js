@@ -70,6 +70,7 @@ export class CategoryListing extends Component {
                             )
                         })}
                     </div>
+                    <Footer />
                 </React.Fragment>
             )
         }

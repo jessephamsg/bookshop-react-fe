@@ -58,12 +58,36 @@ class UserProfile extends Component {
           localUser: true,
           userData: response.data
         })
-        else {
-          this.setState({ userAuthenticated: `Please Login to have access to User Profile`})
-        }
+      else {
+        this.setState({ userAuthenticated: `Please Login to have access to User Profile` })
+      }
     } catch (err) {
       console.log(err.response)
       console.log(err.res)
+    }
+  }
+
+  handleLogout = async (e) => {
+    try {
+      console.log('hi')
+      const response = await axios.get(`${REACT_APP_SERVER_URL}/logout`, { withCredentials: true })
+      console.log(response)
+      sessionStorage.removeItem('userData');
+      this.props.history.push('/login')
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  handleSubmit = async (e) => {
+    try {
+      e.preventDefault()
+      const data = { ...this.state }
+      const response = await axios.post(`${REACT_APP_SERVER_URL}/changeUserProfile`, data)
+      console.log(response.data.message)
+      if (response.data.success) this.setState({ successChange: response.data.message })
+    } catch (err) {
+      console.log(err.response)
     }
   }
 
@@ -75,19 +99,19 @@ class UserProfile extends Component {
   render() {
     return (
       <React.Fragment>
-        <Icons />
-        {this.state.userAuthenticated == null ? 
-        <div className={styles.wrapper}>
-        <ProfileMenu localUser={this.state.localUser}/>
-        <form onSubmit={this.handleSubmit}>
-        <UserProfileLabel {...this.state} handleChange={this.handleChange}/>
-        </form>
-        </div>
-        :
-        <div className={styles.messageWrapper}>
-        <Message msg={this.state.userAuthenticated} />
-        </div>
-      }
+        <Icons handleLogout = {this.handleLogout} userName={this.state.userData}/>
+        {this.state.userAuthenticated == null ?
+          <div className={styles.wrapper}>
+            <ProfileMenu localUser={this.state.localUser} />
+            <form onSubmit={this.handleSubmit}>
+              <UserProfileLabel {...this.state} handleChange={this.handleChange} />
+            </form>
+          </div>
+          :
+          <div className={styles.messageWrapper}>
+            <Message msg={this.state.userAuthenticated} />
+          </div>
+        }
       </React.Fragment>
     )
   }

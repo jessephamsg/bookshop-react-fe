@@ -19,7 +19,7 @@ class LoginContainer extends Component {
     constructor() {
         super()
         this.state = {
-            email: '',
+            email: null,
             password: '',
             loginError: [],
             successMsg: '',
@@ -69,7 +69,7 @@ class LoginContainer extends Component {
     render() {
         return (
             <React.Fragment>
-                <Icons />
+                <Icons userName={this.state.email} />
                 <form onSubmit={this.handleSubmit}>
                     <LoginLabel
                         {...this.state}

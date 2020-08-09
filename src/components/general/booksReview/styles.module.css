@@ -1,0 +1,16 @@
+.formButton {
+    display: block;
+    width: 97%;
+    background-color: rgb(61,49,65);
+    color: white;
+    margin: auto;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    margin-top: 1rem;
+}
+
+.formButton:hover {
+    background-color: rgba(61,49,65,0.9);
+}

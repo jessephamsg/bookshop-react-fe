@@ -1,6 +1,8 @@
-import React, {Component} from 'react';
-import ReactStars from "react-rating-stars-component";
+//DEPENDENCIES
+import React, { Component } from 'react';
 import styles from './styles.module.css';
+import { BrowserRouter as Router, Link } from 'react-router-dom'; //don't delete the Router, it will cause infinity Loop
+import ReactStars from "react-rating-stars-component";
 import axios from 'axios';
 
 //VARIABLES
@@ -25,19 +27,26 @@ export class BookCard extends Component {
     render () {
         return (
             <div className={styles.bookCard}>
-                <div className={styles.bookCover} 
-                    style={{ 
-                        backgroundImage:`url(${this.props.data.raw.img})`, 
-                        backgroundSize: 'cover', 
-                        backgroundPosition: 'center', 
-                        backgroundRepeat: 'no-repeat',
-                        width:'100%',
-                        height:'250px'}}>
-                </div>
-                <div className={styles.bookCardSummary}>
-                    <div className={styles.bookCardSummaryh4}>
-                        <h4>{this.props.data.formatted.formattedTitle}</h4>
+                <Link to={`/prod/${this.props.data.raw.id}`}>
+                    <div className={styles.bookCover}
+                        style={{
+                            backgroundImage: `url(${this.props.data.raw.img})`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                            backgroundRepeat: 'no-repeat',
+                            width: '100%',
+                            height: '250px'
+                        }}>
                     </div>
+                </Link>
+
+                <div className={styles.bookCardSummary}>
+                    {/* <div className={styles.bookCardSummaryh4}>
+                        <h4>{this.props.data.formatted.formattedTitle}</h4>
+                    </div> */}
+                    <Link to={`/prod/${this.props.data.raw.id}`} className={styles.bookTitle}>
+                        <h4>{this.props.data.formatted.formattedTitle}</h4>
+                    </Link>
                     <p>{this.props.data.formatted.formattedAuthor}</p>
                     <div className={styles.bookRating}>
                         <ReactStars
@@ -49,7 +58,7 @@ export class BookCard extends Component {
                             halfIcon={<i className="fa fa-star-half-alt"></i>}
                             fullIcon={<i className="fa fa-star"></i>}
                             activeColor="#ffd700"
-                            />
+                        />
                     </div>
                     <div className={styles.bookPrice}>
                         <p className={styles.bookDiscountedPrice}>{this.props.data.formatted.formattedDiscountedPrice}</p>

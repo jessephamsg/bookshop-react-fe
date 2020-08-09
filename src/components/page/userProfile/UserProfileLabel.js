@@ -1,7 +1,11 @@
+// DEPENDENCIES
 import React from 'react';
 import { Card, Box, FormGroup, FormLabel, TextField, InputAdornment } from '@material-ui/core';
 import styles from './styles.module.css';
 import { makeStyles } from '@material-ui/core/styles';
+
+// COMPONENTS
+import SuccessMessage from '../../general/successMessage/SuccessMessage'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -17,6 +21,7 @@ function UserProfileLabel(props) {
         <Box display='flex' justifyContent="center">
         <Card className={styles.cardForm}>
             <h1 className={styles.header}>Personal profile</h1>
+            {props.successChange !== null && <SuccessMessage msg={props.successChange}/>}
           <FormGroup>
             <TextField
               label='Name'
@@ -42,6 +47,7 @@ function UserProfileLabel(props) {
               required
             />
           </FormGroup>
+
           <button className={styles.formButton}>Save Changes</button>
         </Card>
       </Box>

@@ -11,6 +11,8 @@ import CategoryListing from './components/page/categoryListing';
 import Cart from './components/page/cart';
 import Checkout from './components/page/checkout';
 import UserProfile from './components/page/userProfile/UserProfile'
+import ProductDetail from './components/page/productDetail';
+import BooksReview from './components/general/booksReview/BooksReview'
 
 //COMPONENTS - AUTH
 import Register from './components/page/register';
@@ -119,6 +121,8 @@ export class App extends Component {
               <Route path="/cat/:catName" render={ () => <CategoryListing handleAdd={this.handleAdd} cart={this.state.cart} total={this.state.total}/>} />
               <Route path="/cart" render={ () => <Cart cart={this.state.cart} total={this.state.total} username={this.state.userName}/>}/>
               <Route path="/checkout" render={ () => <Checkout cart={this.state.cart} total={this.state.total} userEmail={this.state.email}/>}/>
+              <Route path="/prod/:bookID" render={ () => <ProductDetail handleAdd={this.handleAdd} cart={this.state.cart} total={this.state.total}/>} />
+              <Route exact path ='/booksreview' component={BooksReview} />
               <Route exact path ='/about' component={About}/>
               <Route exact path='/terms' component={Terms} />
               <Route exact path='/privacy' component={Privacy} />
