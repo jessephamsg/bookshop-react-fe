@@ -22,6 +22,7 @@ import Faq from './components/page/faq';
 import CategoryListing from './components/page/categoryListing';
 import ProductDetail from './components/page/productDetail';
 import Cart from './components/page/cart';
+import BooksReview from './components/general/booksReview/BooksReview'
 
 //VARIABLES
 import Endpoints from './config/endpoints';
@@ -119,6 +120,7 @@ export class App extends Component {
               <Route path="/cat/:catName" render={ () => <CategoryListing handleAdd={this.handleAdd} cart={this.state.cart} total={this.state.total}/>} />
               <Route path="/prod/:bookID" render={ () => <ProductDetail handleAdd={this.handleAdd} cart={this.state.cart} total={this.state.total}/>} />
               <Route path="/cart" render={ () => <Cart cart={this.state.cart} total={this.state.total}/>} />
+              <Route exact path ='/booksreview' component={BooksReview} />
             </Switch>
           </div>
         </Router>

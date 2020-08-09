@@ -81,9 +81,11 @@ class UserProfile extends Component {
 
   handleSubmit = async (e) => {
     try {
+      e.preventDefault()
       const data = { ...this.state }
       const response = await axios.post(`${REACT_APP_SERVER_URL}/changeUserProfile`, data)
-      console.log(response.data)
+      console.log(response.data.message)
+      if (response.data.success) this.setState({ successChange: response.data.message })
     } catch (err) {
       console.log(err.response)
     }
