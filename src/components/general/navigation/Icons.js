@@ -1,3 +1,4 @@
+//DEPENDENCIES
 import React from 'react';  
 import Home from '@material-ui/icons/Home';  
 import AppBar from '@material-ui/core/AppBar';  
@@ -21,7 +22,6 @@ const useStyles = makeStyles({
         boxShadow: 'none',
     }
 });
-
 
 
 export default function Icons(props) {

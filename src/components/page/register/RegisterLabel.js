@@ -1,3 +1,4 @@
+//DEPENDENCIES
 import React from 'react'
 import { Card, Container, FormGroup, Box, TextField, FormLabel, Button } from '@material-ui/core'
 import Message from '../../general/errorMessage/ErrorMessage'
@@ -16,6 +17,7 @@ const CustomButton = withStyles({
 
   
 function RegisterForm(props) {
+
     return (
         <Container>
             <Card className={styles.cardForm}>

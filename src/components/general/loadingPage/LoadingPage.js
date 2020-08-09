@@ -2,6 +2,7 @@ import React from 'react';
 import LoadingScreen from 'react-loading-screen';
 
 function LoadingPage(props) {
+    
     return (
         <LoadingScreen
             loading={true}

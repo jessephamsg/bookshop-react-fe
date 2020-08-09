@@ -1,0 +1,95 @@
+.bookContainer {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-left: 10%;
+    flex-wrap: no-wrap;
+    height: fit-content;
+    padding: 10px;
+    box-shadow: 5px 5px 5px #88888821;
+    background-color: white;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.summaryContainer {
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+    height: 100%;
+    border: 1px #e91e63 solid;
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
+
+.summaryRow {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    padding: 10px;
+}
+
+.summaryLeftCell {
+    width: 80%;
+}
+
+.summaryRightCell {
+    width: 20%;
+}
+
+.paymentMethodContainer {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    text-align: left;
+}
+
+.paymentMethodContent {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.paymentMethodRow {
+    width: 100%;
+    height: 30%;
+    padding: 5px;
+}
+
+.paymentMethodRow  > img {
+    width: 80%;
+    margin-bottom: 10px;
+}
+
+.paymentMethodRow  > input {
+    width: 80%;
+    border: none;
+    background-color: #8080802e;
+    padding: 10px;
+    margin-bottom: 0px;
+    border-radius: 3px;
+}
+
+.paymentMethodContainer > button {
+    padding: 10px;
+    width: 85%;
+    background-color:  #2196F3;
+    margin-top: 20px;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    margin-bottom: 20px;
+}
+
+.firstRow {
+    background-color: #e91e63;
+    color: white;
+    display: flex;
+    text-align: left;
+    align-items: center;
+    padding-left: 10px;
+
+}

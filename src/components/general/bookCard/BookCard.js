@@ -11,17 +11,20 @@ const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;
 
 
 export class BookCard extends Component {
-    constructor(props) {
-        super(props)
+
+    constructor (props) {
+        super (props)
         this.handleAdd = this.handleAdd.bind(this)
     }
-    async handleAdd(e) {
+
+    async handleAdd (e) {
         const bookId = e.target.value;
         const bookResult = await axios.get(`${REACT_APP_SERVER_URL}/books/${bookId}`);
         const bookObject = bookResult.data.data[0];
         this.props.handleAdd(bookObject);
     }
-    render() {
+
+    render () {
         return (
             <div className={styles.bookCard}>
                 <Link to={`/prod/${this.props.data.raw.id}`}>
@@ -58,7 +61,9 @@ export class BookCard extends Component {
                         <p className={styles.bookDiscountedPrice}>{this.props.data.formatted.formattedDiscountedPrice}</p>
                         <p className={styles.bookOriginalPrice}>{this.props.data.formatted.formattedOriginalPrice}</p>
                     </div>
-                    <button onClick={this.handleAdd} value={this.props.data.raw.id}>Add to basket</button>
+                    <div className={styles.bookCardButton}>
+                        <button onClick={this.handleAdd} value={this.props.data.raw.id}>Add to basket</button>
+                    </div>
                 </div>
             </div>
         )

@@ -8,23 +8,23 @@ function SuccessMessage(props) {
     const [open, setOpen] = React.useState(true);
     return (
         <Collapse in={open}>
-        <Alert
-        severity="success"
-          action={
-            <IconButton
-              aria-label="close"
-              size="small"
-              onClick={() => {
-                setOpen(false);
-              }}
-            >
+          <Alert
+            severity="success"
+            action={
+              <IconButton
+                aria-label="close"
+                size="small"
+                onClick={() => {
+                  setOpen(false);
+                }}
+              >
               <CloseIcon fontSize="inherit" />
-            </IconButton>
-          }
-        >
-          {props.msg}
-        </Alert>
-      </Collapse>
+              </IconButton>
+            }
+            >
+            {props.msg}
+          </Alert>
+        </Collapse>
     )
 }
 

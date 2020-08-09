@@ -4,6 +4,7 @@ import styles from './styles.module.css';
 
 
 export class Subscribe extends Component {
+    
     render () {
         return (
             <div className={styles.footerSectionRight}>

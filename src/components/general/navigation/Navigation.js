@@ -13,6 +13,7 @@ import BookCategory from './BookCategory'
 import Endpoints from '../../../config/endpoints';
 const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;
 
+
 export class Navigation extends Component {
     constructor(props) {
         super(props)
@@ -25,13 +26,11 @@ export class Navigation extends Component {
 
     handleLogout = async (e) => {
         try {
-            console.log('hi')
             const response = await axios.get(`${REACT_APP_SERVER_URL}/logout`, { withCredentials: true })
-            console.log(response)
             sessionStorage.removeItem('userData');
             this.props.history.push('/login')
         } catch (err) {
-            console.log(err)
+            alert (`Unable to log out due to ${err}`)
         }
     }
 
@@ -39,16 +38,13 @@ export class Navigation extends Component {
         try {
             const data = JSON.parse(sessionStorage.getItem('userData'));
             const response = await axios.get(`${REACT_APP_SERVER_URL}/user`, { withCredentials: true })
-            console.log(response.data.name)
             if (data) {
                 const res = await axios.post(`${REACT_APP_SERVER_URL}/googleauth`, data)
-                console.log(res.data.data)
                 this.setState({ userName: res.data.data.name, email: res.data.data.email })
             }
             else if (response.data) this.setState({ userName: response.data.name, email: response.data.email })
             else this.setState({userName: null})
         } catch (err) {
-            console.log(err.response)
             this.setState({userName: null})
         }
     }

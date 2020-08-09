@@ -14,6 +14,7 @@ const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;
 
 
 class RegisterContainer extends Component {
+
     constructor(props) {
         super(props)
         this.state = {
@@ -24,10 +25,12 @@ class RegisterContainer extends Component {
             registrationError: [],
         }
     }
+
     handleChange = (e) => {
         const { value, id } = e.target;
         this.setState({ [id]: value });
     }
+
     handleSubmit = async (e) => {
         try {
             e.preventDefault();
@@ -49,6 +52,7 @@ class RegisterContainer extends Component {
             })
         }
     }
+
     render() {
         return (
             <React.Fragment>
@@ -65,4 +69,6 @@ class RegisterContainer extends Component {
         )
     }
 }
+
+
 export default withRouter(RegisterContainer)

@@ -1,0 +1,48 @@
+.bookContainer {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-left: 10%;
+    flex-wrap: no-wrap;
+    height: fit-content;
+    padding: 10px;
+    box-shadow: 5px 5px 5px #88888821;
+    background-color: white;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.cartRow {
+    display: flex;
+    flex-direction: row;
+}
+
+.rowQty {
+    display: flex;
+    width: 30%;
+    flex-direction: column;
+    align-content: flex-end;
+    align-items: flex-start;
+    justify-content: end;
+}
+
+.removeButton {
+    padding: 10px;
+    background-color: #E91E63;
+    border: none;
+    border-radius: 3px;
+    color: white;
+}
+
+.checkoutButton {
+    padding: 10px;
+    background-color: #2196F3;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    width: 30%;
+    margin-left: 67.5%;
+    margin-bottom: 20px;
+    margin-right: 2.5%;
+}

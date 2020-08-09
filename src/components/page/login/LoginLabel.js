@@ -1,11 +1,16 @@
+//DEPENDENCIES
 import React from 'react'
 import GoogleLogin from 'react-google-login'
 import { Card, Container, FormGroup, FormLabel, TextField, Box } from '@material-ui/core'
 import ForwardIcon from '@material-ui/icons/Forward'
 import styles from './styles.module.css'
+
+//COMPONENTS
 import Message from '../../general/errorMessage/ErrorMessage'
 
+
 function LoginLabel(props) {
+  
   return (
     <Container>
       <Card className={styles.cardForm}>
@@ -61,4 +66,5 @@ function LoginLabel(props) {
     </Container>
   )
 }
+
 export default LoginLabel

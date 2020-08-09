@@ -10,6 +10,7 @@ import Subscribe from './Subscribe';
 
 
 export class Footer extends Component {
+    
     render () {
         return (
             <div className={styles.footerContainer}>
