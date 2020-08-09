@@ -12,6 +12,7 @@ import UserProfileLabel from './UserProfileLabel';
 import Message from '../../general/errorMessage/ErrorMessage'
 import ProfileMenu from './ProfileMenu';
 import LoadingPage from '../../general/loadingPage';
+import UserAuthenticator from '../../utils/authenticateUser';
 
 //VARIABLES
 import Endpoints from '../../../config/endpoints';
@@ -35,43 +36,23 @@ class UserProfile extends Component {
   }
 
   async componentDidMount() {
-    try {
-      const data = JSON.parse(sessionStorage.getItem('userData'));
-      const response = await axios.get(`${REACT_APP_SERVER_URL}/user`, { withCredentials: true })
-      console.log(response)
-      if (data) {
-        const res = await axios.post(`${REACT_APP_SERVER_URL}/googleauth`, data)
-        console.log(res.data.data.email)
+    const result = await UserAuthenticator.authenticateUser();
+    if (result) {
         this.setState({
-          id: res.data.data.id,
-          name: res.data.data.name,
-          email: res.data.data.email,
+          id: result.id,
+          name: result.name,
+          email: result.email,
           googleUser: true,
-          userData: res.data.data
+          userData: result
         })
-      }
-      else if (response.data)
-        this.setState({
-          id: response.data._id,
-          name: response.data.name,
-          email: response.data.email,
-          localUser: true,
-          userData: response.data
-        })
-      else {
-        this.setState({ userAuthenticated: `Please Login to have access to User Profile` })
-      }
-    } catch (err) {
-      console.log(err.response)
-      console.log(err.res)
+    } else {
+      this.setState({ userAuthenticated: `Please Login to have access to User Profile` })
     }
   }
 
   handleLogout = async (e) => {
     try {
-      console.log('hi')
       const response = await axios.get(`${REACT_APP_SERVER_URL}/logout`, { withCredentials: true })
-      console.log(response)
       sessionStorage.removeItem('userData');
       this.props.history.push('/login')
     } catch (err) {
@@ -83,8 +64,8 @@ class UserProfile extends Component {
     try {
       e.preventDefault()
       const data = { ...this.state }
+      console.log(data);
       const response = await axios.post(`${REACT_APP_SERVER_URL}/changeUserProfile`, data)
-      console.log(response.data.message)
       if (response.data.success) this.setState({ successChange: response.data.message })
     } catch (err) {
       console.log(err.response)
@@ -112,6 +93,7 @@ class UserProfile extends Component {
             <Message msg={this.state.userAuthenticated} />
           </div>
         }
+        <Footer />
       </React.Fragment>
     )
   }

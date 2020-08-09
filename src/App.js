@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import UserAuthenticator from './components/utils/authenticateUser';
 
 //COMPONENTS - BOOKS
 import Homepage from './components/page/home';
@@ -12,7 +13,6 @@ import Cart from './components/page/cart';
 import Checkout from './components/page/checkout';
 import UserProfile from './components/page/userProfile/UserProfile'
 import ProductDetail from './components/page/productDetail';
-import BooksReview from './components/general/booksReview/BooksReview';
 import OrderHistory from './components/page/orderHistory';
 
 //COMPONENTS - AUTH
@@ -29,6 +29,7 @@ import Payment from './components/page/payment';
 import Delivery from './components/page/delivery';
 import Return from './components/page/return';
 import Faq from './components/page/faq';
+
 
 //VARIABLES
 import Endpoints from './config/endpoints';
@@ -98,26 +99,13 @@ export class App extends Component {
   }
 
   async authenticateUser () {
-    try {
-      const data = JSON.parse(sessionStorage.getItem('userData'));
-      const response = await axios.get(`${REACT_APP_SERVER_URL}/user`, { withCredentials: true })
-      if (data) {
-        const res = await axios.post(`${GOOGLE_AUTH_URL}/googleauth`, data)
+    const result = await UserAuthenticator.authenticateUser();
+    if (result) {
         this.setState({ 
-          userName: res.data.data.name, 
-          email: res.data.data.email 
-        })
-      }
-      else if (response.data) 
-        this.setState({ 
-          userName: response.data.name, 
-          email: response.data.email 
-        })
-    } catch (err) {
-      console.log(err)
+              userName: result.name, 
+              email: result.email
+            })
     }
-    // const orders = await axios.get(`${REACT_APP_SERVER_URL}/user/orders?query=${this.state.email}`);
-    // this.setState({orderhistory: orders})
   }
 
   async componentDidMount() {
@@ -126,7 +114,6 @@ export class App extends Component {
   }
 
   render() {
-    console.log(this.state.email);
     return (
       <div className="App">
         <Router>
@@ -143,7 +130,6 @@ export class App extends Component {
               <Route path="/checkout" render={ () => <Checkout cart={this.state.cart} total={this.state.total} userEmail={this.state.email}/>}/>
               <Route path="/prod/:bookID" render={ () => <ProductDetail handleAdd={this.handleAdd} cart={this.state.cart} total={this.state.total}/>} />
               <Route path="/orderhistory" render={ () => <OrderHistory userEmail={this.state.email} orderhistory={this.state.orderhistory}/>} />
-              <Route exact path ='/booksreview' component={BooksReview} />
               <Route exact path ='/about' component={About}/>
               <Route exact path='/terms' component={Terms} />
               <Route exact path='/privacy' component={Privacy} />
@@ -152,6 +138,7 @@ export class App extends Component {
               <Route exact path='/delivery' component={Delivery} />
               <Route exact path='/return' component={Return} />
               <Route exact path='/faq' component={Faq} />
+
             </Switch>
           </div>
         </Router>

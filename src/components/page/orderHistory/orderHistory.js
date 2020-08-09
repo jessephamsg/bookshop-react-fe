@@ -9,6 +9,7 @@ import BookCard from '../../general/bookCardHorizontal';
 import Icons from '../../general/navigation/Icons';
 import Footer from '../../general/footer';
 import Message from '../../general/errorMessage/ErrorMessage'
+import UserAuthenticator from '../../utils/authenticateUser';
 
 //VARIABLES
 import Endpoints from '../../../config/endpoints';
@@ -27,36 +28,22 @@ export class OrderHistory extends Component {
     }
 
     async componentDidMount () {
-        try {
-            const data = JSON.parse(sessionStorage.getItem('userData'));
-            const response = await axios.get(`${REACT_APP_SERVER_URL}/user`, { withCredentials: true })
-            if (data) {
-              const res = await axios.post(`${REACT_APP_SERVER_URL}/googleauth`, data)
-              this.setState({
-                email: res.data.data.email,
-              })
-              const orders = await axios.get(`${REACT_APP_SERVER_URL}/user/orders?query=${this.state.email}`);
-            this.setState({orderhistory: orders})
-            } else if (response.data) {
-                this.setState({
-                  email: response.data.email,
-              })
-              const orders = await axios.get(`${REACT_APP_SERVER_URL}/user/orders?query=${this.state.email}`);
-            this.setState({orderhistory: orders})
-            } else {
-              this.setState({
+        const result = await UserAuthenticator.authenticateUser();
+        if (result) {
+            const orders = await axios.get(`${REACT_APP_SERVER_URL}/user/orders?query=${this.state.email}`);
+            this.setState({ 
+                  email: result.email,
+                  orderhistory: orders 
+                })
+        } else {
+            this.setState({
                 userAuthenticated: `Please Login to have access to Order History`,
                 orderhistory: []
-                });
-            }
-          } catch (err) {
-            console.log(err.response)
-            console.log(err.res)
-          }
+                }); 
+        }
     }
      
     render () {
-        console.log(this.state.orderhistory)
         if(this.state.orderhistory === null) {
             return (
                 <LoadingPage/>
