@@ -62,7 +62,7 @@ export class ProductDetail extends Component {
           const response = await axios.get(`${REACT_APP_SERVER_URL}/user`, { withCredentials: true })
           console.log(response)
           if (data) {
-            const res = await axios.post(`${GOOGLE_AUTH_URL}/googleauth`, data)
+            const res = await axios.post(`${REACT_APP_SERVER_URL}/googleauth`, data)
             console.log(res.data.data.email)
             this.setState({ 
               userName: res.data.data.name, 
@@ -74,6 +74,7 @@ export class ProductDetail extends Component {
               userName: response.data.name, 
               userAuthorized: !this.state.userAuthorized
             })
+            console.log(this.state.userAuthorized)
         } catch (err) {
           console.log(err)
         }
