@@ -9,11 +9,13 @@ import { withRouter } from 'react-router-dom';
 import Navigation from '../../general/navigation';
 import Footer from '../../general/footer';
 import LoadingPage from '../../general/loadingPage';
+import BooksReviewLabelForm from '../../general/booksReview/BooksReviewLabelForm';
+
 
 //VARIABLES
 import Endpoints from '../../../config/endpoints';
 const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;
-
+const GOOGLE_AUTH_URL = Endpoints.GOOGLE_AUTH_URL;
 
 export class ProductDetail extends Component {
     constructor(props) {
@@ -22,6 +24,13 @@ export class ProductDetail extends Component {
             view: null,
             bookID: null,
             isDiscounted: null,
+            clicked: false,
+            rating: null,
+            review: '',
+            userAuthorized: false,
+            userName: null,
+            successChange: null,
+            booksOverallReview: null
         }
     }
     getParamCatName() {
@@ -35,20 +44,45 @@ export class ProductDetail extends Component {
         const bookID = this.state.bookID;
         const rawData = await axios.get(`${REACT_APP_SERVER_URL}/books/${bookID}`);
         const bookData = await rawData.data.data;
+        const booksOverallReview = bookData[0].raw.reviews
         bookData[0].raw.avgRating = Math.round(bookData[0].raw.avgRating * 100) / 100;
         const isDiscounted = (bookData[0].formatted.formattedOriginalPrice === bookData[0].formatted.formattedDiscountedPrice) ? null : bookData[0].formatted.formattedOriginalPrice;
-
+        console.log(booksOverallReview)
         this.setState({
             view: bookData,
             bookID: bookID,
             isDiscounted: isDiscounted,
+            booksOverallReview: booksOverallReview
         })
         console.log('this.state.isDiscounted at fetchData: ', this.state.isDiscounted)
     }
+    async authenticateUser () {
+        try {
+          const data = JSON.parse(sessionStorage.getItem('userData'));
+          const response = await axios.get(`${REACT_APP_SERVER_URL}/user`, { withCredentials: true })
+          console.log(response)
+          if (data) {
+            const res = await axios.post(`${GOOGLE_AUTH_URL}/googleauth`, data)
+            console.log(res.data.data.email)
+            this.setState({ 
+              userName: res.data.data.name, 
+              userAuthorized: !this.state.userAuthorized
+            })
+          }
+          else if (response.data) 
+            this.setState({ 
+              userName: response.data.name, 
+              userAuthorized: !this.state.userAuthorized
+            })
+        } catch (err) {
+          console.log(err)
+        }
+      }
     async componentDidMount() {
         await this.getParamCatName();
         console.log('state.bookID at componentDidMount: ', this.state.bookID);
         await this.fetchData();
+        await this.authenticateUser();
     }
     // async componentWillReceiveProps(props) { //at the moment this is not used. It's can be used if we're clicking another product detail from product detail page
     //     console.log('componentWillReceiveProps: ', props.match.params.bookID);
@@ -64,6 +98,28 @@ export class ProductDetail extends Component {
         const bookObject = bookResult.data.data[0];
         this.props.handleAdd(bookObject);
     }
+    handleClick = (e) => {
+        this.setState({ clicked: !this.state.clicked})
+        console.log(this.state.clicked)
+    }
+    handleSubmit = async (e) => {
+        try {
+          e.preventDefault()
+          const data = { ...this.state }
+          console.log(data)
+          const response = await axios.post(`${REACT_APP_SERVER_URL}/${this.state.bookID}/booksreview`, data)
+          console.log(response.data)
+          if(response.data.success) {
+              this.setState({ successChange: response.data.message })
+          }
+        } catch (err) {
+          console.log(err.response)
+        }
+      }
+      handleChange = (e) => {
+        const { value, name } = e.target
+        this.setState({ [name]: value })
+      }
     render() {
         if (this.state.view === null) {
             return (
@@ -114,6 +170,12 @@ export class ProductDetail extends Component {
                         </div>
                         <button onClick={this.props.history.goBack}>Back</button>
                     </div>
+                    <BooksReviewLabelForm 
+                        {...this.state} 
+                        handleClick={this.handleClick}
+                        handleSubmit={this.handleSubmit}
+                        handleChange={this.handleChange}
+                    />
                     <Footer />
                 </div>
             )

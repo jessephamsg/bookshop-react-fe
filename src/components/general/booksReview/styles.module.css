@@ -9,8 +9,39 @@
     cursor: pointer;
     border: none;
     margin-top: 1rem;
+    margin-bottom: 2em;
 }
 
 .formButton:hover {
     background-color: rgba(61,49,65,0.9);
+}
+
+.reviewButton {
+    background-color: rgb(61,49,65);
+    color: white;
+    border-style: none;
+    cursor: pointer;
+    border-radius: 8px;
+    width: fit-content;
+    padding: 1em;
+    margin-bottom: 2em;
+}
+
+.reviewButton:hover {
+    background-color: rgba(61,49,65,0.9);
+}
+
+.form {
+    margin-bottom: 2em;
+}
+
+.bookAvgRating {
+    font-size: 0.8rem;
+    padding-left: 10px;
+}
+
+.bookRating {
+    display: flex;
+    justify-content: left;
+    align-items: center;
 }

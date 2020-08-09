@@ -29,6 +29,7 @@ import Delivery from './components/page/delivery';
 import Return from './components/page/return';
 import Faq from './components/page/faq';
 
+
 //VARIABLES
 import Endpoints from './config/endpoints';
 const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;
@@ -131,6 +132,7 @@ export class App extends Component {
               <Route exact path='/delivery' component={Delivery} />
               <Route exact path='/return' component={Return} />
               <Route exact path='/faq' component={Faq} />
+
             </Switch>
           </div>
         </Router>
