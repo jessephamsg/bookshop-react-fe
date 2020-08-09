@@ -41,9 +41,6 @@ export class BookCard extends Component {
                 </Link>
 
                 <div className={styles.bookCardSummary}>
-                    {/* <div className={styles.bookCardSummaryh4}>
-                        <h4>{this.props.data.formatted.formattedTitle}</h4>
-                    </div> */}
                     <Link to={`/prod/${this.props.data.raw.id}`} className={styles.bookTitle}>
                         <h4>{this.props.data.formatted.formattedTitle}</h4>
                     </Link>

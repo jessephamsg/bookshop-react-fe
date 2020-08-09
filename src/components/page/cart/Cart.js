@@ -24,27 +24,35 @@ export class Cart extends Component {
     }
 
     render () {
-        return (
-            <div>
-                <Navigation history= {this.props.history} cart={this.props.cart} total={this.props.total}/>
-                <h1 className={styles.bookSectionTitle}>Your Cart</h1>
-                <div className={pageStyles.bookContainer}>
-                    {(this.props.cart).map(item => {
-                        return (
-                            <div className={pageStyles.cartRow}>
-                                <BookCard data={item}/>
-                                <div className={pageStyles.rowQty}>
-                                    <p> Quantity: 1 </p>
-                                    <button className={pageStyles.removeButton}>Remove from Cart</button>
-                                </div>
-                            </div>
-                        )
-                    })}
-                    <button className={pageStyles.checkoutButton} onClick={this.handleCheckout}>Checkout</button>
+        if(this.props.cart === null) {
+            return (
+                <div>
+                    Your cart is empty
                 </div>
-                <Footer />
-            </div>
-        )
+            )
+        } else {
+            return (
+                <div>
+                    <Navigation history= {this.props.history} cart={this.props.cart} total={this.props.total}/>
+                    <h1 className={styles.bookSectionTitle}>Your Cart</h1>
+                    <div className={pageStyles.bookContainer}>
+                        {(this.props.cart).map(item => {
+                            return (
+                                <div className={pageStyles.cartRow}>
+                                    <BookCard data={item}/>
+                                    <div className={pageStyles.rowQty}>
+                                        <p> Quantity: 1 </p>
+                                        <button className={pageStyles.removeButton}>Remove from Cart</button>
+                                    </div>
+                                </div>
+                            )
+                        })}
+                        <button className={pageStyles.checkoutButton} onClick={this.handleCheckout}>Checkout</button>
+                    </div>
+                    <Footer />
+                </div>
+            )
+        }
     }
 }
 
