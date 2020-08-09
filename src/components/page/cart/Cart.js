@@ -25,12 +25,10 @@ export class Cart extends Component {
     }
 
     handleRemoveFromCart (e) {
-        console.log(e.target.value)
         this.props.handleRemoveFromCart(e.target.value);
     }
 
     render () {
-        console.log(this.props.cart)
         if(this.props.cart === null) {
             return (
                 <div>

@@ -13,6 +13,7 @@ import Checkout from './components/page/checkout';
 import UserProfile from './components/page/userProfile/UserProfile'
 import ProductDetail from './components/page/productDetail';
 import BooksReview from './components/general/booksReview/BooksReview';
+import OrderHistory from './components/page/orderHistory';
 
 //COMPONENTS - AUTH
 import Register from './components/page/register';
@@ -43,7 +44,8 @@ export class App extends Component {
       userName: null,
       email: '',
       cart: [],
-      total: 0
+      total: 0, 
+      orderhistory: null
     }
     this.handleAdd = this.handleAdd.bind(this);
     this.handleRemoveFromCart = this.handleRemoveFromCart.bind(this);
@@ -114,6 +116,8 @@ export class App extends Component {
     } catch (err) {
       console.log(err)
     }
+    const orders = await axios.get(`${REACT_APP_SERVER_URL}/user/orders?query=${this.state.email}`);
+    this.setState({orderhistory: orders})
   }
 
   async componentDidMount() {
@@ -122,6 +126,7 @@ export class App extends Component {
   }
 
   render() {
+    console.log(this.state.email);
     return (
       <div className="App">
         <Router>
@@ -137,6 +142,7 @@ export class App extends Component {
               <Route path="/cart" render={ () => <Cart cart={this.state.cart} handleRemoveFromCart={this.handleRemoveFromCart} total={this.state.total} username={this.state.userName}/>}/>
               <Route path="/checkout" render={ () => <Checkout cart={this.state.cart} total={this.state.total} userEmail={this.state.email}/>}/>
               <Route path="/prod/:bookID" render={ () => <ProductDetail handleAdd={this.handleAdd} cart={this.state.cart} total={this.state.total}/>} />
+              <Route path="/orderhistory" render={ () => <OrderHistory userEmail={this.state.email} orderhistory={this.state.orderhistory}/>} />
               <Route exact path ='/booksreview' component={BooksReview} />
               <Route exact path ='/about' component={About}/>
               <Route exact path='/terms' component={Terms} />
