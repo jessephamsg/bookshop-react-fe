@@ -116,8 +116,8 @@ export class App extends Component {
     } catch (err) {
       console.log(err)
     }
-    const orders = await axios.get(`${REACT_APP_SERVER_URL}/user/orders?query=${this.state.email}`);
-    this.setState({orderhistory: orders})
+    // const orders = await axios.get(`${REACT_APP_SERVER_URL}/user/orders?query=${this.state.email}`);
+    // this.setState({orderhistory: orders})
   }
 
   async componentDidMount() {
