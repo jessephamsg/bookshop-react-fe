@@ -1,9 +1,13 @@
+//DEPENDENCIES
 import React from 'react';
 import { Card, Box, FormGroup, TextField } from '@material-ui/core';
 import styles from './styles.module.css';
 import { makeStyles } from '@material-ui/core/styles';
+
+//COMPONENTS
 import Message from '../../general/errorMessage/ErrorMessage'
 import SuccessMessage from '../../general/successMessage/SuccessMessage'
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -13,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 
+  
 function ChangePasswordLabel(props) {
     const classes = useStyles();
     return (

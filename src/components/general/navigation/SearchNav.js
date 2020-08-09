@@ -17,7 +17,8 @@ const useStyles = makeStyles({
   });
 
   
-export default function SearchNav (props) {  
+export default function SearchNav (props) {
+      
     const classes = useStyles();  
         return (  
             <React.Fragment>  

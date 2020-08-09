@@ -1,9 +1,11 @@
-// DEPENDENCIES
+//DEPENDENCIES
 import React from 'react';
 import { MenuList, MenuItem, Paper } from '@material-ui/core';
 import styles from './styles.module.css';
 
+
 function ProfileMenu(props) {
+
     return (
       <Paper className={styles.paper}>
         <MenuList>

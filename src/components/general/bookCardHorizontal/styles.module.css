@@ -1,7 +1,7 @@
 .bookCard {
     display: flex;
-    flex-direction: column;
-    width: 15%;
+    flex-direction: row;
+    width: 60%;
     height: 100%;
     margin-left: 10px;
     margin-right: 10px;
@@ -9,19 +9,15 @@
 }
 
 .bookCover {
-    height: 60%;
-}
-
-.bookTitle {
-    color: black;
-    font-size: 1rem;
-    font-weight: 400;
+    width: 20%;
 }
 
 .bookCardSummary {
     display: flex;
     flex-direction: column;
-    height: 40%;
+    text-align: left;
+    width: 80%;
+    margin-left: 10px;
 }
 
 .bookCardSummaryh4 > h4 {
@@ -37,7 +33,7 @@
 
 .bookPrice {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: baseline;
 }
 
@@ -48,7 +44,7 @@
 
 .bookRating {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .bookDiscountedPrice {
@@ -67,19 +63,11 @@
     height: 20%;
 }
 
-.bookCardButton {
-    display: flex;
-    height: 20%;
-    justify-content: center;
+.noStock {
+    color: #e91e63;
+    font-size: 15px;
 }
 
-.bookCardButton > button {
-    background-color: #2196F3;
-    color: white;
-    border: none;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-radius: 3px;
-    width: 100%;
-    align-self: flex-end;
+.availableStock {
+    font-size: 15px;
 }

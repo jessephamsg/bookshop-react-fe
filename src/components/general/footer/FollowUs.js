@@ -4,6 +4,7 @@ import styles from './styles.module.css';
 
 
 export class FollowUs extends Component {
+    
     render () {
         return (
             <div className={styles.footerSectionRight}>

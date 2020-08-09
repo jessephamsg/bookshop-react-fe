@@ -7,6 +7,7 @@ import Footer from '../../general/footer';
 
 
 export class Payment extends Component {
+    
     render () {
         return (
             <div>

@@ -4,6 +4,7 @@ import styles from './styles.module.css';
 
 
 export class CompanyInfo extends Component {
+    
     render () {
         return (
             <div>
