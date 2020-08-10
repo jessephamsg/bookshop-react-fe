@@ -1,7 +1,6 @@
 //DEPENDENCIES
 import React, { Component } from 'react';
 import axios from 'axios';
-import LoadingScreen from 'react-loading-screen';
 import { withRouter } from "react-router-dom";
 import styles from './styles.module.css';
 
@@ -61,6 +60,7 @@ class UserProfile extends Component {
         })
       else {
         this.setState({ userAuthenticated: `Please Login to have access to User Profile` })
+        this.props.history.push('/login')
       }
     } catch (err) {
       console.log(err.response)

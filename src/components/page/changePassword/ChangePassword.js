@@ -1,7 +1,6 @@
 //DEPENDENCIES
 import React, { Component } from 'react';
 import axios from 'axios';
-import LoadingScreen from 'react-loading-screen';
 import { withRouter } from "react-router-dom";
 import styles from './styles.module.css';
 
@@ -56,6 +55,16 @@ class ChangePassword extends Component {
     }
   }
 
+  handleLogout = async (e) => {
+    try {
+      const response = await axios.get(`${REACT_APP_SERVER_URL}/logout`, { withCredentials: true })
+      sessionStorage.removeItem('userData');
+      this.props.history.push('/login')
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   handleSubmit = async (e) => {
     try {
       e.preventDefault();
@@ -87,7 +96,7 @@ class ChangePassword extends Component {
     }
     return (
       <React.Fragment>
-        <Icons />
+        <Icons handleLogout={this.handleLogout}/>
         <div className={styles.wrapper}>
           <ProfileMenu localUser={this.state.localUser}/>
           <form onSubmit={this.handleSubmit}>

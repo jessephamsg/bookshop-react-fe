@@ -43,6 +43,16 @@ export class OrderHistory extends Component {
                 }); 
         }
     }
+
+    handleLogout = async (e) => {
+        try {
+          const response = await axios.get(`${REACT_APP_SERVER_URL}/logout`, { withCredentials: true })
+          sessionStorage.removeItem('userData');
+          this.props.history.push('/login')
+        } catch (err) {
+          console.log(err)
+        }
+      }
      
     render () {
         if(this.state.orderhistory === null) {
@@ -52,7 +62,7 @@ export class OrderHistory extends Component {
         }
         return (
             <React.Fragment>
-                <Icons />
+                <Icons handleLogout={this.handleLogout}/>
                 { (this.state.orderhistory.length === 0) ? 
                     <Message msg={this.state.userAuthenticated} /> :
                     <div className={verticalLayout.bookContainer}>

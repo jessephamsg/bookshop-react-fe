@@ -85,6 +85,7 @@ export class ProductDetail extends Component {
           const response = await axios.post(`${REACT_APP_SERVER_URL}/${this.state.bookID}/booksreview`, data)
           if(response.data.success) {
               this.setState({ successChange: response.data.message })
+              window.location.reload();
           }
         } catch (err) {
           console.log(err.response)

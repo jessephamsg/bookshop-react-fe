@@ -64,7 +64,7 @@ function LoginLabel(props) {
           />
         </div>
         <div>No Account? <NavLink className={styles.aLink} to="/register">Register Here</NavLink> || 
-        Forgot your Password? <NavLink className={styles.aLink} to="/forgotpw">Click Here</NavLink> </div>
+        Forgot your Password? <NavLink className={styles.aLink} to="/forgetpassword">Click Here</NavLink> </div>
       </Card>
     </Container>
   )

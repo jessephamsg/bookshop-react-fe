@@ -9,7 +9,6 @@ import Footer from '../../general/footer';
 
 
 export class About extends Component {
-
     render() {
         return (
             <div>

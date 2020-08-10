@@ -30,7 +30,8 @@ import Payment from './components/page/payment';
 import Delivery from './components/page/delivery';
 import Return from './components/page/return';
 import Faq from './components/page/faq';
-
+import ForgetPassword from './components/page/forgetPassword/ForgetPassword';
+import ForgetPwConfirmation from './components/page/forgetPasswordConfirmation/ForgetPwConfirmation';
 
 //VARIABLES
 import Endpoints from './config/endpoints';
@@ -98,6 +99,8 @@ export class App extends Component {
         <Router>
           <div>
             <Switch>
+              <Route exact path='/forgetpassword/reset/:id' component={ForgetPwConfirmation} />
+              <Route exact path='/forgetpassword' component={ForgetPassword} />
               <Route exact path='/changepassword' component={ChangePassword} />
               <Route exact path='/login' component={Login} />
               <Route exact path='/register' component={Register} />
