@@ -54,8 +54,8 @@ export class BookCategory extends Component {
                     </div>
                     <div className={styles.cartButton}>
                         {(this.props.cart !== null) ? 
-                            <a href='/cart'>Total: {this.props.total}</a> :
-                            <a href='/cart'>Total: 0</a>
+                            <a href='/cart'>Total: SGD {this.props.total}</a> :
+                            <a href='/cart'>Total: SGD 0</a>
                         }
                     </div>
                     <div className={styles.cartButton}>
