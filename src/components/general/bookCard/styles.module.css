@@ -1,9 +1,8 @@
 .bookCard {
     display: flex;
     flex-direction: column;
-    width: 15%;
+    width: 150px;
     height: 100%;
-    margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 25px;
 }
