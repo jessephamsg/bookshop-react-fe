@@ -1,37 +1,31 @@
+//DEPENDENCIES
 import React from 'react'
 import { Card, Container, FormGroup, Box, TextField, FormLabel, Button } from '@material-ui/core'
 import Message from '../../general/errorMessage/ErrorMessage'
 import PersonAddIcon from '@material-ui/icons/PersonAdd'
-import { withStyles } from "@material-ui/core/styles"
+import { BrowserRouter as Router, NavLink } from 'react-router-dom'; //don't delete the Router, it will cause infinity Loop
+import btnStyles from '../../general/mainContainer/styles.button.css'; //don't delete this. It's used for button styling
 import styles from './styles.module.css'
 
-
-const CustomButton = withStyles({
-    root: {
-      backgroundColor: "rgb(61,49,65)",
-      color: "white",
-      marginTop: '2rem'
-    }
-  })(Button);
-
-  
 function RegisterForm(props) {
+
     return (
         <Container>
             <Card className={styles.cardForm}>
                 <Box display="flex" justifyContent="center" className={styles.registerHeader}>
                     <h1>
-                        <PersonAddIcon fontSize="large"/>REGISTER
+                        <PersonAddIcon fontSize="large" />REGISTER
                     </h1>
                 </Box>
-                {props.registrationError != null && props.registrationError.map((err,i) => {
+                {props.registrationError != null && props.registrationError.map((err, i) => {
                     return (
-                        <Message msg={err.message} key={i}/>
+                        <Message msg={err.message} key={i} />
                     )
                 })}
-                <FormGroup>
-                    <FormLabel htmlFor='name' className={styles.formLabel}>Name</FormLabel>
-                    <TextField
+                <div className={styles.inputContainer}>
+                    <FormGroup>
+                        <FormLabel htmlFor='name' className={styles.formLabel}>Name</FormLabel>
+                        <TextField
                             type='text'
                             id='name'
                             className={styles.formControl}
@@ -40,9 +34,9 @@ function RegisterForm(props) {
                             onChange={props.handleChange}
                             required
                         />
-                </FormGroup>
-                <FormGroup>
-                <FormLabel htmlFor='email' className={styles.formLabel}>Email</FormLabel>
+                    </FormGroup>
+                    <FormGroup>
+                        <FormLabel htmlFor='email' className={styles.formLabel}>Email</FormLabel>
                         <TextField
                             type='email'
                             id='email'
@@ -52,9 +46,9 @@ function RegisterForm(props) {
                             onChange={props.handleChange}
                             required
                         />
-                </FormGroup>
-                <FormGroup>
-                <FormLabel htmlFor='password' className={styles.formLabel}>Password</FormLabel>
+                    </FormGroup>
+                    <FormGroup>
+                        <FormLabel htmlFor='password' className={styles.formLabel}>Password</FormLabel>
                         <TextField
                             type='password'
                             id='password'
@@ -63,10 +57,10 @@ function RegisterForm(props) {
                             value={props.password}
                             onChange={props.handleChange}
                             required
-                        />      
-                </FormGroup>
-                <FormGroup>
-                <FormLabel htmlFor='password2' className={styles.formLabel}>Confirm Password</FormLabel>
+                        />
+                    </FormGroup>
+                    <FormGroup>
+                        <FormLabel htmlFor='password2' className={styles.formLabel}>Confirm Password</FormLabel>
                         <TextField
                             type='password'
                             id='password2'
@@ -76,13 +70,14 @@ function RegisterForm(props) {
                             onChange={props.handleChange}
                             required
                         />
-                </FormGroup>
-                <button className={styles.formButton}>Register</button>
-                <p className={styles.quickLink}> Already Have An Account? <a href="/login">Login</a>  </p>
+                    </FormGroup>
+                    <br />
+                    <button>Register</button>
+                </div>
+                <div> Already Have An Account? <NavLink className={styles.aLink} to="/login">Login Here</NavLink>  </div>
             </Card>
         </Container>
     )
 }
-
 
 export default RegisterForm

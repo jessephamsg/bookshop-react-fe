@@ -5,7 +5,8 @@ import { withRouter } from "react-router-dom";
 
 //COMPONENTS
 import RegisterLabels from './RegisterLabel';
-import Navigation from '../../general/navigation';
+import Icons from '../../general/navigation/Icons';
+import Footer from '../../general/footer';
 
 //VARIABLES
 import Endpoints from '../../../config/endpoints';
@@ -13,6 +14,7 @@ const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;
 
 
 class RegisterContainer extends Component {
+
     constructor(props) {
         super(props)
         this.state = {
@@ -23,10 +25,12 @@ class RegisterContainer extends Component {
             registrationError: [],
         }
     }
+
     handleChange = (e) => {
         const { value, id } = e.target;
         this.setState({ [id]: value });
     }
+
     handleSubmit = async (e) => {
         try {
             e.preventDefault();
@@ -48,10 +52,11 @@ class RegisterContainer extends Component {
             })
         }
     }
+
     render() {
         return (
             <React.Fragment>
-                <Navigation history= {this.props.history}/>
+                <Icons />
                 <form onSubmit={this.handleSubmit}>
                     <RegisterLabels
                         {...this.state}
@@ -59,8 +64,11 @@ class RegisterContainer extends Component {
                         handleSubmit={this.handleSubmit}
                     />
                 </form>
+                <Footer />
             </React.Fragment>
         )
     }
 }
+
+
 export default withRouter(RegisterContainer)

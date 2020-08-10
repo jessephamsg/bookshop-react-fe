@@ -1,3 +1,4 @@
+//DEPENDENCIES
 import React from 'react';  
 import Home from '@material-ui/icons/Home';  
 import AppBar from '@material-ui/core/AppBar';  
@@ -23,7 +24,6 @@ const useStyles = makeStyles({
 });
 
 
-
 export default function Icons(props) {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -42,7 +42,7 @@ export default function Icons(props) {
                 <Toolbar>
                     <div className={styles.generalNavLeft}>
                         <div className={styles.iconWrapper}>
-                            <Home />
+                            <a href='/'><Home/></a>
                         </div>
                         <div className={styles.vl}></div>
                         <div className={styles.iconWrapper}>

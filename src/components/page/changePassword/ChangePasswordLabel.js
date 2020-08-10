@@ -1,18 +1,24 @@
+//DEPENDENCIES
 import React from 'react';
 import { Card, Box, FormGroup, TextField } from '@material-ui/core';
+import btnStyles from '../../general/mainContainer/styles.button.css'; //don't delete this. It's used for button styling
 import styles from './styles.module.css';
 import { makeStyles } from '@material-ui/core/styles';
+
+//COMPONENTS
 import Message from '../../general/errorMessage/ErrorMessage'
 import SuccessMessage from '../../general/successMessage/SuccessMessage'
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
       flexWrap: 'wrap',
-      margin: '1em'
+      margin: '1em',
     }
   }));
 
+  
 function ChangePasswordLabel(props) {
     const classes = useStyles();
     return (
@@ -25,6 +31,7 @@ function ChangePasswordLabel(props) {
           )
         })}
         {props.successChange !== null && <SuccessMessage msg={props.successChange}/>}
+        <div className={styles.inputContainer}>
           <FormGroup>
             <TextField
               label='Current Password'
@@ -61,7 +68,8 @@ function ChangePasswordLabel(props) {
               required
             />
           </FormGroup>
-          <button className={styles.formButton}>Set New Password</button>
+          </div>
+          <button>Set New Password</button>
         </Card>
       </Box>
     )

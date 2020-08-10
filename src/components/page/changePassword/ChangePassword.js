@@ -1,20 +1,26 @@
+//DEPENDENCIES
 import React, { Component } from 'react';
 import axios from 'axios';
-import Navigation from '../../general/navigation/Navigation';
 import LoadingScreen from 'react-loading-screen';
 import { withRouter } from "react-router-dom";
-import ChangePasswordLabel from './ChangePasswordLabel';
-import ProfileMenu from '../userProfile/ProfileMenu';
 import styles from './styles.module.css';
 
+//COMPONENTS
+import Icons from '../../general/navigation/Icons';
+import Footer from '../../general/footer';
+import ChangePasswordLabel from './ChangePasswordLabel';
+import ProfileMenu from '../userProfile/ProfileMenu';
+import LoadingPage from '../../general/loadingPage';
 
-
-const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL || 'http://localhost:4000' || 'https://bookshop-dev-be.herokuapp.com'
+//VARIABLES
+import Endpoints from '../../../config/endpoints';
+const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;
 
 
 class ChangePassword extends Component {
-  constructor() {
-    super()
+
+  constructor(props) {
+    super(props)
     this.state = {
       id: null,
       googleUser: false,
@@ -30,17 +36,14 @@ class ChangePassword extends Component {
   async componentDidMount() {
     try {
       const data = JSON.parse(sessionStorage.getItem('userData'));
-      const response = await axios.get(`${REACT_APP_SERVER_URL}/user`, { withCredentials: true })
-      console.log(response)
+      const response = await axios.get(`${REACT_APP_SERVER_URL}/user`, { withCredentials: true });
       if (data) {
-        const res = await axios.post(`${REACT_APP_SERVER_URL}/googleauth`, data)
-        console.log(res.data.data.email)
+        const res = await axios.post(`${REACT_APP_SERVER_URL}/googleauth`, data);
         this.setState({
           id: res.data.data.id,
           googleUser: true,
         })
-      }
-      else if (response.data)
+      } else if (response.data)
         this.setState({
           id: response.data._id,
           localUser: true,
@@ -49,8 +52,7 @@ class ChangePassword extends Component {
           this.props.history.push('/')
         }
     } catch (err) {
-      console.log(err.response)
-      console.log(err.res)
+      alert (`Change password error due to ${err}`)
     }
   }
 
@@ -66,7 +68,6 @@ class ChangePassword extends Component {
         password2: '' 
       })
     } catch (err) {
-      console.log(err.response.data.error)
       this.setState({ failureChange: err.response.data.error })
     }
   }
@@ -80,26 +81,20 @@ class ChangePassword extends Component {
     if (this.state.id === null) {
       return (
         <div>
-          <LoadingScreen
-            loading={true}
-            bgColor='#f1f1f1'
-            spinnerColor='#9ee5f8'
-            textColor='#676767'
-            text='Here an introduction sentence (Optional)'
-          >
-          </LoadingScreen>
+          <LoadingPage />
         </div>
       )
     }
     return (
       <React.Fragment>
-        <Navigation />
+        <Icons />
         <div className={styles.wrapper}>
-        <ProfileMenu localUser={this.state.localUser}/>
-        <form onSubmit={this.handleSubmit}>
-        <ChangePasswordLabel {...this.state} handleChange={this.handleChange}/>
-        </form>
+          <ProfileMenu localUser={this.state.localUser}/>
+          <form onSubmit={this.handleSubmit}>
+            <ChangePasswordLabel {...this.state} handleChange={this.handleChange}/>
+          </form>
         </div>
+        <Footer/>
       </React.Fragment>
     )
   }

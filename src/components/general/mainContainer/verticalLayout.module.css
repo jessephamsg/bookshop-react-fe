@@ -1,6 +1,6 @@
 .bookContainer {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 80%;
     margin-left: 10%;
     flex-wrap: wrap;
@@ -10,6 +10,14 @@
     background-color: white;
     margin-bottom: 5px;
     margin-top: 5px;
+}
+
+.pageTitle {
+    width: 100%;
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: left;
+    margin-bottom: 25px;
 }
 
 .bookSectionTitle {

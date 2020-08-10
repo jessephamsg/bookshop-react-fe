@@ -17,17 +17,18 @@ const useStyles = makeStyles({
   });
 
   
-export default function SearchNav (props) {  
+export default function SearchNav (props) {
+      
     const classes = useStyles();  
         return (  
             <React.Fragment>  
                 <AppBar position="static" className={classes.root} >  
                     <Toolbar>
                         <div id={styles.logo}>
-                         <img src={`${LOGO_URL}`} alt='logo'/>
+                         <img src={`${LOGO_URL}`} alt='logo' href='/'/>
                         </div>
                         <div id={styles.logoText}>
-                         <span className={styles.iconText}>React Bookstore</span>
+                         <span><a href='/'><p className={styles.iconText}>React Bookstore</p></a></span>
                         </div>
                         <div id={styles.searchComponent}>
                             <div id={styles.searchIcon}>

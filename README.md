@@ -1,68 +1,118 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Rewards Tracker
 
-## Available Scripts
+## Table of Content
+- [Project Demo](#Project-Demo)
+- [Application MVP](#Application-MVP)
+- [Project Scope](#Project-Scope)
+- [Dependencies](#Dependencies)
+- [User Stories](#User-Stories)
 
-In the project directory, you can run:
+## Project Demo 
+<Link here>
 
-### `npm start`
+## Application MVP
+- A working full-stack application, built by collaborating with 2 or more members, using the MERN stack: Node.js, Mongoose, Express and React.
+- Build based on the **MVC** file structure: Models, Views, Controllers
+- Include all **RESTful routes** and a full **CRUD** application.
+- Deployed online via **Heroku**
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Project Scope
+- User will be able to authenticate via Google AUTH or Passport Local Strat
+- User will be able to view books sortedby categories
+- User will be able to give a review to any desired product
+- To locate User's preference with a search function
+- User will be able to change password / account details
+- A shopping cart function where user will be able to edit the quantity, and as well a dummy checkout with no payment API
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Dependencies
+#### 1. Material UI - CSS framework
+#### 2. Axios - to make API calls to backend
+#### 3. MomentJS - Wrapper to handle Date object
+#### 4. react-google-login - To handle google authentication in client
+#### 5. react-loading-screen - Display loading screen while DOM is rendering
+#### 6. react-rating-stars-component - A simple star rating component for your React projects
+#### 7. react-router-dom -  DOM bindings for React Router
+#### 8. PassportJS - To handle authenticate requests
+#### 9. Bcrypt - To hash and store passwords in database
+#### 10. Mongoose - Database for application
+#### 11. Cors - Providing a Connect/Express middleware that can be used to enable CORS with various options.
+#### 12. Mongoose Paginate - Handle Paginations when retriving data from DB to client
+#### 13. FuseJs - a lightweight JavaScript search library that supports fuzzy search
 
-### `npm test`
+## Code Organisation
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Javascript
 
-### `npm run build`
+|Folder  |Purpose                                                    |Details|
+|--------|-------------------------------------------------------------------|---------------------------------------------------------------------|
+|`App.js`| Manages all global states that can be accessed across pages | This includes information like user account, order history, cart etc. It also includes lists of Routes and key Page components|
+|`config`| Includes endpoints| This ensures faster deployment: there is no need to go to individual file to change the end point|
+|`general`| Includes all general components which can be assembled by the individual pages| This includes components like general layouts, cart button, loading page, error message, footer, navigation etc|
+|`pages`| Contains all pages on the site. The pages are assembled by importing general components| Each page may have its own custom stylesheet to manage its own unique requests|
+|`utils`| Contains codes that manage localStorage & sessionStorage | This includes CRUD requests handled by localStorage & sessionStorage|
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## User Stories
+# US.1
+**As a** user,
+**I want** to have a pleasant looking homepage, with books sorted out by categories for easier reference
+### Acceptance Criteria
+1. A NavBar with
+- search function
+- login / logout CTA
+- homepage redirection CTA
+- list of books categories
+- A shopping cart overview which indicates the total amount of items in the cart, the quantity
+2. In the main body, to displayed the breif description of books, sorted out by categories e.g. Bestselling Books, Reccomended Books and a CTA to add to cart
+### Dependencies
+- FuseJS for the search function
+- Axios for fetching the books data from backend, Shopping cart data and for handling authentication request
+- react rating stars for the rating component
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+# US.2
+**As a** user,
+**I want** to be able to sign up / login in
+### Acceptance Criteria
+- when click on sign up, user will be able to navigate to register page
+- when user is at the registration page, user will be able to onboard successfully
+- When click on login, user will be navigate to login page
+- When user is at login page, user will be able to login successfuly
+- In login page, user will be able to either onboard via Google or a manual sign up process
+### Dependencies
+- PassportJS - authentication layer
+- react-google-login - to handle google auth request
+- Axios - for making HTTP request
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# US.3
+**As a** user,
+**I want** to be able to have a navigate to the books single view page
+### Acceptance Criteria
+- to display all the full informations of the product
+- a add to cart CTA
+- to view customer review
+- when user is logged in, user will be able to add reviews to the book
+### Dependencies
+- Axios - for making HTTP request to server to ensure user is authenticated and for fetching the books data
+- react rating stars for the rating component
 
-### `npm run eject`
+# US.4
+**As a** user,
+**I want** to be able to view and edit my personal details
+### Acceptance Criteria
+- User will be able to view thier personal details is only user is authenticated by either passport local or google
+- USer will only be able to edit their personal details only if user is authentically locally
+- Change password is only viewable by user who is authenticated via passport local
+- Order history is only viewable by user who is authenticated by either passport local or google
+### Dependencies
+- Axios - for making HTTP request to server to ensure user is authenticated and for fetching the books data
+- react rating stars for the rating component
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+# US.5
+**As a** user,
+**I want** have access to the Cart view page
+### Acceptance Criteria
+- User will be able to checkout if the cart is not empty
+- Remove from Cart CTA if the cart is not empty
+- Breif description of the books product
+### Dependencies
+- Axios - for making HTTP request to server to ensure user is authenticated and for fetching the books data
+- react rating stars for the rating component

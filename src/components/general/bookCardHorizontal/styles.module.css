@@ -1,0 +1,73 @@
+.bookCard {
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+    height: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 25px;
+}
+
+.bookCover {
+    width: 20%;
+}
+
+.bookCardSummary {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 80%;
+    margin-left: 10px;
+}
+
+.bookCardSummaryh4 > h4 {
+    margin-bottom: 0px;
+    font-size: 15px;
+}
+
+.bookCardSummary > p {
+    margin-bottom: 0px;
+    font-size: 13px;
+    height: 100%
+}
+
+.bookPrice {
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+}
+
+.bookPrice > p {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.bookRating {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.bookDiscountedPrice {
+    color: #e91e63;
+    font-size: 20px;
+}
+
+.bookOriginalPrice {
+    color: grey;
+    font-size: 13px;
+    text-decoration: line-through;
+    width: fit-content;
+}
+
+.bookCardSummaryh4 {
+    height: 20%;
+}
+
+.noStock {
+    color: #e91e63;
+    font-size: 15px;
+}
+
+.availableStock {
+    font-size: 15px;
+}

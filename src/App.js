@@ -3,46 +3,95 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import UserAuthenticator from './components/utils/authenticateUser';
+import CartLocalStorageHandler from './components/utils/handleCart';
 
-//COMPONENTS
+//COMPONENTS - BOOKS
 import Homepage from './components/page/home';
+import SearchPage from './components/page/search';
+import CategoryListing from './components/page/categoryListing';
+import Cart from './components/page/cart';
+import Checkout from './components/page/checkout';
+import ThankYou from './components/page/thankyou';
+import UserProfile from './components/page/userProfile/UserProfile'
+import ProductDetail from './components/page/productDetail';
+import OrderHistory from './components/page/orderHistory';
+
+//COMPONENTS - AUTH
 import Register from './components/page/register';
 import ChangePassword from './components/page/changePassword/ChangePassword';
 import Login from './components/page/login';
-import SearchPage from './components/page/search';
-import UserProfile from './components/page/userProfile/UserProfile';
-import CategoryListing from './components/page/categoryListing';
+
+//COMPONENTS - OTHERS
+import About from './components/page/about';
+import Terms from './components/page/terms';
+import Privacy from './components/page/privacy';
+import Help from './components/page/help';
+import Payment from './components/page/payment';
+import Delivery from './components/page/delivery';
+import Return from './components/page/return';
+import Faq from './components/page/faq';
+
 
 //VARIABLES
 import Endpoints from './config/endpoints';
 const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;
 const GOOGLE_AUTH_URL = Endpoints.GOOGLE_AUTH_URL;
 
-//MAIN
+
 export class App extends Component {
+
   constructor(props) {
     super(props)
-    // this.state = {
-    //   userName: null,
-    //   email: ''
-    // }
+    this.state = {
+      userName: null,
+      email: '',
+      cart: [],
+      total: 0, 
+      orderhistory: null
+    }
+    this.handleAdd = this.handleAdd.bind(this);
+    this.handleRemoveFromCart = this.handleRemoveFromCart.bind(this);
   }
 
-  //  async componentDidMount() {
-  //    try {
-  //      const data = JSON.parse(sessionStorage.getItem('userData'));
-  //      const response = await axios.get(`${REACT_APP_SERVER_URL}/user`, { withCredentials: true })
-  //     console.log(response)
-  //      if (data) {
-  //        const res = await axios.post(`${GOOGLE_AUTH_URL}/googleauth`, data)
-  //      console.log(res.data.data.email)
-  //        this.setState({ userName: res.data.data.name, email: res.data.data.email })
-  //      }
-  //    else if (response.data) this.setState({ userName: response.data.name, email: response.data.email })
-  //   } catch (err) {
-  //     console.log(err)
-  //    }
-  //  }
+  handleAdd (item) {
+    const result = CartLocalStorageHandler.addOneToCart(this.state.cart, this.state.total, item)
+    this.setState({
+        cart: result.updatedCart,
+        total: result.updatedTotal
+      });
+  }
+
+  handleRemoveFromCart (itemKey) {
+    const result = CartLocalStorageHandler.deleteByItemID(this.state.total, itemKey);
+    this.setState({
+      total: result.total,
+      cart: result.currentCart
+    });
+  }
+
+  getCurrentCart () {
+    const result = CartLocalStorageHandler.getAllCartItems();
+    this.setState({
+      cart: result.currentCart,
+      total: result.currentTotal
+    })
+  }
+
+  async authenticateUser () {
+    const result = await UserAuthenticator.authenticateUser();
+    if (result) {
+        this.setState({ 
+              userName: result.name, 
+              email: result.email
+            })
+    }
+  }
+
+  async componentDidMount() {
+    this.getCurrentCart();
+    await this.authenticateUser();
+  }
 
   render() {
     return (
@@ -50,13 +99,26 @@ export class App extends Component {
         <Router>
           <div>
             <Switch>
-              <Route exact path='/userprofile' component={UserProfile} />
               <Route exact path='/changepassword' component={ChangePassword} />
               <Route exact path='/login' component={Login} />
               <Route exact path='/register' component={Register} />
-              <Route exact path='/' component={Homepage} />
-              <Route path="/cat/:catName" component={CategoryListing} />
-              <Route exact path='/search' component={SearchPage} />
+              <Route exact path='/userprofile' component={UserProfile} />
+              <Route exact path='/' render={()=> <Homepage handleAdd={this.handleAdd} cart={this.state.cart} total={this.state.total}/>}/>
+              <Route exact path='/search' render={()=> <SearchPage handleAdd={this.handleAdd} cart={this.state.cart} total={this.state.total}/>}/>
+              <Route path="/cat/:catName" render={ () => <CategoryListing handleAdd={this.handleAdd} cart={this.state.cart} total={this.state.total}/>} />
+              <Route path="/cart" render={ () => <Cart cart={this.state.cart} handleRemoveFromCart={this.handleRemoveFromCart} total={this.state.total} username={this.state.userName}/>}/>
+              <Route path="/checkout" render={ () => <Checkout cart={this.state.cart} total={this.state.total} userEmail={this.state.email}/>}/>
+              <Route path="/prod/:bookID" render={ () => <ProductDetail handleAdd={this.handleAdd} cart={this.state.cart} total={this.state.total}/>} />
+              <Route path="/orderhistory" render={ () => <OrderHistory userEmail={this.state.email} orderhistory={this.state.orderhistory}/>} />
+              <Route exact path ='/about' component={About}/>
+              <Route exact path='/terms' component={Terms} />
+              <Route exact path='/privacy' component={Privacy} />
+              <Route exact path='/help' component={Help} />
+              <Route exact path ='/payment-method' component={Payment} />
+              <Route exact path='/delivery' component={Delivery} />
+              <Route exact path='/return' component={Return} />
+              <Route exact path='/faq' component={Faq} />
+              <Route exact path='/thankyou' component={ThankYou} />
             </Switch>
           </div>
         </Router>

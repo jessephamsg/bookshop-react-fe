@@ -1,0 +1,5 @@
+.bookCardButton {
+    display: flex;
+    height: 20%;
+    justify-content: center;
+}

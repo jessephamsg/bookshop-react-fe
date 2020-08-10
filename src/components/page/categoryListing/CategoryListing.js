@@ -1,11 +1,12 @@
 //DEPENDENCIES
 import React, { Component } from 'react';
 import axios from 'axios';
-import styles from './styles.module.css';
+import layout from '../../general/mainContainer/styles.module.css';
 import { withRouter } from 'react-router-dom';
 
 //COMPONENTS
 import Navigation from '../../general/navigation';
+import Footer from '../../general/footer';
 import LoadingPage from '../../general/loadingPage';
 import BookCard from '../../general/bookCard';
 
@@ -22,12 +23,14 @@ export class CategoryListing extends Component {
             theme: null
         }
     }
+
     getParamCatName() {
         const theme = this.props.match.params.catName;
         this.setState({
             theme: theme,
         })
     }
+
     async fetchData() {
         const theme = this.state.theme;
         const rawData = await axios.get(`${REACT_APP_SERVER_URL}/cat/${theme}`);
@@ -37,41 +40,48 @@ export class CategoryListing extends Component {
             theme: theme,
         })
     }
+
     async componentDidMount() {
         await this.getParamCatName();
-        console.log('state.theme at componentDidMount: ', this.state.theme);
         await this.fetchData();
     }
+
     async componentWillReceiveProps(props) {
-        console.log('componentWillReceiveProps: ', props.match.params.catName);
         await this.setState({
             theme: props.match.params.catName
         })
-        console.log('state.theme at componentWillReceiveProps: ', this.state.theme);
         await this.fetchData();
     }
+
     render() {
         if (this.state.view === null) {
             return (
                 <LoadingPage />
             )
         } else {
-            console.log('state.view: ', this.state.view)
             return (
                 <React.Fragment>
-                    <Navigation history={this.props.history} />
-                    <h1 className={styles.bookSectionTitle}>{this.state.theme}</h1>
-                    <div className={styles.bookContainer}>
-                        {(this.state.view).map(book => {
-                            return (
-                                <BookCard data={book} />
-                            )
-                        })}
+                    <Navigation history={this.props.history} cart={this.props.cart} total={this.props.total} />
+                    <div className={layout.homePageBody}>
+                        <div className={layout.bookSection}>
+                            <div className={layout.bookSectionTitle}>
+                                <h3>{this.state.theme}</h3>
+                            </div>
+                            <div className={layout.bookSectionBooks}>
+                                {(this.state.view).map(book => {
+                                    return (
+                                        <BookCard data={book} handleAdd={this.props.handleAdd} />
+                                    )
+                                })}
+                            </div>
+                        </div>
                     </div>
+                    <Footer />
                 </React.Fragment>
             )
         }
     }
 }
+
 
 export default withRouter(CategoryListing);

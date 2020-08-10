@@ -1,0 +1,167 @@
+.bookDetailPage {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.bookSectionTitle {
+    width: 100%;
+    height: 15%;
+    margin-left: 10%;
+    text-align: left;
+    font-size: 20px;
+    margin-top: 30px;
+}
+
+.bookContainer {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-left: 10%;
+    flex-wrap: wrap;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.bookCover {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+}
+
+.bookDetail {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 100%;
+}
+
+.bookTitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.bookAuthor {
+    font-style: italic;
+}
+
+.bookRating {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.bookAvgRating {
+    font-size: 0.8rem;
+    padding-left: 10px;
+}
+
+.bookPrice {
+    display: flex;
+    justify-content: left;
+    align-items: baseline;
+    font-weight: 600;
+}
+
+.bookPrice>p {
+    padding-left: 5px;
+    padding-right: 5px;
+    font-weight: 600;
+}
+
+.bookDiscountedPrice {
+    color: #e91e63;
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.bookOriginalPrice {
+    color: grey;
+    font-size: 13px;
+    text-decoration: line-through;
+    width: fit-content;
+}
+
+.bookSummary {
+    margin-top: 25px;
+    text-align: justify;
+    font-size: 0.9rem;
+}
+
+.bookExtraInfo {
+    font-size: 0.9rem;
+}
+
+.bookDetailsContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.bookKeyInfoContainer {
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    margin-bottom: 5px;
+}
+
+.bookDescriptionContainer {
+    display: flex;
+    width: 70%;
+    padding: 20px;
+    margin-right: 5px;
+    background-color: white;
+    box-shadow: 5px 5px 5px #88888821;
+    align-content: center;
+}
+
+.bookPriceContainer {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 5px 5px 5px #88888821;
+}
+
+.bookDescriptionLeft {
+    width: 30%;
+    margin-right: 10px;
+}
+
+.bookDescriptionRight {
+    width: 70%;
+}
+
+.bookExtraInfoContainer {
+    width: 100%;
+    background-color: white;
+    box-shadow: 5px 5px 5px #88888821;
+}
+
+.bookExtraInfoContainer >h3 {
+    margin-left: 20px;
+}
+
+.bookExtraInfoContent {
+    display: flex;
+    padding-left: 20px;
+    padding-bottom: 20px;
+}
+
+.bookExtraInfoLeft {
+    width: 30%;
+}
+
+.bookExtraInfoRight {
+    width: 30%
+}
+
+.reviewWrapper {
+    width: 100%;
+    background-color: white;
+    box-shadow: 5px 5px 5px #88888821;
+    margin-top: 5px;
+}

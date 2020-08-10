@@ -67,7 +67,7 @@
     width: 20%;
 }
 
-#logoText>.iconText {
+#logoText> span> a> p.iconText {
     font-size: 20px;
     font-weight: 800;
 }
@@ -76,16 +76,6 @@
     display: flex;
     width: 25%;
     justify-content: flex-start;
-}
-
-#searchButton > button {
-    background-color: #03A9F4;
-    padding: 10px;
-    border: none;
-    color: white;
-    padding-left: 30px;
-    padding-right: 30px;
-    border-radius: 3px;
 }
 
 #searchIcon {
@@ -99,7 +89,6 @@
 .mainNav {
     display: flex;
     font-size: 13px;
-    padding: 20px;
     background-color: white;
     box-shadow: 5px 5px 5px #88888821;
 }
@@ -107,18 +96,22 @@
 #mainNavCategory {
     color: #3d3141;
     font-weight: 800;
+    padding: 20px;
+    width: 15%;
 }
 
 .categoryNav {
     display: flex;
     justify-content: flex-start;
+    padding: 20px;
     list-style-type: none;
+    width: 65%;
 }
 
 .categoryLink {
-    padding-left: 20px;
+    padding-left: 30px;
     color: #3d3141;
-    font-weight: 800;
+    font-weight: 400;
     text-decoration: none;
 }
 
@@ -139,9 +132,26 @@
     color: white;
     background: transparent;
     border-style: none;
+    cursor: pointer;
 }
 
 .dropDownLink {
     text-decoration: none;
     color: black;
+}
+
+.categoryTextNav {
+    color: #493b4d;
+}
+
+.cartInPage {
+    height: 100%;
+    background-color: #E91E63;
+    /* background-color: rgb(122,111,125); */
+    padding: 20px 10px;
+    min-width: 200px;
+}
+
+.cartItem {
+    padding-right: 15px;
 }

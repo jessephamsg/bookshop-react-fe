@@ -1,21 +1,30 @@
 .bookCard {
     display: flex;
     flex-direction: column;
-    width: 15%;
+    width: 148px;
     height: 100%;
-    margin-left: 10px;
     margin-right: 10px;
+    margin-bottom: 25px;
 }
 
 .bookCover {
     height: 60%;
 }
 
+.bookTitle {
+    color: black;
+    font-size: 1rem;
+    font-weight: 400;
+    height: 60px;
+}
+
 .bookCardSummary {
+    display: flex;
+    flex-direction: column;
     height: 40%;
 }
 
-.bookCardSummary > h4 {
+.bookCardSummaryh4 > h4 {
     margin-bottom: 0px;
     font-size: 15px;
 }
@@ -23,6 +32,7 @@
 .bookCardSummary > p {
     margin-bottom: 0px;
     font-size: 13px;
+    height: 100%
 }
 
 .bookPrice {
@@ -52,3 +62,8 @@
     text-decoration: line-through;
     width: fit-content;
 }
+
+.bookCardSummaryh4 {
+    height: 20%;
+}
+

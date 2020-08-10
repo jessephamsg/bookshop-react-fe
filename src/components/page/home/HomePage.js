@@ -1,11 +1,11 @@
 //DEPENDENCIES
 import React, { Component } from 'react';
-import styles from './styles.module.css';
-import axios from 'axios';
+import styles from './styles.module.css'
 
 //COMPONENTS
 import Section from '../../general/bookSection';
 import Navigation from '../../general/navigation';
+import Footer from '../../general/footer';
 
 //VARIABLES
 import Endpoints from '../../../config/endpoints';
@@ -48,14 +48,15 @@ export class HomePage extends Component {
     render () {
         return (
             <React.Fragment>
-                <Navigation history= {this.props.history}/>
+                <Navigation history= {this.props.history} cart={this.props.cart} total={this.props.total}/>
                 <div className={styles.homePageBody}>
-                {this.state.categories.map(category => {
-                    return (
-                        <Section category={`${category.name}`} heading={`${category.heading}`} limit={this.state.limit}/>
-                    )
-                })}
-                </div>
+                    {this.state.categories.map(category => {
+                        return (
+                            <Section category={`${category.name}`} heading={`${category.heading}`} limit={this.state.limit} handleAdd={this.props.handleAdd}/>
+                        )
+                    })}
+                    </div>
+                <Footer />
             </React.Fragment>
         )
     }
