@@ -12,6 +12,7 @@ import SearchPage from './components/page/search';
 import CategoryListing from './components/page/categoryListing';
 import Cart from './components/page/cart';
 import Checkout from './components/page/checkout';
+import ThankYou from './components/page/thankyou';
 import UserProfile from './components/page/userProfile/UserProfile'
 import ProductDetail from './components/page/productDetail';
 import OrderHistory from './components/page/orderHistory';
@@ -117,7 +118,7 @@ export class App extends Component {
               <Route exact path='/delivery' component={Delivery} />
               <Route exact path='/return' component={Return} />
               <Route exact path='/faq' component={Faq} />
-
+              <Route exact path='/thankyou' component={ThankYou} />
             </Switch>
           </div>
         </Router>
