@@ -30,7 +30,7 @@ export class OrderHistory extends Component {
     async componentDidMount () {
         const result = await UserAuthenticator.authenticateUser();
         if (result) {
-            const orders = await axios.get(`${REACT_APP_SERVER_URL}/user/orders?query=${this.state.email}`);
+            const orders = await axios.get(`${REACT_APP_SERVER_URL}/user/orders?query=${result.email}`);
             this.setState({ 
                   email: result.email,
                   orderhistory: orders 

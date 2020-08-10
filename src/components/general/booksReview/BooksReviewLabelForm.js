@@ -17,10 +17,10 @@ const useStyles = makeStyles((theme) => ({
       margin: '1em'
     },
     card: {
-        width: '80%',
-        marginBottom: '2em',
-        marginLeft: '10%',
-        padding: '20px'
+        width: '100%',
+        textAlign: 'left',
+        borderRadius: '0px',
+        boxShadow: 'none',
     }
   }));
 
@@ -33,7 +33,11 @@ function BooksReviewLabelForm(props) {
     const classes = useStyles();
     return (
         <Card className={classes.card}>
-            <div className={styles.starWrapper}> 
+            <div className={styles.wrapper}>
+            <div className={styles.reviewHeading}>
+                <h3>Customer Reviews</h3>
+                <button onClick={props.handleClick} style={{ display: props.userAuthorized ? '' : 'none'}} className={styles.reviewButton}>Review</button>
+            </div>
             <div className={styles.bookRating}>
             <ReactStars
                 count={5}
@@ -48,12 +52,10 @@ function BooksReviewLabelForm(props) {
             <span className={styles.bookAvgRating}> (Avg. Rating: {props.view[0].raw.avgRating})</span>
             </div>
             </div>
-            <h1>CUSTOMER REVIEWS</h1>
-            <button onClick={props.handleClick} style={{ display: props.userAuthorized ? '' : 'none'}} className={styles.reviewButton}>Write a review</button>
             {props.successChange !== null && <SuccessMessage msg={props.successChange}/>}
             <form style={{ display: props.clicked ? '' : 'none'}} onSubmit={props.handleSubmit} className={styles.form}>
                 <Container>
-                    <Card>
+                    <Card className={classes.card}>
                         <FormGroup>
                             <TextField
                             label='Rating'

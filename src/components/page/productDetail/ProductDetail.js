@@ -91,7 +91,7 @@ export class ProductDetail extends Component {
         }
       }
 
-      handleChange = (e) => {
+    handleChange = (e) => {
         const { value, name } = e.target
         this.setState({ [name]: value })
       }
@@ -106,25 +106,18 @@ export class ProductDetail extends Component {
                 <div className={styles.bookDetailPage}>
                     <Navigation history={this.props.history} cart={this.props.cart} total={this.props.total} />
                     <div className={styles.bookContainer}>
-                        <div className={styles.bookCover}
-                            style={{ backgroundImage: `url(${this.state.view[0].raw.img})` }}>
-                        </div>
                         <div className={styles.bookDetail}>
-                            <BookDetails {...this.state}/>
-                            <CartButton handleAdd = {this.props.handleAdd} value={this.state.view[0].raw.id}/>
+                            <BookDetails {...this.state} handleAdd = {this.props.handleAdd}/>
                         </div>
-                        <div className={styles.bookSummary}>
-                            <p>Summary:</p>
-                            <p>{this.state.view[0].raw.description}</p>
+                        <div className={styles.reviewWrapper}>
+                        <BooksReviewLabelForm 
+                            {...this.state} 
+                            handleClick={this.handleClick}
+                            handleSubmit={this.handleSubmit}
+                            handleChange={this.handleChange}
+                        />
                         </div>
-                        <button onClick={this.props.history.goBack}>Back</button>
                     </div>
-                    <BooksReviewLabelForm 
-                        {...this.state} 
-                        handleClick={this.handleClick}
-                        handleSubmit={this.handleSubmit}
-                        handleChange={this.handleChange}
-                    />
                     <Footer />
                 </div>
             )

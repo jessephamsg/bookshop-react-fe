@@ -4,6 +4,7 @@ import './App.css';
 import axios from 'axios';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import UserAuthenticator from './components/utils/authenticateUser';
+import CartLocalStorageHandler from './components/utils/handleCart';
 
 //COMPONENTS - BOOKS
 import Homepage from './components/page/home';
@@ -53,48 +54,26 @@ export class App extends Component {
   }
 
   handleAdd (item) {
-    if(this.state.cart === null) {
-      this.setState({
-        cart: [item],
-        total: item.raw.discountedPrice
-      })
-      window.localStorage.setItem('cart', JSON.stringify([item]));
-    } else {
-      this.setState({
-        cart: [item, ...this.state.cart],
-        total: this.state.total + item.raw.discountedPrice
+    const result = CartLocalStorageHandler.addOneToCart(this.state.cart, this.state.total, item)
+    this.setState({
+        cart: result.updatedCart,
+        total: result.updatedTotal
       });
-      if (this.state.cart.length===1) {
-        window.localStorage.setItem('cart', JSON.stringify([item]));
-      } else {
-        const currentCart = JSON.parse(window.localStorage.getItem('cart'));
-        currentCart.push(item);
-        window.localStorage.setItem('cart', JSON.stringify(currentCart)); 
-      }
-    }
-    window.localStorage.setItem('total', JSON.stringify(this.state.total));
   }
 
   handleRemoveFromCart (itemKey) {
-    const currentCart = JSON.parse(window.localStorage.getItem('cart'));
-    let itemIndex = 0;
-    for (const [index, item] of currentCart.entries()) {
-      if (item.raw.id === itemKey) itemIndex = index;
-    }
-    const total = this.state.total - currentCart[itemIndex].raw.discountedPrice
-    this.setState({total});
-    currentCart.splice(itemIndex, 1);
-    window.localStorage.setItem('cart', JSON.stringify(currentCart)); 
-    this.setState({cart: currentCart});
-    window.localStorage.setItem('total', JSON.stringify(total)); 
+    const result = CartLocalStorageHandler.deleteByItemID(this.state.total, itemKey);
+    this.setState({
+      total: result.total,
+      cart: result.currentCart
+    });
   }
 
   getCurrentCart () {
-    const currentCart = JSON.parse(window.localStorage.getItem('cart'));
-    const currentTotal = JSON.parse(window.localStorage.getItem('total'))
+    const result = CartLocalStorageHandler.getAllCartItems();
     this.setState({
-      cart: currentCart,
-      total: currentTotal
+      cart: result.currentCart,
+      total: result.currentTotal
     })
   }
 

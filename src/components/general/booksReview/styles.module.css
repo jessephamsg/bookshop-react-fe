@@ -1,7 +1,7 @@
 .formButton {
     display: block;
     width: 97%;
-    background-color: rgb(61,49,65);
+    background-color: #2196F3;
     color: white;
     margin: auto;
     border-radius: 8px;
@@ -13,22 +13,22 @@
 }
 
 .formButton:hover {
-    background-color: rgba(61,49,65,0.9);
+    background-color: #2196F3;
 }
 
 .reviewButton {
-    background-color: rgb(61,49,65);
+    background-color: #2196F3;
     color: white;
     border-style: none;
     cursor: pointer;
-    border-radius: 8px;
+    border-radius: 3px;
     width: fit-content;
-    padding: 1em;
-    margin-bottom: 2em;
+    height: fit-content;
+    padding: 10px;
 }
 
 .reviewButton:hover {
-    background-color: rgba(61,49,65,0.9);
+    background-color: #2196F3;
 }
 
 .form {
@@ -44,4 +44,26 @@
     display: flex;
     justify-content: left;
     align-items: center;
+}
+
+.reactStars {
+    padding-left: 16px;
+    padding-top: 16px;
+}
+
+.hl {
+    border-bottom: 1px solid #607d8b2e;
+    width: 100%;
+    margin-left: 5px;
+}
+
+.reviewHeading {
+    display: flex;
+    justify-content: space-between;
+}
+
+.wrapper {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
 }
