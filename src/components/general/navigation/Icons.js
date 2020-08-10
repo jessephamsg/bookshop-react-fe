@@ -47,18 +47,8 @@ export default function Icons(props) {
                     <div className={styles.generalNavRight}>
                         <div className={styles.iconWrapper}>
                             <span className={styles.iconText}>
-                                <Button className={classes.root} aria-controls="simple-menu" aria-haspopup="true" onMouseEnter={handleClick} onTouchStart={handleClick}>
-                                    {
-                                        props.userName !== null ?
-                                            <span>
-                                                <div>Hi {props.userName}</div>
-                                            </span>
-                                            :
-                                            <span>
-                                                <div>&nbsp;</div>
-                                            </span>
-                                    }
-
+                                <Button className={classes.root} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+                                    Account Details
                                 </Button>
                                 <Menu
                                     id="simple-menu"
@@ -81,7 +71,7 @@ export default function Icons(props) {
                                     </span>
                                     :
                                     <span>
-                                        <div onClick={() => { window.location.replace("/login") }} className={styles.signInIcon}>Sign In</div>
+                                        <div onClick={() => {window.location.replace("/login")}} className={styles.signInIcon}>Sign In</div>
                                     </span>
                             }
                         </div>
