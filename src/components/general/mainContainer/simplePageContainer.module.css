@@ -1,0 +1,14 @@
+.pageContainer {
+    display: flex;
+    flex-flow: row wrap;
+    width: 80%;
+    margin: 5px auto;
+    height: fit-content;
+    padding: 20px 50px;
+    box-shadow: 5px 5px 5px #88888821;
+    background-color: white;
+}
+
+p {
+    text-align: justify;
+}
