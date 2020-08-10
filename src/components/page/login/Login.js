@@ -21,8 +21,32 @@ class LoginContainer extends Component {
             password: '',
             loginError: [],
             successMsg: '',
+            userName: null
         }
     }
+
+    async componentDidMount() {
+        try {
+          const data = JSON.parse(sessionStorage.getItem('userData'));
+          const response = await axios.get(`${REACT_APP_SERVER_URL}/user`, { withCredentials: true })
+          console.log(response)
+          if (data) {
+            const res = await axios.post(`${REACT_APP_SERVER_URL}/googleauth`, data)
+            console.log(res.data.data.email)
+            this.setState({
+              userName: res.data.data.name,
+            })
+          }
+          else if (response.data)
+            this.setState({
+              userName: response.data.name,
+            })
+        } catch (err) {
+          console.log(err.response)
+          console.log(err.res)
+        }
+      }
+    
 
     handleSubmit = async (e) => {
         try {
@@ -30,9 +54,9 @@ class LoginContainer extends Component {
             let data = { ...this.state }
             const response = await axios.post(`${REACT_APP_SERVER_URL}/login`, data,  { withCredentials: true })
             if (response.data.success) {
-                this.setState({ userLogin : true })
+                this.setState({ userName : response.data.email })
                 this.props.history.push('/')
-            }
+            } 
         } catch (err) {
             const errors = err.response.data.error;
             this.setState({
@@ -53,7 +77,8 @@ class LoginContainer extends Component {
             const res = await axios.post(`${REACT_APP_SERVER_URL}/login/google`, data)
             if (res.data.success) {
                 sessionStorage.setItem("userData", JSON.stringify(token))
-                this.setState({ userLogin : true })
+                const data = await JSON.parse(sessionStorage.getItem('userData'));
+                this.setState({ userName : data })
                 this.props.history.push('/')
             }
         } catch (err) {
@@ -67,7 +92,7 @@ class LoginContainer extends Component {
     render() {
         return (
             <React.Fragment>
-                <Icons userName={this.state.email} />
+                <Icons userName={this.state.userName} />
                 <form onSubmit={this.handleSubmit}>
                     <LoginLabel
                         {...this.state}
