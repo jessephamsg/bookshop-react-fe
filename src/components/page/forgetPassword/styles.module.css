@@ -1,0 +1,22 @@
+.cardForm {
+    padding: 3em;
+    margin: 3em;
+    width: 600px;
+}
+.formControl {
+    margin: 1em;
+}
+
+.formLabel {
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+.inputContainer {
+    max-width: 50%;
+    min-width: 300px;
+    margin: 0 auto 25px auto;
+}
+
+
+
