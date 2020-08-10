@@ -52,17 +52,20 @@ export class BookCategory extends Component {
                             )
                         })}
                     </div>
-                    <div className={styles.cartButton}>
+                    <div className={styles.cartInPage}>
+                    <span className={styles.cartItem}>
+                        {(this.props.cart !== null) ? 
+                            <a href='/cart'>Item in Cart: {this.props.cart.length}</a> :
+                            <a href='/cart'>Item in Cart: 0</a>
+                        }
+                        </span>
+                        <span className={styles.cartTotal}>
                         {(this.props.cart !== null) ? 
                             <a href='/cart'>Total: SGD {this.props.total}</a> :
                             <a href='/cart'>Total: SGD 0</a>
                         }
-                    </div>
-                    <div className={styles.cartButton}>
-                        {(this.props.cart !== null) ? 
-                            <a href='/cart'>Cart: {this.props.cart.length}</a> :
-                            <a href='/cart'>Cart: 0</a>
-                        }
+                        </span>
+                        
                     </div>
                 </React.Fragment>
             )

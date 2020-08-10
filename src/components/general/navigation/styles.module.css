@@ -154,9 +154,14 @@
     color: #493b4d;
 }
 
-.cartButton {
+.cartInPage {
     height: 100%;
     background-color: #E91E63;
-    padding: 20px;
-    width: 5%;
+    /* background-color: rgb(122,111,125); */
+    padding: 20px 10px;
+    min-width: 200px;
+}
+
+.cartItem {
+    padding-right: 15px;
 }
