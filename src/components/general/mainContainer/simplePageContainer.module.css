@@ -9,6 +9,14 @@
     background-color: white;
 }
 
+.pageTitle {
+    width: 100%;
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: left;
+    margin-bottom: 25px;
+}
+
 p {
     text-align: justify;
 }
