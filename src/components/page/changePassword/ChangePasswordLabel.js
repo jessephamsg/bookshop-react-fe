@@ -1,6 +1,7 @@
 //DEPENDENCIES
 import React from 'react';
 import { Card, Box, FormGroup, TextField } from '@material-ui/core';
+import btnStyles from '../../general/mainContainer/styles.button.css'; //don't delete this. It's used for button styling
 import styles from './styles.module.css';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -30,7 +31,7 @@ function ChangePasswordLabel(props) {
           )
         })}
         {props.successChange !== null && <SuccessMessage msg={props.successChange}/>}
-        <div>
+        <div className={styles.inputContainer}>
           <FormGroup>
             <TextField
               label='Current Password'
@@ -68,7 +69,7 @@ function ChangePasswordLabel(props) {
             />
           </FormGroup>
           </div>
-          <button className={styles.formButton}>Set New Password</button>
+          <button>Set New Password</button>
         </Card>
       </Box>
     )
