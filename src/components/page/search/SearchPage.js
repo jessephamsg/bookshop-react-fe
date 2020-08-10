@@ -1,7 +1,7 @@
 //DEPENDENCIES
 import React, {Component} from 'react';
 import axios from 'axios';
-import styles from '../../general/mainContainer/styles.module.css';
+import layout from '../../general/mainContainer/horizontalLayout.module.css';
 
 //COMPONENTS
 import Navigation from '../../general/navigation';
@@ -43,8 +43,7 @@ export class SearchPage extends Component {
         return (
                 <React.Fragment>
                     <Navigation history = {this.props.history} cart={this.props.cart} total={this.props.total}/>
-                    <h1 className={styles.bookSectionTitle}>Search Results</h1>
-                    <div className={styles.bookContainer}>
+                    <div className={layout.bookContainer}>
                         {this.state.data.map(book => {
                             return (
                                 <BookCard data={book} handleAdd={this.props.handleAdd}/>
