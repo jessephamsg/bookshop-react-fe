@@ -2,6 +2,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import verticalLayout from '../../general/mainContainer/verticalLayout.module.css';
+import styles from './styles.module.css'
 
 //COMPONENTS
 import LoadingPage from '../../general/loadingPage';
@@ -57,7 +58,10 @@ export class OrderHistory extends Component {
                     <div className={verticalLayout.bookContainer}>
                         {(this.state.orderhistory.data.data).map(order => {
                             return (
+                                <React.Fragment>
                                 <BookCard data={order}/>
+                                <div className={styles.hl}></div>
+                                </React.Fragment>
                             )
                         })}
                     </div>

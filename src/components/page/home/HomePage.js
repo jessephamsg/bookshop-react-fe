@@ -1,7 +1,5 @@
 //DEPENDENCIES
 import React, { Component } from 'react';
-import styles from './styles.module.css';
-import axios from 'axios';
 
 //COMPONENTS
 import Section from '../../general/bookSection';
@@ -50,13 +48,11 @@ export class HomePage extends Component {
         return (
             <React.Fragment>
                 <Navigation history= {this.props.history} cart={this.props.cart} total={this.props.total}/>
-                <div className={styles.homePageBody}>
                     {this.state.categories.map(category => {
                         return (
                             <Section category={`${category.name}`} heading={`${category.heading}`} limit={this.state.limit} handleAdd={this.props.handleAdd}/>
                         )
                     })}
-                </div>
                 <Footer />
             </React.Fragment>
         )
