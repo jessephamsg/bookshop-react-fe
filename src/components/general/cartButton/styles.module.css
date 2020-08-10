@@ -3,14 +3,3 @@
     height: 20%;
     justify-content: center;
 }
-
-.bookCardButton > button {
-    background-color: #2196F3;
-    color: white;
-    border: none;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-radius: 3px;
-    width: 100%;
-    align-self: flex-end;
-}
