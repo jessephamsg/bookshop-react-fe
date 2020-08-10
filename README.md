@@ -18,8 +18,8 @@
 
 ## Project Scope
 - User will be able to authenticate via Google AUTH or Passport Local Strat
-- User will be able to view books based on category
-- When user is logged in, user will be able to give a review to any desired product
+- User will be able to view books sortedby categories
+- User will be able to give a review to any desired product
 - To locate User's preference with a search function
 - User will be able to change password / account details
 - A shopping cart function where user will be able to edit the quantity, and as well a dummy checkout with no payment API
