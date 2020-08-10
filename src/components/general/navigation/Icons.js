@@ -1,13 +1,9 @@
 //DEPENDENCIES
-import React from 'react';  
-import Home from '@material-ui/icons/Home';  
-import AppBar from '@material-ui/core/AppBar';  
-import Toolbar from '@material-ui/core/Toolbar';  
-import { Notifications } from '@material-ui/icons';  
+import React from 'react';
+import Home from '@material-ui/icons/Home';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
 import { makeStyles } from '@material-ui/core/styles';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MailIcon from '@material-ui/icons/Mail';
-import AirplanemodeActiveIcon from '@material-ui/icons/AirplanemodeActive';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -29,11 +25,11 @@ export default function Icons(props) {
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
-      };
-    
+    };
+
     const handleClose = () => {
         setAnchorEl(null);
-      };
+    };
 
     const classes = useStyles();
     return (
@@ -42,26 +38,27 @@ export default function Icons(props) {
                 <Toolbar>
                     <div className={styles.generalNavLeft}>
                         <div className={styles.iconWrapper}>
-                            <a href='/'><Home/></a>
-                        </div>
-                        <div className={styles.vl}></div>
-                        <div className={styles.iconWrapper}>
-                            <MailIcon />
-                            <span className={styles.iconText}>Contact</span>
+                            <a href='/'><Home /></a>
                         </div>
                     </div>
                     <div className={styles.generalNavMid}>
-                        <div className={styles.iconWrapper}>
-                            <AirplanemodeActiveIcon />
-                            <span className={styles.iconText}>FREE DELIVERY WORLDWIDE</span>
-                        </div>
+                        TAL Bookstore
                     </div>
                     <div className={styles.generalNavRight}>
                         <div className={styles.iconWrapper}>
-                            <Notifications />
                             <span className={styles.iconText}>
-                                <Button className={classes.root} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-                                    Account Details
+                                <Button className={classes.root} aria-controls="simple-menu" aria-haspopup="true" onMouseEnter={handleClick} onTouchStart={handleClick}>
+                                    {
+                                        props.userName !== null ?
+                                            <span>
+                                                <div>Hi {props.userName}</div>
+                                            </span>
+                                            :
+                                            <span>
+                                                <div>&nbsp;</div>
+                                            </span>
+                                    }
+
                                 </Button>
                                 <Menu
                                     id="simple-menu"
@@ -77,15 +74,14 @@ export default function Icons(props) {
                         </div>
                         <div className={styles.vl}></div>
                         <div className={styles.iconWrapper}>
-                            <AccountCircle />
                             {
                                 props.userName !== null ?
                                     <span>
-                                        <button onClick={props.handleLogout} className={styles.signOutIcon}>Logout</button>
+                                        <div onClick={props.handleLogout} className={styles.signOutIcon}>Logout</div>
                                     </span>
                                     :
                                     <span>
-                                        <a href="/login" className={styles.signInIcon}>Sign In</a>
+                                        <div onClick={() => { window.location.replace("/login") }} className={styles.signInIcon}>Sign In</div>
                                     </span>
                             }
                         </div>
