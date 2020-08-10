@@ -60,8 +60,8 @@ function LoginLabel(props) {
             cookiePolicy={'single_host_origin'}
           />
         </div>
-        <p className="lead mt-4"> No Account? <a href="/register">Register</a>  </p>
-        <p className="lead mt-4"> Forgot your Password? Click <a href="/forgotpw">Here</a> </p>
+        <p className="lead mt-4"> No Account? <a href="/register" className={styles.aTags}>Register</a>  </p>
+        <p className="lead mt-4"> Forgot your Password? Click <a href="/forgotpw" className={styles.aTags}>Here</a> </p>
       </Card>
     </Container>
   )

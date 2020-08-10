@@ -36,17 +36,35 @@ class UserProfile extends Component {
   }
 
   async componentDidMount() {
-    const result = await UserAuthenticator.authenticateUser();
-    if (result) {
+    try {
+      const data = JSON.parse(sessionStorage.getItem('userData'));
+      const response = await axios.get(`${REACT_APP_SERVER_URL}/user`, { withCredentials: true })
+      console.log(response)
+      if (data) {
+        const res = await axios.post(`${REACT_APP_SERVER_URL}/googleauth`, data)
+        console.log(res.data.data.email)
         this.setState({
-          id: result.id,
-          name: result.name,
-          email: result.email,
+          id: res.data.data.id,
+          name: res.data.data.name,
+          email: res.data.data.email,
           googleUser: true,
-          userData: result
+          userData: res.data.data
         })
-    } else {
-      this.setState({ userAuthenticated: `Please Login to have access to User Profile` })
+      }
+      else if (response.data)
+        this.setState({
+          id: response.data._id,
+          name: response.data.name,
+          email: response.data.email,
+          localUser: true,
+          userData: response.data
+        })
+      else {
+        this.setState({ userAuthenticated: `Please Login to have access to User Profile` })
+      }
+    } catch (err) {
+      console.log(err.response)
+      console.log(err.res)
     }
   }
 
@@ -66,6 +84,7 @@ class UserProfile extends Component {
       const data = { ...this.state }
       console.log(data);
       const response = await axios.post(`${REACT_APP_SERVER_URL}/changeUserProfile`, data)
+      console.log(response.data)
       if (response.data.success) this.setState({ successChange: response.data.message })
     } catch (err) {
       console.log(err.response)

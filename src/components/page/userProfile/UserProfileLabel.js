@@ -49,7 +49,7 @@ function UserProfileLabel(props) {
             />
           </FormGroup>
 
-          <button className={styles.formButton}>Save Changes</button>
+          {props.localUser && <button className={styles.formButton}>Save Changes</button>}
         </Card>
       </Box>
     )
