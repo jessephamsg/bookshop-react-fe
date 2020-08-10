@@ -11,7 +11,7 @@
 <Link here>
 
 ## Application MVP
-- A working full-stack application, built by you and your group members, using the MERN stack: Node.js, Mongoose, Express and React.
+- A working full-stack application, built by collaborating with 2 or more members, using the MERN stack: Node.js, Mongoose, Express and React.
 - Build based on the **MVC** file structure: Models, Views, Controllers
 - Include all **RESTful routes** and a full **CRUD** application.
 - Deployed online via **Heroku**
