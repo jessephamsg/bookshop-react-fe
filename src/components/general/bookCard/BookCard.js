@@ -54,7 +54,7 @@ export class BookCard extends Component {
                     </div>
                     <div className={styles.bookPrice}>
                         <p className={styles.bookDiscountedPrice}>{this.props.data.formatted.formattedDiscountedPrice}</p>
-                        <p className={styles.bookOriginalPrice}>{this.props.data.formatted.formattedOriginalPrice}</p>
+                        <p className={styles.bookOriginalPrice}>{(this.props.data.formatted.formattedOriginalPrice === this.props.data.formatted.formattedDiscountedPrice) ? null : this.props.data.formatted.formattedOriginalPrice}</p>
                     </div>
                     <CartButton handleAdd = {this.props.handleAdd} value={this.props.data.raw.id}/>
                 </div>
