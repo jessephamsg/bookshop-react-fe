@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import styles from './styles.module.css';
 import { BrowserRouter as Router, Link } from 'react-router-dom'; //don't delete the Router, it will cause infinity Loop
 import ReactStars from "react-rating-stars-component";
-import axios from 'axios';
 
 //COMPONENTS
 import CartButton from '../cartButton';
@@ -25,12 +24,7 @@ export class BookCard extends Component {
                 <Link to={`/prod/${this.props.data.raw.id}`}>
                     <div className={styles.bookCover}
                         style={{
-                            backgroundImage: `url(${this.props.data.raw.img})`,
-                            backgroundSize: 'cover',
-                            backgroundPosition: 'center',
-                            backgroundRepeat: 'no-repeat',
-                            width: '100%',
-                            height: '250px'
+                            backgroundImage: `url(${this.props.data.raw.img})`
                         }}>
                     </div>
                 </Link>
@@ -39,12 +33,12 @@ export class BookCard extends Component {
                     <Link to={`/prod/${this.props.data.raw.id}`} className={styles.bookTitle}>
                         <h4>{this.props.data.formatted.formattedTitle}</h4>
                     </Link>
-                    <p>{this.props.data.formatted.formattedAuthor}</p>
+                    <div>{this.props.data.formatted.formattedAuthor}</div>
                     <div className={styles.bookRating}>
                         <ReactStars
                             count={5}
                             size={18}
-                            isHalf={true}
+                            isHalf={false}
                             value={this.props.data.raw.avgRating}
                             emptyIcon={<i className="far fa-star"></i>}
                             halfIcon={<i className="fa fa-star-half-alt"></i>}
