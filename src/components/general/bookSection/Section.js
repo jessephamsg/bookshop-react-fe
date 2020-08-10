@@ -1,7 +1,6 @@
 //DEPENDENCIES
 import React, { Component } from 'react';
-import generalLayout from '../../general/mainContainer/styles.module.css';
-import layout from '../../general/mainContainer/horizontalLayout.module.css';
+import layout from '../../general/mainContainer/styles.module.css';
 import axios from 'axios';
 
 //COMPONENTS
@@ -41,11 +40,11 @@ export class Section extends Component {
             )
         } else {
             return (
-                <div className={layout.bookContainer}>
-                    <div className={generalLayout.bookSectionTitle}>
+                <div className={layout.bookSection}>
+                    <div className={layout.bookSectionTitle}>
                         <h3>{this.props.heading}</h3>
                     </div>
-                    <div className={generalLayout.bookSectionBooks}>
+                    <div className={layout.bookSectionBooks}>
                         {(this.state.view).map(book => {
                             return (
                                 <BookCard data={book} handleAdd={this.props.handleAdd} />
