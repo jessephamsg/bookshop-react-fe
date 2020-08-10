@@ -1,7 +1,7 @@
 //DEPENDENCIES
 import React, {Component} from 'react';
 import axios from 'axios';
-import layout from '../../general/mainContainer/horizontalLayout.module.css';
+import layout from '../../general/mainContainer/simplePageContainer.module.css';
 
 //COMPONENTS
 import PaymentMethod from './PaymentMethod';
@@ -41,7 +41,7 @@ export class Checkout extends Component {
         return (
             <div>
                 <Navigation history= {this.props.history} cart={this.props.cart} total={this.props.total}/>
-                <div className={layout.bookContainer}>
+                <div className={layout.pageContainer}>
                     <PaymentMethod handlePayment={this.handlePayment}/>
                     <OrderSummary order={this.props.cart} total={this.props.total}/>
                 </div>
