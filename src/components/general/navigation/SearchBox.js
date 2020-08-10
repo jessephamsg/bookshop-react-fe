@@ -1,7 +1,7 @@
 //DEPENDENCIES
 import React, {Component} from 'react';
 import styles from './styles.module.css';
-
+import btnStyles from '../../general/mainContainer/styles.button.css'; //don't delete this. It's used for button styling
 
 export class SearchBox extends Component {
 

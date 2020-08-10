@@ -1,8 +1,15 @@
+.homePageBody {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    justify-content: center;
+  }
+
 .bookSection {
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
-    width: 80%;
+    width: 100%;
     margin-left: 10%;
     height: fit-content;
     padding: 10px;
@@ -23,7 +30,7 @@
     display: flex;
     flex-flow: row wrap;
     width: 95%;
-    justify-content: space-evenly;
+    justify-content: left;
     margin-left: 25px;
     margin-top: 0px;
 }

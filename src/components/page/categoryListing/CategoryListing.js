@@ -62,16 +62,18 @@ export class CategoryListing extends Component {
             return (
                 <React.Fragment>
                     <Navigation history={this.props.history} cart={this.props.cart} total={this.props.total} />
-                    <div className={layout.bookSection}>
-                        <div className={layout.bookSectionTitle}>
-                            <h3>{this.state.theme}</h3>
-                        </div>
-                        <div className={layout.bookSectionBooks}>
-                            {(this.state.view).map(book => {
-                                return (
-                                    <BookCard data={book} handleAdd={this.props.handleAdd} />
-                                )
-                            })}
+                    <div className={layout.homePageBody}>
+                        <div className={layout.bookSection}>
+                            <div className={layout.bookSectionTitle}>
+                                <h3>{this.state.theme}</h3>
+                            </div>
+                            <div className={layout.bookSectionBooks}>
+                                {(this.state.view).map(book => {
+                                    return (
+                                        <BookCard data={book} handleAdd={this.props.handleAdd} />
+                                    )
+                                })}
+                            </div>
                         </div>
                     </div>
                     <Footer />

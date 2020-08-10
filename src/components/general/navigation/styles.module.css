@@ -78,16 +78,6 @@
     justify-content: flex-start;
 }
 
-#searchButton > button {
-    background-color: #03A9F4;
-    padding: 10px;
-    border: none;
-    color: white;
-    padding-left: 30px;
-    padding-right: 30px;
-    border-radius: 3px;
-}
-
 #searchIcon {
     width: 5%;
 }

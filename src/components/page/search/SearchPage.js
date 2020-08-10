@@ -1,7 +1,7 @@
 //DEPENDENCIES
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
-import layout from '../../general/mainContainer/horizontalLayout.module.css';
+import layout from '../../general/mainContainer/styles.module.css';
 
 //COMPONENTS
 import Navigation from '../../general/navigation';
@@ -13,42 +13,52 @@ import Footer from '../../general/footer';
 import Endpoints from '../../../config/endpoints';
 const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;
 
-
 export class SearchPage extends Component {
 
-    constructor (props) {
-        super (props)
+    constructor(props) {
+        super(props)
         this.state = {
-            data: null
+            data: null,
+            query: null
         }
     }
 
-    async fetchData () {
+    async fetchData() {
         const currentLocation = window.location.href;
         const searchQuery = currentLocation.slice(REACT_APP_SERVER_URL.length, currentLocation.length);
         const response = await axios.get(`${REACT_APP_SERVER_URL}${searchQuery}`);
-        this.setState({data: response.data.data});
+        this.setState({ 
+            data: response.data.data,
+            query: searchQuery.replace('/search?query=','')
+        });
     }
 
-    async componentDidMount () {
+    async componentDidMount() {
         await this.fetchData();
     }
 
-    render () {
+    render() {
         if (this.state.data === null) {
             return (
-                <LoadingPage/>
+                <LoadingPage />
             )
-          } else {
-        return (
+        } else {
+            return (
                 <React.Fragment>
-                    <Navigation history = {this.props.history} cart={this.props.cart} total={this.props.total}/>
-                    <div className={layout.bookContainer}>
-                        {this.state.data.map(book => {
-                            return (
-                                <BookCard data={book} handleAdd={this.props.handleAdd}/>
-                            )
-                        })}
+                    <Navigation history={this.props.history} cart={this.props.cart} total={this.props.total} />
+                    <div className={layout.homePageBody}>
+                        <div className={layout.bookSection}>
+                            <div className={layout.bookSectionTitle}>
+                                <h3>Search Result for {this.state.query}</h3>
+                            </div>
+                            <div className={layout.bookSectionBooks}>
+                                {this.state.data.map(book => {
+                                    return (
+                                        <BookCard data={book} handleAdd={this.props.handleAdd} />
+                                    )
+                                })}
+                            </div>
+                        </div>
                     </div>
                     <Footer />
                 </React.Fragment>

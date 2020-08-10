@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 import axios from 'axios';
-import {BrowserHistory} from 'react-dom';
 
 //COMPONENTS
 import LoginLabel from './LoginLabel';
@@ -12,7 +11,6 @@ import Footer from '../../general/footer';
 //VARIABLES
 import Endpoints from '../../../config/endpoints';
 const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;
-
 
 class LoginContainer extends Component {
 
