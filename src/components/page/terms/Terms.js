@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styles from './styles.module.css';
+import layout from '../../general/mainContainer/simplePageContainer.module.css';
 
 //COMPONENTS
 import Icons from '../../general/navigation/Icons';
@@ -11,7 +12,7 @@ export class Terms extends Component {
         return (
             <div>
                 <Icons />
-                <div className={styles.bookContainer}>
+                <div className={layout.pageContainer}>
                 <div id={styles.aboutUs}>
                     <h2>Terms of Use</h2>
                     <p>
