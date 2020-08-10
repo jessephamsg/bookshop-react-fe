@@ -39,6 +39,18 @@
 #### 12. Mongoose Paginate - Handle Paginations when retriving data from DB to client
 #### 13. FuseJs - a lightweight JavaScript search library that supports fuzzy search
 
+## Code Organisation
+
+### Javascript
+
+|Folder  |Purpose                                                    |Details|
+|--------|-------------------------------------------------------------------|---------------------------------------------------------------------|
+|`App.js`| Manages all global states that can be accessed across pages | This includes information like user account, order history, cart etc. It also includes lists of Routes and key Page components|
+|`config`| Includes endpoints| This ensures faster deployment: there is no need to go to individual file to change the end point|
+|`general`| Includes all general components which can be assembled by the individual pages| This includes components like general layouts, cart button, loading page, error message, footer, navigation etc|
+|`pages`| Contains all pages on the site. The pages are assembled by importing general components| Each page may have its own custom stylesheet to manage its own unique requests|
+|`utils`| Contains codes that manage localStorage & sessionStorage | This includes CRUD requests handled by localStorage & sessionStorage|
+
 ## User Stories
 # US.1
 **As a** user,
