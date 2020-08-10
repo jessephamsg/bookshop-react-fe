@@ -9,24 +9,25 @@
 
 .bookCover {
     height: 60%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 250px;
 }
 
 .bookTitle {
     color: black;
     font-size: 1rem;
     font-weight: 400;
-    height: 60px;
+    height: 70px;
 }
 
 .bookCardSummary {
     display: flex;
     flex-direction: column;
+    text-align: center;
     height: 40%;
-}
-
-.bookCardSummaryh4 > h4 {
-    margin-bottom: 0px;
-    font-size: 15px;
 }
 
 .bookCardSummary > p {
