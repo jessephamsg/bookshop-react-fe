@@ -1,10 +1,11 @@
 //DEPENDENCIES
 import React, {Component} from 'react';
 import layout from '../../general/mainContainer/verticalLayout.module.css';
+import btnStyles from '../../general/mainContainer/styles.button.css'; //don't delete this. It's used for button styling
 import styles from './styles.module.css';
 
 //COMPONENTS
-import BookCard from '../../general/bookCardHorizontal';
+import BookCardHorizontal from '../../general/bookCardHorizontal';
 import Navigation from '../../general/navigation';
 import Footer from '../../general/footer';
 
@@ -44,17 +45,17 @@ export class Cart extends Component {
                             return (
                                 <React.Fragment>
                                     <div className={styles.cartRow}>
-                                        <BookCard data={item}/>
+                                        <BookCardHorizontal data={item}/>
                                         <div className={styles.rowQty}>
-                                            <p> Quantity: 1 </p>
-                                            <button className={styles.removeButton} onClick={this.handleRemoveFromCart} value={item.raw.id}>Remove from Cart</button>
+                                            <span> Quantity: 1 </span>
+                                            <button onClick={this.handleRemoveFromCart} value={item.raw.id}>Remove</button>
                                         </div>
                                     </div>
                                     <div className={styles.hl}></div>
                                 </React.Fragment>
                             )
                         })}
-                        <button className={styles.checkoutButton} onClick={this.handleCheckout}>Checkout</button>
+                        <button onClick={this.handleCheckout}>Checkout</button>
                     </div>
                     <Footer />
                 </div>
