@@ -1,7 +1,6 @@
 //DEPENDENCIES
 import React, { Component } from 'react';
-import styles from './styles.module.css';
-import layout from '../../general/mainContainer/horizontalLayout.module.css';
+import layout from '../../general/mainContainer/simplePageContainer.module.css';
 
 //COMPONENTS
 import Icons from '../../general/navigation/Icons';
@@ -9,49 +8,28 @@ import Footer from '../../general/footer';
 
 
 export class Return extends Component {
-    render () {
+    render() {
         return (
             <div>
                 <Icons />
-                <div className={layout.bookContainer}>
-                    <div className={styles.content}>
-                        <div className={styles.contentSection}>
-                            <h3>What Personal Information we collect</h3>
-                            <p>
-                            We collect your personal information in order to provide and continually improve the Book Depository Services. The types of information we gather include:
-                            Information you give us: we receive and store information you provide us when you use the Book Depository Services. For example, your name and address, purchases you make, payment details, competition entries, survey responses, reviews and messages you send us.
-                            Automatic information: we automatically receive and store certain types of information when you use Book Depository Services, including information about how you've used the site and what services you've interacted with. Like many websites, we use "cookies" and other unique identifiers, and we obtain certain types of information when your device accesses our website or other content served on our behalf on other websites (see below: “What about cookies?”).
-                            Information from other sources: we might receive information about you from other sources. For example, we may receive credit history information in order to help prevent and detect fraud, or payment confirmations from payment processors.
+                <div className={layout.pageContainer}>
+                    <div className={layout.pageTitle}>Return Policy</div>
+                    <h3>What can I return?</h3>
+                    <p>
+                        For a full refund, you may return any item in its original condition within 45 days of receipt. Please note that any shrink-wrapped items that have been opened may not be returned. Additionally, if you have any inquiries regarding ebook returns, please see our eBook Information page. Shipping costs are non-refundable.
                             </p>
-                        </div>
-                        <div className={styles.contentSection}>
-                            <h3>What Personal Information we collect</h3>
-                            <p>
-                            We collect your personal information in order to provide and continually improve the Book Depository Services. The types of information we gather include:
-                            Information you give us: we receive and store information you provide us when you use the Book Depository Services. For example, your name and address, purchases you make, payment details, competition entries, survey responses, reviews and messages you send us.
-                            Automatic information: we automatically receive and store certain types of information when you use Book Depository Services, including information about how you've used the site and what services you've interacted with. Like many websites, we use "cookies" and other unique identifiers, and we obtain certain types of information when your device accesses our website or other content served on our behalf on other websites (see below: “What about cookies?”).
-                            Information from other sources: we might receive information about you from other sources. For example, we may receive credit history information in order to help prevent and detect fraud, or payment confirmations from payment processors.
+                    <h3>How long do I have to make a return?</h3>
+                    <p>
+                        You may request a return within 45 days of receipt. Once the 45 days have expired, you may contact our Customer Service Department. Please be aware any returns requested after the 45 day deadline may result in a partial or declined refund.
                             </p>
-                        </div>
-                        <div className={styles.contentSection}>
-                            <h3>What Personal Information we collect</h3>
-                            <p>
-                            We collect your personal information in order to provide and continually improve the Book Depository Services. The types of information we gather include:
-                            Information you give us: we receive and store information you provide us when you use the Book Depository Services. For example, your name and address, purchases you make, payment details, competition entries, survey responses, reviews and messages you send us.
-                            Automatic information: we automatically receive and store certain types of information when you use Book Depository Services, including information about how you've used the site and what services you've interacted with. Like many websites, we use "cookies" and other unique identifiers, and we obtain certain types of information when your device accesses our website or other content served on our behalf on other websites (see below: “What about cookies?”).
-                            Information from other sources: we might receive information about you from other sources. For example, we may receive credit history information in order to help prevent and detect fraud, or payment confirmations from payment processors.
+                    <h3>How do I make a return?</h3>
+                    <p>
+                        To make a return, please send an email us with the subject line: “Return Request.” Please include your name, the order/invoice number, and the items and quantities you wish to return. You will receive a return authorization document and additional instructions within 1-2 business days. Please note that any return shipping costs are the customer’s responsibility.
                             </p>
-                        </div>
-                        <div className={styles.contentSection}>
-                            <h3>What Personal Information we collect</h3>
-                            <p>
-                            We collect your personal information in order to provide and continually improve the Book Depository Services. The types of information we gather include:
-                            Information you give us: we receive and store information you provide us when you use the Book Depository Services. For example, your name and address, purchases you make, payment details, competition entries, survey responses, reviews and messages you send us.
-                            Automatic information: we automatically receive and store certain types of information when you use Book Depository Services, including information about how you've used the site and what services you've interacted with. Like many websites, we use "cookies" and other unique identifiers, and we obtain certain types of information when your device accesses our website or other content served on our behalf on other websites (see below: “What about cookies?”).
-                            Information from other sources: we might receive information about you from other sources. For example, we may receive credit history information in order to help prevent and detect fraud, or payment confirmations from payment processors.
+                    <h3>Help! I received my order, but the contents are missing/damaged/incorrect.</h3>
+                    <p>
+                        We strives to provide excellent service. We are so sorry if you receive an incomplete or damaged order. Please contact us so that we may correct any issues as quickly as possible.
                             </p>
-                        </div>
-                    </div>
                 </div>
                 <Footer />
             </div>

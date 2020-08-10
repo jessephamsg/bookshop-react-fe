@@ -1,36 +1,20 @@
-.bookContainer {
-    display: flex;
-    flex-direction: row;
-    width: 80%;
-    margin-left: 10%;
-    flex-wrap: no-wrap;
-    height: fit-content;
-    padding: 10px;
-    box-shadow: 5px 5px 5px #88888821;
-    background-color: white;
-    margin-bottom: 5px;
-    margin-top: 5px;
+#aboutUs {
+    width: 70%;
     text-align: left;
 }
 
-#aboutUs > p {
-    font-size: 13px;
-}
-
-#aboutUs {
-    width: 70%;
-    padding: 10px;
-}
-
 #aboutUsStats {
+    display: flex;
+    flex-flow: column nowrap;
+    align-content: flex-start;
     width: 30%;
-    padding: 10px;
+    margin-top: 25px;
 }
 
 .statsDiv {
     background-color: #8080803b;
     padding: 10px;
-    margin-bottom: 5px;
+    margin: 0 0 5px 30px;
 }
 
 .statsDiv > h3 {
