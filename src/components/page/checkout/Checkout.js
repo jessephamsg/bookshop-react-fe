@@ -30,11 +30,13 @@ export class Checkout extends Component {
         if(bookResponse.data.success) {
             const userResponse = await axios.put(`${REACT_APP_SERVER_URL}/user`, userData);
             if (userResponse.data.success) {
-                alert('Your Order is Confirmed');
+                window.location.replace('./thankyou');
+            }
+            else {
+                window.location.replace('./checkout');
             }
         }
         window.localStorage.clear();
-        window.location.replace('./');
     }
     
     render () {
@@ -42,8 +44,8 @@ export class Checkout extends Component {
             <div>
                 <Navigation history= {this.props.history} cart={this.props.cart} total={this.props.total}/>
                 <div className={layout.pageContainer}>
-                    <PaymentMethod handlePayment={this.handlePayment}/>
                     <OrderSummary order={this.props.cart} total={this.props.total}/>
+                    <PaymentMethod handlePayment={this.handlePayment}/>
                 </div>
                 <Footer/>
             </div>

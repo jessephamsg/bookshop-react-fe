@@ -31,3 +31,9 @@
     justify-content: center;
     width: 100%;
 }
+
+.inputContainer {
+    max-width: 50%;
+    min-width: 300px;
+    margin: 0 auto 25px auto;
+}

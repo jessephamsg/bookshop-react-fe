@@ -10,7 +10,6 @@ import Navigation from '../../general/navigation';
 import Footer from '../../general/footer';
 import LoadingPage from '../../general/loadingPage';
 import BooksReviewLabelForm from '../../general/booksReview/BooksReviewLabelForm';
-import CartButton from '../../general/cartButton';
 import BookDetails from './bookDetails';
 
 //VARIABLES

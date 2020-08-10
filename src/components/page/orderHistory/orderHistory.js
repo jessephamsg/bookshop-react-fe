@@ -56,6 +56,7 @@ export class OrderHistory extends Component {
                 { (this.state.orderhistory.length === 0) ? 
                     <Message msg={this.state.userAuthenticated} /> :
                     <div className={verticalLayout.bookContainer}>
+                        <div className={verticalLayout.pageTitle}>Order History</div>
                         {(this.state.orderhistory.data.data).map(order => {
                             return (
                                 <React.Fragment>

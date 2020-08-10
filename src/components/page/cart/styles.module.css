@@ -5,31 +5,15 @@
 
 .rowQty {
     display: flex;
+    flex-flow: row nowrap;
     width: 30%;
-    flex-direction: column;
-    align-content: flex-end;
+    height: 36px;
+    justify-content: space-between;
     align-items: flex-start;
-    justify-content: end;
 }
 
-.removeButton {
-    padding: 10px;
-    background-color: #E91E63;
-    border: none;
-    border-radius: 3px;
-    color: white;
-}
-
-.checkoutButton {
-    padding: 10px;
-    background-color: #2196F3;
-    border: none;
-    border-radius: 3px;
-    color: white;
-    width: 30%;
-    margin-left: 67.5%;
-    margin-bottom: 20px;
-    margin-right: 2.5%;
+span{
+    padding: 6px 0;
 }
 
 .hl {

@@ -1,26 +1,14 @@
-.bookContainer {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    margin-left: 10%;
-    flex-wrap: no-wrap;
-    height: fit-content;
-    padding: 10px;
-    box-shadow: 5px 5px 5px #88888821;
-    background-color: white;
-    margin-bottom: 5px;
-    margin-top: 5px;
-    text-align: center;
-}
-
 .summaryContainer {
     display: flex;
     flex-direction: column;
-    width: 35%;
-    height: 100%;
+    width: 50%;
+    min-width: 300px;
     border: 1px #e91e63 solid;
-    margin-left: 10px;
-    margin-bottom: 20px;
+}
+
+.summaryTotal {
+    font-size: 2.5rem;
+    font-weight: 600;
 }
 
 .summaryRow {
@@ -43,8 +31,14 @@
 .paymentMethodContainer {
     display: flex;
     flex-direction: column;
-    width: 60%;
+    width: 40%;
     text-align: left;
+    margin-left: 5%;
+}
+
+.formLabel {
+    margin-bottom: 1em;
+    margin-top: 1em;
 }
 
 .paymentMethodContent {
@@ -60,28 +54,9 @@
 }
 
 .paymentMethodRow  > img {
-    width: 80%;
+    object-fit: contain;
+    height: 30px;
     margin-bottom: 10px;
-}
-
-.paymentMethodRow  > input {
-    width: 80%;
-    border: none;
-    background-color: #8080802e;
-    padding: 10px;
-    margin-bottom: 0px;
-    border-radius: 3px;
-}
-
-.paymentMethodContainer > button {
-    padding: 10px;
-    width: 85%;
-    background-color:  #2196F3;
-    margin-top: 20px;
-    color: white;
-    border: none;
-    border-radius: 3px;
-    margin-bottom: 20px;
 }
 
 .firstRow {
@@ -91,5 +66,4 @@
     text-align: left;
     align-items: center;
     padding-left: 10px;
-
 }
