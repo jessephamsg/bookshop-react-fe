@@ -42,8 +42,8 @@ export class Checkout extends Component {
             <div>
                 <Navigation history= {this.props.history} cart={this.props.cart} total={this.props.total}/>
                 <div className={layout.pageContainer}>
-                    <PaymentMethod handlePayment={this.handlePayment}/>
                     <OrderSummary order={this.props.cart} total={this.props.total}/>
+                    <PaymentMethod handlePayment={this.handlePayment}/>
                 </div>
                 <Footer/>
             </div>
