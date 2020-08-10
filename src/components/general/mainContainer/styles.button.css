@@ -1,0 +1,14 @@
+button, .defaultButton {
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 3px;
+    align-self: flex-end;
+}
+
+button:hover, .defaultButton:hover {
+    cursor: pointer;
+    background-color: #E91E63;
+}
+
