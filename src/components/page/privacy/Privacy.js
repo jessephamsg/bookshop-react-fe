@@ -1,7 +1,7 @@
 //DEPENDENCIES
 import React, { Component } from 'react';
 import styles from './styles.module.css';
-import layout from '../../general/mainContainer/styles.module.css';
+import layout from '../../general/mainContainer/horizontalLayout.module.css';
 
 //COMPONENTS
 import Icons from '../../general/navigation/Icons';

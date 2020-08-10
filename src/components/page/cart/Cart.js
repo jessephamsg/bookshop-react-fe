@@ -42,13 +42,16 @@ export class Cart extends Component {
                     <div className={layout.bookContainer}>
                         {(this.props.cart).map(item => {
                             return (
-                                <div className={styles.cartRow}>
-                                    <BookCard data={item}/>
-                                    <div className={styles.rowQty}>
-                                        <p> Quantity: 1 </p>
-                                        <button className={styles.removeButton} onClick={this.handleRemoveFromCart} value={item.raw.id}>Remove from Cart</button>
+                                <React.Fragment>
+                                    <div className={styles.cartRow}>
+                                        <BookCard data={item}/>
+                                        <div className={styles.rowQty}>
+                                            <p> Quantity: 1 </p>
+                                            <button className={styles.removeButton} onClick={this.handleRemoveFromCart} value={item.raw.id}>Remove from Cart</button>
+                                        </div>
                                     </div>
-                                </div>
+                                    <div className={styles.hl}></div>
+                                </React.Fragment>
                             )
                         })}
                         <button className={styles.checkoutButton} onClick={this.handleCheckout}>Checkout</button>

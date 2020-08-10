@@ -2,6 +2,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import verticalLayout from '../../general/mainContainer/verticalLayout.module.css';
+import styles from './styles.module.css'
 
 //COMPONENTS
 import LoadingPage from '../../general/loadingPage';
@@ -30,7 +31,7 @@ export class OrderHistory extends Component {
     async componentDidMount () {
         const result = await UserAuthenticator.authenticateUser();
         if (result) {
-            const orders = await axios.get(`${REACT_APP_SERVER_URL}/user/orders?query=${this.state.email}`);
+            const orders = await axios.get(`${REACT_APP_SERVER_URL}/user/orders?query=${result.email}`);
             this.setState({ 
                   email: result.email,
                   orderhistory: orders 
@@ -57,7 +58,10 @@ export class OrderHistory extends Component {
                     <div className={verticalLayout.bookContainer}>
                         {(this.state.orderhistory.data.data).map(order => {
                             return (
+                                <React.Fragment>
                                 <BookCard data={order}/>
+                                <div className={styles.hl}></div>
+                                </React.Fragment>
                             )
                         })}
                     </div>

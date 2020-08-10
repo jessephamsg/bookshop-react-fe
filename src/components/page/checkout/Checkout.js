@@ -1,7 +1,7 @@
 //DEPENDENCIES
 import React, {Component} from 'react';
 import axios from 'axios';
-import layout from '../../general/mainContainer/styles.module.css';
+import layout from '../../general/mainContainer/horizontalLayout.module.css';
 
 //COMPONENTS
 import PaymentMethod from './PaymentMethod';

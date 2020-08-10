@@ -1,6 +1,6 @@
 .bookSection {
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: column wrap;
     justify-content: center;
     width: 80%;
     margin-left: 10%;
@@ -22,8 +22,8 @@
 .bookSectionBooks {
     display: flex;
     flex-flow: row wrap;
-    width: 100%;
-    justify-content: flex-start;
+    width: 95%;
+    justify-content: space-evenly;
     margin-left: 25px;
     margin-top: 0px;
 }
