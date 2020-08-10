@@ -37,6 +37,10 @@ export class SearchPage extends Component {
         await this.fetchData();
     }
 
+    async componentWillReceiveProps(props) {
+        await this.fetchData();
+    }
+
     render() {
         if (this.state.data === null) {
             return (
