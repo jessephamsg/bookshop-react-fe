@@ -1,17 +1,30 @@
 //DEPENDENCIES
 import React, { Component } from 'react';
 import layout from '../../general/mainContainer/simplePageContainer.module.css';
+import axios from 'axios';
 
 //COMPONENTS
 import Icons from '../../general/navigation/Icons';
 import Footer from '../../general/footer';
 
+//VARIABLES
+import Endpoints from '../../../config/endpoints';
+const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;
 
 export class Return extends Component {
+    handleLogout = async (e) => {
+        try {
+          const response = await axios.get(`${REACT_APP_SERVER_URL}/logout`, { withCredentials: true })
+          sessionStorage.removeItem('userData');
+          this.props.history.push('/login')
+        } catch (err) {
+          console.log(err)
+        }
+      }
     render() {
         return (
             <div>
-                <Icons />
+                <Icons handleLogout = {this.handleLogout}/>
                 <div className={layout.pageContainer}>
                     <div className={layout.pageTitle}>Return Policy</div>
                     <h3>What can I return?</h3>

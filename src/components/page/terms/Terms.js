@@ -6,12 +6,28 @@ import layout from '../../general/mainContainer/simplePageContainer.module.css';
 import Icons from '../../general/navigation/Icons';
 import Footer from '../../general/footer';
 
+// DEPENDENCIES
+import axios from 'axios';
+
+//VARIABLES
+import Endpoints from '../../../config/endpoints';
+const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;
 
 export class Terms extends Component {
+    handleLogout = async (e) => {
+        try {
+          const response = await axios.get(`${REACT_APP_SERVER_URL}/logout`, { withCredentials: true })
+          sessionStorage.removeItem('userData');
+          this.props.history.push('/login')
+        } catch (err) {
+          console.log(err)
+        }
+      }
+    
     render() {
         return (
             <div>
-                <Icons />
+                <Icons handleLogout = {this.handleLogout}/>
                 <div className={layout.pageContainer}>
                     <div id={styles.aboutUs}>
                         <div className={layout.pageTitle}>Terms of Use</div>
