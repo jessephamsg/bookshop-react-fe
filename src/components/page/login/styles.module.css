@@ -37,3 +37,8 @@
 .formButton:hover {
     background-color: rgba(61,49,65,0.9);
 }
+
+.aTags {
+    color: black;
+    font-size: 18px;
+}
