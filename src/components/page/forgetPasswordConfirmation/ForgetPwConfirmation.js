@@ -45,6 +45,7 @@ class ForgetPwConfirmation extends Component {
       this.setState({ id: this.props.match.params.id })
       const data = { ...this.state }
       const response = await axios.post(`${REACT_APP_SERVER_URL}/forgetpassword/reset/${this.props.match.params.id}`, data,  { withCredentials: true })
+      console.log(response)
       if(!response.data.success) {
           this.setState({ failureChange: response.data.error })
       }

@@ -36,6 +36,7 @@ class RegisterContainer extends Component {
             e.preventDefault();
             let data = { ...this.state }
             const response = await axios.post(`${REACT_APP_SERVER_URL}/register`, data);
+            console.log(response)
             if (response.data.success) {
                 this.setState({
                     name: '',
